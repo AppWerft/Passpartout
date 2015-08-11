@@ -7,9 +7,9 @@
     <description/>
     <copyright>2015 by fuerst</copyright>
     <icon>appicon.png</icon>
-    <fullscreen>false</fullscreen>
-    <navbar-hidden>false</navbar-hidden>
-    <analytics>true</analytics>
+    <fullscreen>true</fullscreen>
+    <navbar-hidden>true</navbar-hidden>
+    <analytics>false</analytics>
     <guid>945b720d-8de5-4383-9555-54dc9276fb84</guid>
     <property name="ti.ui.defaultunit" type="string">dp</property>
     <ios>
@@ -44,15 +44,12 @@
         </splash>
         <theme>default</theme>
     </mobileweb>
-    <modules>
-        <module platform="commonjs">ti.cloud</module>
-    </modules>
+    <modules/>
     <deployment-targets>
         <target device="android">true</target>
         <target device="ipad">true</target>
         <target device="iphone">true</target>
         <target device="mobileweb">false</target>
-        <target device="windows">false</target>
     </deployment-targets>
     <sdk-version>4.1.0.GA</sdk-version>
     <property name="appc-app-id" type="string">55c99e7c8f9c029a4e6685a1</property>

@@ -1,0 +1,8 @@
+"/Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/android/gen/android/support/v7/appcompat/R.java"
+"/Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/android/gen/de/appwerft/passpartout/ApplicationStylesheet.java"
+"/Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/android/gen/de/appwerft/passpartout/AssetCryptImpl.java"
+"/Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/android/gen/de/appwerft/passpartout/PasspartoutActivity.java"
+"/Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/android/gen/de/appwerft/passpartout/PasspartoutAppInfo.java"
+"/Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/android/gen/de/appwerft/passpartout/PasspartoutApplication.java"
+"/Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/android/gen/de/appwerft/passpartout/R.java"
+"/Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/android/gen/ti/modules/titanium/ui/R.java"
