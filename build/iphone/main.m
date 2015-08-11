@@ -10,7 +10,7 @@
 NSString * const TI_APPLICATION_DEPLOYTYPE = @"development";
 NSString * const TI_APPLICATION_ID = @"de.appwerft.passpartout";
 NSString * const TI_APPLICATION_PUBLISHER = @"fuerst";
-NSString * const TI_APPLICATION_URL = @"http://";
+NSString * const TI_APPLICATION_URL = @"undefined";
 NSString * const TI_APPLICATION_NAME = @"Passpartout";
 NSString * const TI_APPLICATION_VERSION = @"1.0";
 NSString * const TI_APPLICATION_DESCRIPTION = @"";

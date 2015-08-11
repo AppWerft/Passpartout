@@ -1,1 +1,1 @@
-/Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/Resources/ui/accounts.container.js
+/Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/Resources/iphone/ui/accounts.container.js

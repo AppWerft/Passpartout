@@ -12,5 +12,5 @@ module.exports =function (elem) {
 		}
 		ret += " " + newTxt;
 	}
-	return ret;
+	return ret.substr(1);
 };

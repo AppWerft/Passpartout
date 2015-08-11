@@ -4,7 +4,6 @@
     <name>Passpartout</name>
     <version>1.0</version>
     <publisher>fuerst</publisher>
-    <url>http://</url>
     <description/>
     <copyright>2015 by fuerst</copyright>
     <icon>appicon.png</icon>
@@ -22,8 +21,6 @@
                 </array>
                 <key>UISupportedInterfaceOrientations~ipad</key>
                 <array>
-                    <string>UIInterfaceOrientationPortrait</string>
-                    <string>UIInterfaceOrientationPortraitUpsideDown</string>
                     <string>UIInterfaceOrientationLandscapeLeft</string>
                     <string>UIInterfaceOrientationLandscapeRight</string>
                 </array>
