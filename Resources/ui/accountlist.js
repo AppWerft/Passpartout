@@ -2,7 +2,6 @@ var GLOBALS = require('GLOBALS');
 
 module.exports = function() {
 	var  args = arguments[0] || {};
-	console.log(args);
 	var self = require('ui/window')();
 	var rows = [];
 	for (var i = 0; i < 100; i++) {

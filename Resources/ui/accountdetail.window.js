@@ -2,15 +2,23 @@ module.exports = function() {
 	var self = require('ui/window')({
 		backgroundColor : 'yellow'
 	});
-	self.add(Ti.UI.createLabel({
-		text : require('vendor/loremipsum')(),
-		top : 10,
-		color : '#444',
-		font : {
-			fonzSize : 30
-		},
-		left : 10,
-		right : 10
-	}));
+	var rows = [];
+	for (var i = 0; i < 100; i++) {
+		rows[i] = Ti.UI.createTableViewRow({
+			itemId : i,
+			height : Ti.UI.SIZE
+		});
+		rows[i].add(Ti.UI.createLabel({
+			top : 10,
+			left : 10,
+			right : 10,
+			text : require('vendor/loremipsum')(4),
+
+		}));
+	}
+	var list = Ti.UI.createTableView({
+		data : rows
+	});
+	self.add(list);
 	return self;
 };
