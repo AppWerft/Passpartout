@@ -21,6 +21,7 @@ GLOBALS.isPad = (Ti.Platform.osname === 'ipad') ? true : false;
 GLOBALS.isIOS = (Ti.Platform.osname[0] === 'i') ? true : false;
 GLOBALS.isAndroid = (Ti.Platform.osname === 'android') ? true : false;
 
+
 /* normalizing of w/h depending of device class */
 var ratio = Math.max(SCREENWIDTH, SCREENHEIGHT) / Math.min(SCREENWIDTH, SCREENHEIGHT);
 
