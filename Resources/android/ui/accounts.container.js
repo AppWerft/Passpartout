@@ -100,6 +100,7 @@ module.exports = function() {
 			}
 			views[1] = require('vendor/pageflip.widget')({
 				pages : pages,
+				startPage : _e.payload,
 				onflipend : function(_res) {
 					self.headLineText.setText('<  Booking (#' + _res.current + ')');
 				}
@@ -150,6 +151,7 @@ module.exports = function() {
 				subtitle : 'Account: XYZ',
 				children : [require('vendor/pageflip.widget')({
 					pages : pages,
+					startPage : _e.payload,
 					onflipend : function(_res) {
 						ActionBar.setTitle('Booking (#' + (_res.current + 1) + ')');
 					}
