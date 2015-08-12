@@ -4,13 +4,14 @@ module.exports = function() {
 	var args = arguments[0] || {};
 	var self = Ti.UI.createScrollView({
 		layout : 'vertical',
+		backgroundColor : 'white',
 		scrollType : 'vertical',
-		height: Ti.UI.FILL,
+		height : Ti.UI.FILL,
 		contentWidth : Ti.UI.FILL,
 		contentHeight : Ti.UI.SIZE,
 	});
 	var w = parseInt(GLOBALS.SCREENWIDTH * 0.4);
-	
+
 	var imageurl = 'http://lorempixel.com/g/' + w + '/' + w + '/?' + Math.random();
 	console.log(imageurl);
 	self.add(Ti.UI.createImageView({

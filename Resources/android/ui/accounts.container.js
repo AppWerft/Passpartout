@@ -23,11 +23,18 @@ module.exports = function() {
 			image : 'http://lorempixel.com/g/1024/768/business/?' + Math.random(),
 			width : Ti.UI.FILL,
 			height : Ti.UI.FILL,
-		}), Ti.UI.createView()];
+		}), Ti.UI.createView({
+			width : Ti.UI.FILL,
+			height : Ti.UI.FILL
+		})];
 		// container for headline and subviews (as scrollable view)
 		self.detailView = Ti.UI.createView({
 			layout : 'vertical',
-			left : 0
+			left : 0,
+			top : 0,
+			backgroundColor : 'gray',
+			width : Ti.UI.FILL,
+			height : Ti.UI.FILL
 		});
 		self.headLine = Ti.UI.createView({
 			backgroundColor : '#ccc',
@@ -45,18 +52,19 @@ module.exports = function() {
 			views : views,
 			width : Ti.UI.FILL
 		});
-		//self.detailView.add(self.headLine);
-		self.detailView.add(subviewcontainer);
 		self.add(self.masterView);
 		self.add(self.detailView);
+		//self.detailView.add(self.headLine);
+		self.detailView.add(subviewcontainer);
 		self.addEventListener('selectaccount', function(_e) {
+			subviewcontainer.scrollToView(0);
 			/*self.detailView.animate({
-				top : 50
-			});*/
+			 top : 50
+			 });*/
 			views[0].opacity = 0.4;
 			views[0].left = -200;
 			views[0] = require('ui/bookingsbyaccount.list')({
-					parent : self
+				parent : self
 			});
 			// forced rerendering!
 			subviewcontainer.setViews(views);
@@ -67,13 +75,11 @@ module.exports = function() {
 			});
 		});
 		self.addEventListener('selectbooking', function(_e) {
-			var container = require('ui/window')({
-				title : 'This booking (#' + (_e.payload + 1) + ')'
-			});
-			container.add(require('ui/booking')({
+			views[1] =require('ui/booking')({
 				parent : self
-			}));
-			self.getDetailView().openWindow(container);
+			});
+			subviewcontainer.setViews(views);
+			subviewcontainer.scrollToView(1);
 		});
 	} else {
 		/* Handheld: all ist standard window stack*/
