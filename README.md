@@ -27,3 +27,10 @@ In this case we use always new windows (activities).
 ![](https://raw.githubusercontent.com/AppWerft/Passpartout/master/screens/Screenshot_2015-08-11-19-09-32.png)
 ![](https://raw.githubusercontent.com/AppWerft/Passpartout/master/screens/Screenshot_2015-08-11-19-09-38.png)
 ![](https://raw.githubusercontent.com/AppWerft/Passpartout/master/screens/Screenshot_2015-08-11-19-09-43.png)
+
+NEXUS9
+------
+
+Here we build the navigation structure with simople views and a scrolalble view for subnavigation
+
+![]()
