@@ -24,9 +24,10 @@ NEXUS5
 ------
 In this case we use always new windows (activities).
 
-![](https://raw.githubusercontent.com/AppWerft/Passpartout/master/screens/Screenshot_2015-08-11-19-09-32.png)
-![](https://raw.githubusercontent.com/AppWerft/Passpartout/master/screens/Screenshot_2015-08-11-19-09-38.png)
-![](https://raw.githubusercontent.com/AppWerft/Passpartout/master/screens/Screenshot_2015-08-11-19-09-43.png)
+![](https://raw.githubusercontent.com/AppWerft/Passpartout/master/screens/nexus5/1.png)
+![](https://raw.githubusercontent.com/AppWerft/Passpartout/master/screens/nexus5/2.png)
+![](https://raw.githubusercontent.com/AppWerft/Passpartout/master/screens/nexus5/3.png)
+![](https://raw.githubusercontent.com/AppWerft/Passpartout/master/screens/nexus5/4.png)
 
 NEXUS9
 ------
