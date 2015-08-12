@@ -62,7 +62,6 @@ module.exports = function() {
 			});
 			nextwindow.open();
 		});
-
 	}
 	return self;
 };
