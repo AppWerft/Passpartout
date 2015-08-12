@@ -1,4 +1,6 @@
 var GLOBALS = require('GLOBALS');
+var ActionBar = require('com.alcoapps.actionbarextras');
+
 /*
  *
  *
@@ -76,11 +78,7 @@ module.exports = function() {
 			});
 			self.headLineText.setText('Bookings in this account (#' + (_e.payload + 1) + ')');
 			subviewcontainer.scrollToView(0);
-			/*self.detailView.animate({
-			 top : 50
-			 });*/
-			views[0].opacity = 0.4;
-			views[0].left = -200;
+			views[0].opacity = 0.8;
 			views[0] = require('ui/bookingsbyaccount.list')({
 				parent : self
 			});
@@ -131,7 +129,9 @@ module.exports = function() {
 		}));
 		self.addEventListener('selectaccount', function(_e) {
 			var nextwindow = require('ui/window')({
-				title : 'Bookings in this account (#' + (_e.payload + 1) + ')'
+				title : 'Account (#' + (_e.payload + 1) + ')',
+				onopen : require('ui/main.actionbar'),
+				subtitle : 'All bookings of this account'
 			});
 			nextwindow.add(require('ui/bookingsbyaccount.list')({
 				parent : self
@@ -147,15 +147,14 @@ module.exports = function() {
 			}
 			var nextwindow = require('ui/window')({
 				title : 'This booking (#' + (_e.payload + 1) + ')',
-				/*children : [require('ui/booking')({
-				 parent : nextwindow
-				 })]*/
+				subtitle : 'Account: XYZ',
 				children : [require('vendor/pageflip.widget')({
 					pages : pages,
 					onflipend : function(_res) {
-						nextwindow.setTitle('Booking (#' + (_res.current + 1) + ')');
+						ActionBar.setTitle('Booking (#' + (_res.current + 1) + ')');
 					}
-				})]
+				})],
+				onopen : require('ui/main.actionbar')
 			});
 			nextwindow.open();
 			setTimeout(function() {

@@ -1,7 +1,7 @@
 var GLOBALS = require('GLOBALS');
 
 module.exports = function() {
-	return Ti.UI.createTabGroup({
+	var self = Ti.UI.createTabGroup({
 		backgroundColor : 'yellow', // for Android
 		tabs : [Ti.UI.createTab({
 			window : require('ui/accounts.container')(),
@@ -16,4 +16,7 @@ module.exports = function() {
 		swipeable : false,
 		orientationModes : GLOBALS.isTablet ? [Ti.UI.LANDSCAPE_LEFT, Ti.UI.LANDSCAPE_RIGHT] : [Ti.UI.PORTRAIT, Ti.UI.UPSIDE_PORTRAIT]
 	});
+	if (GLOBALS.isAndroid)
+		self.addEventListener('open', require('ui/main.actionbar'));
+	return self;
 };
