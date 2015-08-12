@@ -27,7 +27,8 @@ module.exports = function() {
 			height : 40,
 			color : '#444',
 			font : {
-				fontSize : 16
+				fontSize : 16,
+				fontFamily : 'Frutiger'
 			}
 		}));
 	}

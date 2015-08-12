@@ -24,7 +24,20 @@ module.exports = function() {
 			width : Ti.UI.FILL,
 			height : Ti.UI.FILL,
 		}), Ti.UI.createView()];
-		self.detailView = Ti.UI.createScrollableView({
+		// container for headline and subviews (as scrollable view)
+		self.detailView = Ti.UI.createView({
+			layout : 'vertical',
+			left : 0
+		});
+		self.headLine = Ti.UI.createView({
+			backgroundColor : '#ccc',
+			top : 0,
+			height : 0 /* initial hiding of headline */
+		});
+		self.headLine.add(Ti.UI.createLabel({
+			text : 'Überschrift'
+		}));
+		var subviewcontainer = Ti.UI.createScrollableView({
 			left : 0,
 			top : 0,
 			backgroundImage : '/grid.png',
@@ -32,31 +45,21 @@ module.exports = function() {
 			views : views,
 			width : Ti.UI.FILL
 		});
-		self.headLine = Ti.UI.createView({
-			backgroundColor : '#ddd',
-			top : 0,
-			height : 50
-		});
-		self.headLine.add(Ti.UI.createLabel({
-			text : 'Überschrift'
-		}));
+		//self.detailView.add(self.headLine);
+		self.detailView.add(subviewcontainer);
 		self.add(self.masterView);
-		//self.add(self.headLine);
 		self.add(self.detailView);
 		self.addEventListener('selectaccount', function(_e) {
-			self.detailView.animate({
+			/*self.detailView.animate({
 				top : 50
-			});
+			});*/
 			views[0].opacity = 0.4;
 			views[0].left = -200;
-			views[0] = require('ui/window')({
-				title : 'Bookings in this account (#' + (_e.payload + 1) + ')',
-				children : [require('ui/bookingsbyaccount.list')({
+			views[0] = require('ui/bookingsbyaccount.list')({
 					parent : self
-				})]
 			});
 			// forced rerendering!
-			self.detailView.setViews(views);
+			subviewcontainer.setViews(views);
 			views[0].animate({
 				opacity : 1,
 				left : 0,
