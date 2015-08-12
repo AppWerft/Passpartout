@@ -20,13 +20,14 @@ module.exports = function() {
 		}));
 		rows[i].add(Ti.UI.createLabel({
 			text : require('vendor/loremipsum')(4),
-			left : 90,
+			left : 95,
 			top : 5,
 			right : 10,
 			height : 40,
 			color : '#444',
 			font : {
-				fontSize : 16
+				fontSize : 16,
+				fontFamily : 'Frutiger'
 			}
 		}));
 	}

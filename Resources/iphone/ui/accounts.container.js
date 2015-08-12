@@ -13,7 +13,7 @@ module.exports = function() {
 		}));
 		// right side
 		self.setDetailView(Ti.UI.createImageView({
-			image : 'http://lorempixel.com/1024/768/business/?' + Math.random(),
+			image : 'http://lorempixel.com/g/1024/768/business/?' + Math.random(),
 			width : Ti.UI.FILL,
 			height : Ti.UI.FILL,
 		}));
