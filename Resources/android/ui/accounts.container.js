@@ -37,13 +37,21 @@ module.exports = function() {
 			height : Ti.UI.FILL
 		});
 		self.headLine = Ti.UI.createView({
-			backgroundColor : '#ccc',
+			backgroundColor : '#666',
 			top : 0,
 			height : 0 /* initial hiding of headline */
 		});
-		self.headLine.add(Ti.UI.createLabel({
-			text : 'Überschrift'
-		}));
+		self.headLineText = Ti.UI.createLabel({
+			text : 'Überschrift',
+			color : 'white',
+			left : 20,
+			textAlign : 'left',
+			width : Ti.UI.FILL,
+			font : {
+				fontSize : 20
+			}
+		});
+		self.headLine.add(self.headLineText);
 		var subviewcontainer = Ti.UI.createScrollableView({
 			left : 0,
 			top : 0,
@@ -54,9 +62,13 @@ module.exports = function() {
 		});
 		self.add(self.masterView);
 		self.add(self.detailView);
-		//self.detailView.add(self.headLine);
+		self.detailView.add(self.headLine);
 		self.detailView.add(subviewcontainer);
 		self.addEventListener('selectaccount', function(_e) {
+			self.headLine.animate({
+				height : 50
+			});
+			self.headLineText.setText('Bookings in this account (#' + (_e.payload + 1) + ')');
 			subviewcontainer.scrollToView(0);
 			/*self.detailView.animate({
 			 top : 50
@@ -75,11 +87,15 @@ module.exports = function() {
 			});
 		});
 		self.addEventListener('selectbooking', function(_e) {
-			views[1] =require('ui/booking')({
+			self.headLineText.setText('<  This booking (#' + (_e.payload + 1) + ')');
+			views[1] = require('ui/booking')({
 				parent : self
 			});
 			subviewcontainer.setViews(views);
 			subviewcontainer.scrollToView(1);
+		});
+		subviewcontainer.addEventListener('scrollend', function(_e) {
+			subviewcontainer.setScrollingEnabled(_e.currentPage == 0 ? false : true);
 		});
 	} else {
 		/* Handheld: all ist standard window stack*/

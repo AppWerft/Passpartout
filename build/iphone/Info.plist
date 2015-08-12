@@ -134,5 +134,9 @@
 			<string>7.0</string>
 		</dict>
 	</array>
+	<key>UIAppFonts</key>
+	<array>
+		<string>/fonts/Frutiger.ttf</string>
+	</array>
 </dict>
 </plist>
