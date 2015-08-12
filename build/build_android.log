@@ -902,3 +902,13 @@ Command
 [DEBUG]  Adding lib/x86/libstlport_shared.so
 [DEBUG]  Adding lib/x86/libtiverify.so
 [INFO]   Writing unsigned apk: /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/android/bin/app-unsigned.apk
+[INFO]   Using MD5withRSA signature algorithm
+[INFO]   Signing apk: /Library/Java/JavaVirtualMachines/jdk1.7.0_80.jdk/Contents/Home/bin/jarsigner "-sigalg" "MD5withRSA" "-digestalg" "SHA1" "-keystore" "/Users/fuerst/Library/Application Support/Titanium/mobilesdk/osx/4.1.0.GA/android/dev_keystore" "-storepass" "*******" "-signedjar" "/Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/android/bin/Passpartout.apk" "/Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/android/bin/app-unsigned.apk" "tidev"
+[INFO]   Aligning zip file: /Users/fuerst/Library/android-sdk/build-tools/22.0.1/zipalign "-v" "4" "/Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/android/bin/Passpartout.apk" "/Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/android/bin/Passpartout.apkz"
+[INFO]   Writing build manifest: /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/android/build-manifest.json
+[INFO]   Making sure the adb server is running
+[INFO]   Installing apk: /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/android/bin/Passpartout.apk
+[INFO]   Installing app on device: Nexus 9
+[TRACE]  Checking if package manager service is started
+[TRACE]  Package manager has started
+[TRACE]  Executing: /Users/fuerst/Library/android-sdk/platform-tools/adb -s HT4B4JT04752 install -r /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/android/bin/Passpartout.apk
