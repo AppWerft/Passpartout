@@ -911,3 +911,8 @@ Command
 [TRACE]  Checking if package manager service is started
 [TRACE]  Package manager has started
 [TRACE]  Executing: /Users/fuerst/Library/android-sdk/platform-tools/adb -s HT4B4JT04752 install -r /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/android/bin/Passpartout.apk
+[INFO]   App successfully installed
+[INFO]   Starting app: de.appwerft.passpartout/.PasspartoutActivity
+[DEBUG]  Trying to start the app...
+[INFO]   Application pid: 13335
+[INFO]   Project built successfully in 50s 897ms
