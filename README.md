@@ -15,3 +15,10 @@ iPad:
 ![](https://raw.githubusercontent.com/AppWerft/Passpartout/master/screens/iOS%20Simulator%20Screen%20Shot%2012%20Aug%202015%2008.53.57.png)
 ![](https://raw.githubusercontent.com/AppWerft/Passpartout/master/screens/iOS%20Simulator%20Screen%20Shot%2012%20Aug%202015%2008.53.59.png)
 ![](https://raw.githubusercontent.com/AppWerft/Passpartout/master/screens/iOS%20Simulator%20Screen%20Shot%2012%20Aug%202015%2008.54.02.png)
+
+
+NEXUS5
+------
+![]()
+![]()
+![]()
