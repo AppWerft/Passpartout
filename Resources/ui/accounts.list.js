@@ -6,8 +6,10 @@ module.exports = function() {
 	for (var i = 0; i < 23; i++) {
 		rows[i] = Ti.UI.createTableViewRow({
 			itemId : i,
+			ndx : i,
 			backgroundColor : 'white',
-			height : Ti.UI.SIZE
+			height : Ti.UI.SIZE,
+			hasChild : true
 		});
 		rows[i].add(Ti.UI.createImageView({
 			image : 'http://lorempixel.com/g/200/200/?' + Math.random(),
@@ -31,11 +33,18 @@ module.exports = function() {
 			}
 		}));
 	}
-
 	var self = Ti.UI.createTableView({
 		data : rows
 	});
 	self.addEventListener('click', function(_e) {
+		rows.forEach(function(row) {
+			if (row.isactive == true) {
+				row.backgroundColor = 'white';
+				row.isactive = false;
+			}
+		});
+		_e.row.backgroundColor = '#ddd';
+		_e.row.isactive = true;
 		args.parent && args.parent.fireEvent('selectaccount', {
 			payload : _e.rowData.itemId
 		});
