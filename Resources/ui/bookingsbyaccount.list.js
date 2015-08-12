@@ -32,16 +32,13 @@ module.exports = function() {
 			}
 		}));
 	}
-
 	var self = Ti.UI.createTableView({
 		data : rows
 	});
 	self.addEventListener('click', function(_e) {
-		console.log(args.parent.apiName);
 		args.parent && args.parent.fireEvent('selectbooking', {
 			payload : _e.rowData.itemId
 		});
 	});
-
 	return self;
 };

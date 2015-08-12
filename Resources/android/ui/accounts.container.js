@@ -1,8 +1,14 @@
 var GLOBALS = require('GLOBALS');
+/*
+ *
+ *
+ Version for Android
+ *
+ *
+ * */
 module.exports = function() {
 	/* Here is all logic to build different ui for all platforms*/
 	if (GLOBALS.isTablet) {
-		/* iPad: SplitView with navigationwindow on right side*/
 		var self = require('ui/window')({
 			title : 'List of my accounts',
 			layout : 'horizontal',
@@ -88,14 +94,32 @@ module.exports = function() {
 		});
 		self.addEventListener('selectbooking', function(_e) {
 			self.headLineText.setText('<  This booking (#' + (_e.payload + 1) + ')');
-			views[1] = require('ui/booking')({
-				parent : self
+			var pages = [];
+			for (var i = 0; i < 23; i++) {
+				pages.push(require('ui/booking')({
+					parent : self
+				}));
+			}
+			views[1] = require('vendor/pageflip.widget')({
+				pages : pages,
+				onflipend : function(_res) {
+					self.headLineText.setText('<  Booking (#' + _res.current + ')');
+				}
 			});
+
+			/*
+			 views[1] = require('ui/booking')({
+			 parent : self
+			 });*/
 			subviewcontainer.setViews(views);
 			subviewcontainer.scrollToView(1);
+			setTimeout(function() {
+				views[1].peakNext(true);
+			}, 700);
 		});
 		subviewcontainer.addEventListener('scrollend', function(_e) {
-			subviewcontainer.setScrollingEnabled(_e.currentPage == 0 ? false : true);
+			console.log(_e.currentPage);
+			subviewcontainer.setScrollingEnabled(_e.currentPage == 0 ? false : false);
 		});
 	} else {
 		/* Handheld: all ist standard window stack*/
@@ -115,13 +139,28 @@ module.exports = function() {
 			nextwindow.open();
 		});
 		self.addEventListener('selectbooking', function(_e) {
+			var pages = [];
+			for (var i = 0; i < 23; i++) {
+				pages.push(require('ui/booking')({
+					parent : nextwindow
+				}));
+			}
 			var nextwindow = require('ui/window')({
 				title : 'This booking (#' + (_e.payload + 1) + ')',
-				children : [require('ui/booking')({
-					parent : nextwindow
+				/*children : [require('ui/booking')({
+				 parent : nextwindow
+				 })]*/
+				children : [require('vendor/pageflip.widget')({
+					pages : pages,
+					onflipend : function(_res) {
+						nextwindow.setTitle('Booking (#' + (_res.current + 1) + ')');
+					}
 				})]
 			});
 			nextwindow.open();
+			setTimeout(function() {
+				nextwindow.children[0].peakNext(true);
+			}, 700);
 		});
 	}
 	return self;

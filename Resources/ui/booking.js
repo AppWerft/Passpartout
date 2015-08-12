@@ -11,9 +11,7 @@ module.exports = function() {
 		contentHeight : Ti.UI.SIZE,
 	});
 	var w = parseInt(GLOBALS.SCREENWIDTH * 0.4);
-
-	var imageurl = 'http://lorempixel.com/g/' + w + '/' + w + '/?' + Math.random();
-	console.log(imageurl);
+	var imageurl = 'http://lorempixel.com/g/' + w + '/' + w + '/?' + Math.random();	console.log(imageurl);
 	self.add(Ti.UI.createImageView({
 		image : imageurl,
 		top : 10,
