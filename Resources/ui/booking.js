@@ -2,22 +2,28 @@ var GLOBALS = require('GLOBALS');
 
 module.exports = function() {
 	var args = arguments[0] || {};
-	var self = Ti.UI.createView({
+	var self = Ti.UI.createScrollView({
 		layout : 'vertical',
 		scrollType : 'vertical',
+		height: Ti.UI.FILL,
 		contentWidth : Ti.UI.FILL,
 		contentHeight : Ti.UI.SIZE,
-
 	});
+	var w = parseInt(GLOBALS.SCREENWIDTH * 0.4);
+	
+	var imageurl = 'http://lorempixel.com/g/' + w + '/' + w + '/?' + Math.random();
+	console.log(imageurl);
 	self.add(Ti.UI.createImageView({
-		image : 'http://lorempixel.com/g/200/200/?' + Math.random(),
-		top : 5,
-		borderRadius : 100,
-		width : 200,
-		height : 200
+		image : imageurl,
+		top : 10,
+		defaultImage : '',
+		hires : true,
+		borderRadius : w / 2,
+		width : w,
+		height : w
 	}));
 	self.add(Ti.UI.createLabel({
-		text : require('vendor/loremipsum')(4),
+		text : require('vendor/loremipsum')(400),
 		left : 10,
 		top : 10,
 		right : 10,
@@ -27,11 +33,5 @@ module.exports = function() {
 			fontSize : 22
 		}
 	}));
-	self.addEventListener('click', function(_e) {
-		args.parent && args.parent.fireEvent('opensecondlevel', {
-			payload : _e.rowData.itemId
-		});
-	});
-
 	return self;
 };
