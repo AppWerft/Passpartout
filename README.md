@@ -7,9 +7,19 @@ APK:
 
 https://raw.githubusercontent.com/AppWerft/Passpartout/master/Passpartout.apk
 
-http://bit.ly/1J4k87a
+So wird die App installiert:
 
+1: Folgende URL im Smartphonebrowser eingeben oder mit QR-Scanner einlesen:
+http://bit.ly/1J4k87a
 ![](http://qrfree.kaywa.com/?l=1&s=6&d=http%3A%2F%2Fbit.ly%2F1J4k87a)
+
+2. Dialog bestätigen, dass diese „böse“ APK gewollt ist.
+3. In der Systemsteuerung APK „unbekannter Herkunft“ zulassen.
+4. DownloadApp starten oder an oberer Kante ziehen.
+5. auf Passpartout.apk klicken:
+![](http://i.imgur.com/goBp6Kf.png)
+6. Dialog „Möchten Sie diese App installieren?“ bestätigen.
+7. ÖFFNEN 
 
 
 iPhone:
