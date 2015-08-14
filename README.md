@@ -3,6 +3,15 @@ Passpartout
 
 Passpartout is a template for titanium that explains the usage from tabgroup, splitview and navigaton window in all major platforms.
 
+APK:
+
+https://raw.githubusercontent.com/AppWerft/Passpartout/master/Passpartout.apk
+
+http://bit.ly/1J4k87a
+
+![](http://qrfree.kaywa.com/?l=1&s=6&d=http%3A%2F%2Fbit.ly%2F1J4k87a)
+
+
 iPhone:
 -----
 In this case we use always the navigation group functionality inside a tabgroup. Every navigation opens a new window in stack:

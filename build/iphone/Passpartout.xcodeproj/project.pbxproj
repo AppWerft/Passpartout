@@ -208,7 +208,9 @@
 		24D0700611D0253D00F615D8 /* TiUIiOSProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 24D0700511D0253D00F615D8 /* TiUIiOSProxy.m */; };
 		24D0700711D0253D00F615D8 /* TiUIiOSProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 24D0700511D0253D00F615D8 /* TiUIiOSProxy.m */; };
 		24D5C75911E6364F00F097E2 /* libtiverify.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 24D5C75811E6364F00F097E2 /* libtiverify.a */; };
+		29F7F5CB4E134DCF99C9184D /* liborg.bcbhh.iosflipview.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E9EAE80467AE425399BE60AA /* liborg.bcbhh.iosflipview.a */; };
 		24D5C75A11E6364F00F097E2 /* libtiverify.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 24D5C75811E6364F00F097E2 /* libtiverify.a */; };
+		A306288106EB4BC4A8689178 /* liborg.bcbhh.iosflipview.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E9EAE80467AE425399BE60AA /* liborg.bcbhh.iosflipview.a */; };
 		24D8E3BB119B9D8A00F8CAA6 /* TiUITableViewAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 243EC7D6112634AF00639DF4 /* TiUITableViewAction.m */; };
 		24D8E3BC119B9D8A00F8CAA6 /* TiFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 24F5AEB3111F9DE9005C9199 /* TiFile.m */; };
 		24D8E3BE119B9D8A00F8CAA6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
@@ -892,6 +894,7 @@
 		DABB37B412E8CB280026A6EA /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 24EB0A57111E1BAE001DC2D1 /* libxml2.dylib */; };
 		DABB37B512E8CB280026A6EA /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24597034118FF66300519F79 /* StoreKit.framework */; };
 		DABB37B712E8CB280026A6EA /* libtiverify.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 24D5C75811E6364F00F097E2 /* libtiverify.a */; };
+		DE2F632DA90C460D8DB97575 /* liborg.bcbhh.iosflipview.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E9EAE80467AE425399BE60AA /* liborg.bcbhh.iosflipview.a */; };
 		DABDEB08128B5A8F00C85FEA /* AudioStreamerCUR.m in Sources */ = {isa = PBXBuildFile; fileRef = DA9FF582128A1F3600457759 /* AudioStreamerCUR.m */; };
 		DABF3ECF134D210400836137 /* TiBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = DABF3ECE134D210400836137 /* TiBuffer.m */; };
 		DABF3ED0134D210400836137 /* TiBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = DABF3ECE134D210400836137 /* TiBuffer.m */; };
@@ -1290,6 +1293,7 @@
 		24D0700411D0253D00F615D8 /* TiUIiOSProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = TiUIiOSProxy.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		24D0700511D0253D00F615D8 /* TiUIiOSProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = TiUIiOSProxy.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		24D5C75811E6364F00F097E2 /* libtiverify.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libtiverify.a; path = lib/libtiverify.a; sourceTree = SOURCE_ROOT; };
+		E9EAE80467AE425399BE60AA /* liborg.bcbhh.iosflipview.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = liborg.bcbhh.iosflipview.a; path = "/Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/modules/iphone/org.bcbhh.iosflipview/1.0.15/liborg.bcbhh.iosflipview.a"; sourceTree = "<absolute>"; };
 		24D8E4B1119B9D8A00F8CAA6 /* Passpartout.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Passpartout.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		24DD042A116A6C58006FD6E1 /* TiToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TiToolbar.h; sourceTree = "<group>"; };
 		24DD0455116A6F02006FD6E1 /* TiTabGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TiTabGroup.h; sourceTree = "<group>"; };
@@ -1610,6 +1614,7 @@
 				B606EF60190B42FB00663EFC /* libAPSHTTPClient.a in Frameworks */,
 				242EA11611BD956F0046A0D0 /* ExternalAccessory.framework in Frameworks */,
 				24D5C75911E6364F00F097E2 /* libtiverify.a in Frameworks */,
+				29F7F5CB4E134DCF99C9184D /* liborg.bcbhh.iosflipview.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1647,6 +1652,7 @@
 				24D8E4AB119B9D8A00F8CAA6 /* libxml2.dylib in Frameworks */,
 				24D8E4AC119B9D8A00F8CAA6 /* StoreKit.framework in Frameworks */,
 				24D5C75A11E6364F00F097E2 /* libtiverify.a in Frameworks */,
+				A306288106EB4BC4A8689178 /* liborg.bcbhh.iosflipview.a in Frameworks */,
 				DADE76D613D65C6F0079FC75 /* libicucore.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1685,6 +1691,7 @@
 				DABB37B412E8CB280026A6EA /* libxml2.dylib in Frameworks */,
 				DABB37B512E8CB280026A6EA /* StoreKit.framework in Frameworks */,
 				DABB37B712E8CB280026A6EA /* libtiverify.a in Frameworks */,
+				DE2F632DA90C460D8DB97575 /* liborg.bcbhh.iosflipview.a in Frameworks */,
 				DADE76D713D65C7D0079FC75 /* libicucore.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2735,6 +2742,7 @@
 				D93DAA6716CBFD5600AD64C9 /* EventKit.framework */,
 				D93DAA6816CBFD5600AD64C9 /* EventKitUI.framework */,
 				24D5C75811E6364F00F097E2 /* libtiverify.a */,
+				E9EAE80467AE425399BE60AA /* liborg.bcbhh.iosflipview.a */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 				288765FC0DF74451002DB57D /* CoreGraphics.framework */,
@@ -4101,6 +4109,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/lib\"",
+                                        "\"/Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/modules/iphone/org.bcbhh.iosflipview/1.0.15\"",
 					"\"$(SRCROOT)/Classes/APSAnalytics\"",
 					"\"$(SRCROOT)/Classes/APSHTTPClient\"",
 				);
@@ -4130,6 +4139,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/lib\"",
+                                        "\"/Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/modules/iphone/org.bcbhh.iosflipview/1.0.15\"",
 					"\"$(SRCROOT)/Classes/APSAnalytics\"",
 					"\"$(SRCROOT)/Classes/APSHTTPClient\"",
 				);
@@ -4155,6 +4165,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/lib\"",
+                                        "\"/Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/modules/iphone/org.bcbhh.iosflipview/1.0.15\"",
 					"\"$(SRCROOT)/Classes/APSAnalytics\"",
 					"\"$(SRCROOT)/Classes/APSHTTPClient\"",
 				);
@@ -4182,6 +4193,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/lib\"",
+                                        "\"/Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/modules/iphone/org.bcbhh.iosflipview/1.0.15\"",
 					"\"$(SRCROOT)/Classes/APSAnalytics\"",
 					"\"$(SRCROOT)/Classes/APSHTTPClient\"",
 				);
@@ -4357,6 +4369,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/lib\"",
+                                        "\"/Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/modules/iphone/org.bcbhh.iosflipview/1.0.15\"",
 					"\"$(SRCROOT)/Classes/APSAnalytics\"",
 					"\"$(SRCROOT)/Classes/APSHTTPClient\"",
 				);
@@ -4386,6 +4399,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/lib\"",
+                                        "\"/Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/modules/iphone/org.bcbhh.iosflipview/1.0.15\"",
 					"\"$(SRCROOT)/Classes/APSAnalytics\"",
 					"\"$(SRCROOT)/Classes/APSHTTPClient\"",
 				);
@@ -4415,6 +4429,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/lib\"",
+                                        "\"/Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/modules/iphone/org.bcbhh.iosflipview/1.0.15\"",
 					"\"$(SRCROOT)/Classes/APSAnalytics\"",
 					"\"$(SRCROOT)/Classes/APSHTTPClient\"",
 				);
@@ -4450,6 +4465,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/lib\"",
+                                        "\"/Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/modules/iphone/org.bcbhh.iosflipview/1.0.15\"",
 					"\"$(SRCROOT)/Classes/APSAnalytics\"",
 					"\"$(SRCROOT)/Classes/APSHTTPClient\"",
 				);
@@ -4483,6 +4499,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/lib\"",
+                                        "\"/Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/modules/iphone/org.bcbhh.iosflipview/1.0.15\"",
 					"\"$(SRCROOT)/Classes/APSAnalytics\"",
 					"\"$(SRCROOT)/Classes/APSHTTPClient\"",
 				);

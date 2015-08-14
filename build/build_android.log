@@ -1,5 +1,5 @@
 
-Wed Aug 12 2015 18:18:23 GMT+0200 (CEST)
+Fri Aug 14 2015 14:32:05 GMT+0200 (CEST)
 
 Operating System
   Name                        = Mac OS X
@@ -21,7 +21,7 @@ Titanium SDK
   Target Platform             = android
 
 Command
-  /usr/local/bin/node /Users/fuerst/.appcelerator/install/4.1.0/package/node_modules/appc-cli-titanium/node_modules/titanium/bin/titanium build --platform android --log-level trace --sdk 4.1.0.GA --project-dir /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout --target device --android-sdk /Users/fuerst/Library/android-sdk --device-id 0621ed32229928e7 --skip-js-minify --no-colors --no-progress-bars --no-prompt --prompt-type socket-bundle --prompt-port 49254 --config-file /var/folders/25/yvdn9h053sv3htdkzq8558k40000gn/T/build-1439396297948.json --no-banner
+  /usr/local/bin/node /Users/fuerst/.appcelerator/install/4.1.0/package/node_modules/appc-cli-titanium/node_modules/titanium/bin/titanium build --platform android --sdk 4.1.0.GA --log-level trace --project-dir /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout --deploy-type production --target dist-playstore --android-sdk /Users/fuerst/Library/android-sdk --output-dir /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout --api-level 10 --alias googlekey --keystore /users/fuerst/.android.keystore --store-password *MHpsNH --no-colors --no-progress-bars --no-prompt --prompt-type socket-bundle --prompt-port 50083 --config-file /var/folders/25/yvdn9h053sv3htdkzq8558k40000gn/T/build-1439555518235.json --no-banner
 
 [DEBUG]  Detecting modules in /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/modules
 [DEBUG]  Detected android module: de.manumaticx.androidflip 1.0.1 @ /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/modules/android/de.manumaticx.androidflip/1.0.1
@@ -429,23 +429,24 @@ Command
 [DEBUG]  Detected iphone module: tibar 0.4.1 @ /Library/Application Support/Titanium/modules/iphone/tibar/0.4.1
 [DEBUG]  Detected iphone module: tibar 0.4.2 @ /Library/Application Support/Titanium/modules/iphone/tibar/0.4.2
 [DEBUG]  Detected tizen module: tizen 3.0.0 @ /Library/Application Support/Titanium/modules/tizen/tizen/3.0.0
-[DEBUG]  Looking for Titanium module id=de.manumaticx.androidflip version=latest platform=android deploy-type=test
-[INFO]   Found Titanium module id=de.manumaticx.androidflip version=1.0.1 platform=android deploy-type=test path=/Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/modules/android/de.manumaticx.androidflip/1.0.1
-[DEBUG]  Looking for Titanium module id=com.alcoapps.actionbarextras version=latest platform=android deploy-type=test
-[INFO]   Found Titanium module id=com.alcoapps.actionbarextras version=1.6.5 platform=android deploy-type=test path=/Library/Application Support/Titanium/modules/android/com.alcoapps.actionbarextras/1.6.5
+[DEBUG]  Looking for Titanium module id=de.manumaticx.androidflip version=latest platform=android deploy-type=production
+[INFO]   Found Titanium module id=de.manumaticx.androidflip version=1.0.1 platform=android deploy-type=production path=/Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/modules/android/de.manumaticx.androidflip/1.0.1
+[DEBUG]  Looking for Titanium module id=com.alcoapps.actionbarextras version=latest platform=android deploy-type=production
+[INFO]   Found Titanium module id=com.alcoapps.actionbarextras version=1.6.5 platform=android deploy-type=production path=/Library/Application Support/Titanium/modules/android/com.alcoapps.actionbarextras/1.6.5
 [DEBUG]  No project level plugins to load
 [DEBUG]  Titanium SDK Android directory: /Users/fuerst/Library/Application Support/Titanium/mobilesdk/osx/4.1.0.GA/android
-[INFO]   Deploy type: test
-[INFO]   Building for target: device
-[INFO]   Building for device: 0621ed32229928e7
+[INFO]   Deploy type: production
+[INFO]   Building for target: dist-playstore
 [INFO]   Targeting Android SDK: 22
 [INFO]   Building for the following architectures: armeabi, armeabi-v7a, x86
-[INFO]   Signing with keystore: /Users/fuerst/Library/Application Support/Titanium/mobilesdk/osx/4.1.0.GA/android/dev_keystore (tidev)
+[INFO]   Signing with keystore: /users/fuerst/.android.keystore (googlekey)
 [DEBUG]  App ID: de.appwerft.passpartout
 [DEBUG]  Classname: Passpartout
 [INFO]   Debugging disabled
 [INFO]   Profiler disabled
-[INFO]   Forcing rebuild: JavaScript files need to be re-encrypted
+[INFO]   Forcing rebuild: target changed since last build
+[INFO]     Was: device
+[INFO]     Now: dist-playstore
 [DEBUG]  Ignoring /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/Resources/android
 [DEBUG]  Ignoring /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/Resources/fonts/.DS_Store
 [WARN]   Overwriting file /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/android/bin/assets/Resources/fonts/Frutiger.ttf
@@ -472,20 +473,20 @@ Command
 [DEBUG]  Symlinking /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/Resources/android/images/res-notlong-port-mdpi/default.png => /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/android/res/drawable-notlong-port-mdpi/background.png
 [DEBUG]  Symlinking /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/android/bin/assets/Resources/appicon.png => /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/android/res/drawable/appicon.png
 [INFO]   Processing JavaScript files
-[DEBUG]  Symlinking /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/Resources/GLOBALS.js => /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/android/assets/GLOBALS.js
-[DEBUG]  Symlinking /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/Resources/app.js => /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/android/assets/app.js
-[DEBUG]  Symlinking /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/Resources/ui/accounts.list.js => /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/android/assets/ui/accounts.list.js
-[DEBUG]  Symlinking /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/Resources/ui/booking.js => /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/android/assets/ui/booking.js
-[DEBUG]  Symlinking /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/Resources/ui/bookingsbyaccount.list.js => /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/android/assets/ui/bookingsbyaccount.list.js
-[DEBUG]  Symlinking /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/Resources/ui/tabgroup.js => /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/android/assets/ui/tabgroup.js
-[DEBUG]  Symlinking /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/Resources/ui/window.js => /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/android/assets/ui/window.js
-[DEBUG]  Symlinking /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/Resources/vendor/loremipsum.js => /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/android/assets/vendor/loremipsum.js
-[DEBUG]  Symlinking /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/Resources/vendor/pageflip.widget.js => /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/android/assets/vendor/pageflip.widget.js
-[DEBUG]  Symlinking /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/Resources/android/images/accounts.container.js => /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/android/assets/images/accounts.container.js
-[DEBUG]  Symlinking /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/Resources/android/images/projects.container.js => /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/android/assets/images/projects.container.js
-[DEBUG]  Symlinking /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/Resources/android/ui/accounts.container.js => /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/android/assets/ui/accounts.container.js
-[DEBUG]  Symlinking /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/Resources/android/ui/main.actionbar.js => /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/android/assets/ui/main.actionbar.js
-[DEBUG]  Symlinking /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/Resources/android/ui/projects.container.js => /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/android/assets/ui/projects.container.js
+[DEBUG]  Copying and minifying /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/Resources/GLOBALS.js => /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/android/assets/GLOBALS.js
+[DEBUG]  Copying and minifying /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/Resources/app.js => /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/android/assets/app.js
+[DEBUG]  Copying and minifying /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/Resources/ui/accounts.list.js => /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/android/assets/ui/accounts.list.js
+[DEBUG]  Copying and minifying /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/Resources/ui/booking.js => /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/android/assets/ui/booking.js
+[DEBUG]  Copying and minifying /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/Resources/ui/bookingsbyaccount.list.js => /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/android/assets/ui/bookingsbyaccount.list.js
+[DEBUG]  Copying and minifying /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/Resources/ui/tabgroup.js => /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/android/assets/ui/tabgroup.js
+[DEBUG]  Copying and minifying /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/Resources/ui/window.js => /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/android/assets/ui/window.js
+[DEBUG]  Copying and minifying /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/Resources/vendor/loremipsum.js => /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/android/assets/vendor/loremipsum.js
+[DEBUG]  Copying and minifying /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/Resources/vendor/pageflip.widget.js => /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/android/assets/vendor/pageflip.widget.js
+[DEBUG]  Copying and minifying /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/Resources/android/images/accounts.container.js => /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/android/assets/images/accounts.container.js
+[DEBUG]  Copying and minifying /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/Resources/android/images/projects.container.js => /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/android/assets/images/projects.container.js
+[DEBUG]  Copying and minifying /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/Resources/android/ui/accounts.container.js => /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/android/assets/ui/accounts.container.js
+[DEBUG]  Copying and minifying /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/Resources/android/ui/main.actionbar.js => /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/android/assets/ui/main.actionbar.js
+[DEBUG]  Copying and minifying /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/Resources/android/ui/projects.container.js => /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/android/assets/ui/projects.container.js
 [INFO]   Encrypting JavaScript files: /Users/fuerst/Library/Application Support/Titanium/mobilesdk/osx/4.1.0.GA/android/titanium_prep.macos "de.appwerft.passpartout" "/Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/android/assets" "GLOBALS.js" "app.js" "ui/accounts.list.js" "ui/booking.js" "ui/bookingsbyaccount.list.js" "ui/tabgroup.js" "ui/window.js" "vendor/loremipsum.js" "vendor/pageflip.widget.js" "images/accounts.container.js" "images/projects.container.js" "ui/accounts.container.js" "ui/main.actionbar.js" "ui/projects.container.js" "_app_props_.json"
 [DEBUG]  Adding library /Users/fuerst/Library/Application Support/Titanium/mobilesdk/osx/4.1.0.GA/android/kroll-v8.jar
 [DEBUG]  Adding library /Users/fuerst/Library/Application Support/Titanium/mobilesdk/osx/4.1.0.GA/android/modules/titanium-analytics.jar
@@ -513,23 +514,23 @@ Command
 [DEBUG]  Unknown namespace ui.ios, skipping
 [INFO]   Writing /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/android/bin/assets/app.json
 [INFO]   Extracting module resources: /Users/fuerst/Library/Application Support/Titanium/mobilesdk/osx/4.1.0.GA/android/modules/titanium-analytics.res.zip
-[DEBUG]  Copying /var/folders/25/yvdn9h053sv3htdkzq8558k40000gn/T/115712-1787-v0ofvs/res/values/strings.xml => /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/android/res/values/strings.xml
+[DEBUG]  Copying /var/folders/25/yvdn9h053sv3htdkzq8558k40000gn/T/115714-3651-pq6zz6/res/values/strings.xml => /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/android/res/values/strings.xml
 [INFO]   Extracting module resources: /Users/fuerst/Library/Application Support/Titanium/mobilesdk/osx/4.1.0.GA/android/modules/titanium-android.res.zip
-[DEBUG]  Merging /var/folders/25/yvdn9h053sv3htdkzq8558k40000gn/T/115712-1787-12p83o7/res/values/strings.xml => /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/android/res/values/strings.xml
+[DEBUG]  Merging /var/folders/25/yvdn9h053sv3htdkzq8558k40000gn/T/115714-3651-jkqphl/res/values/strings.xml => /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/android/res/values/strings.xml
 [INFO]   Extracting module resources: /Users/fuerst/Library/Application Support/Titanium/mobilesdk/osx/4.1.0.GA/android/modules/titanium-app.res.zip
-[DEBUG]  Merging /var/folders/25/yvdn9h053sv3htdkzq8558k40000gn/T/115712-1787-sez5ee/res/values/strings.xml => /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/android/res/values/strings.xml
+[DEBUG]  Merging /var/folders/25/yvdn9h053sv3htdkzq8558k40000gn/T/115714-3651-1mtcost/res/values/strings.xml => /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/android/res/values/strings.xml
 [INFO]   Extracting module resources: /Users/fuerst/Library/Application Support/Titanium/mobilesdk/osx/4.1.0.GA/android/modules/titanium-filesystem.res.zip
-[DEBUG]  Merging /var/folders/25/yvdn9h053sv3htdkzq8558k40000gn/T/115712-1787-1mqbva2/res/values/strings.xml => /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/android/res/values/strings.xml
+[DEBUG]  Merging /var/folders/25/yvdn9h053sv3htdkzq8558k40000gn/T/115714-3651-5e3ey3/res/values/strings.xml => /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/android/res/values/strings.xml
 [INFO]   Extracting module resources: /Users/fuerst/Library/Application Support/Titanium/mobilesdk/osx/4.1.0.GA/android/modules/titanium-media.res.zip
-[DEBUG]  Merging /var/folders/25/yvdn9h053sv3htdkzq8558k40000gn/T/115712-1787-965ju2/res/values/strings.xml => /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/android/res/values/strings.xml
+[DEBUG]  Merging /var/folders/25/yvdn9h053sv3htdkzq8558k40000gn/T/115714-3651-1xzt5qe/res/values/strings.xml => /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/android/res/values/strings.xml
 [INFO]   Extracting module resources: /Users/fuerst/Library/Application Support/Titanium/mobilesdk/osx/4.1.0.GA/android/modules/titanium-locale.res.zip
-[DEBUG]  Merging /var/folders/25/yvdn9h053sv3htdkzq8558k40000gn/T/115712-1787-cdgnk5/res/values/strings.xml => /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/android/res/values/strings.xml
+[DEBUG]  Merging /var/folders/25/yvdn9h053sv3htdkzq8558k40000gn/T/115714-3651-19vkvrm/res/values/strings.xml => /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/android/res/values/strings.xml
 [INFO]   Extracting module resources: /Users/fuerst/Library/Application Support/Titanium/mobilesdk/osx/4.1.0.GA/android/modules/titanium-network.res.zip
-[DEBUG]  Merging /var/folders/25/yvdn9h053sv3htdkzq8558k40000gn/T/115712-1787-ruikn0/res/values/strings.xml => /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/android/res/values/strings.xml
+[DEBUG]  Merging /var/folders/25/yvdn9h053sv3htdkzq8558k40000gn/T/115714-3651-1toeps8/res/values/strings.xml => /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/android/res/values/strings.xml
 [INFO]   Extracting module resources: /Users/fuerst/Library/Application Support/Titanium/mobilesdk/osx/4.1.0.GA/android/modules/titanium-xml.res.zip
-[DEBUG]  Merging /var/folders/25/yvdn9h053sv3htdkzq8558k40000gn/T/115712-1787-ebin5d/res/values/strings.xml => /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/android/res/values/strings.xml
+[DEBUG]  Merging /var/folders/25/yvdn9h053sv3htdkzq8558k40000gn/T/115714-3651-186mv1a/res/values/strings.xml => /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/android/res/values/strings.xml
 [INFO]   Extracting module resources: /Users/fuerst/Library/Application Support/Titanium/mobilesdk/osx/4.1.0.GA/android/modules/titanium-platform.res.zip
-[DEBUG]  Merging /var/folders/25/yvdn9h053sv3htdkzq8558k40000gn/T/115712-1787-gjuvy3/res/values/strings.xml => /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/android/res/values/strings.xml
+[DEBUG]  Merging /var/folders/25/yvdn9h053sv3htdkzq8558k40000gn/T/115714-3651-wacna8/res/values/strings.xml => /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/android/res/values/strings.xml
 [DEBUG]  Removing old file: /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/android/.classpath
 [DEBUG]  Removing old file: /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/android/.gitignore
 [DEBUG]  Removing old file: /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/android/.project
@@ -547,7 +548,7 @@ Command
 [INFO]   Generating i18n files
 [DEBUG]  Merging en strings => /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/android/res/values/strings.xml
 [INFO]   Generating /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/android/res/values/theme.xml
-[INFO]   Packaging application: /Users/fuerst/Library/android-sdk/build-tools/22.0.1/aapt "package" "-f" "-m" "-J" "/Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/android/gen" "-M" "/Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/android/AndroidManifest.xml" "-A" "/Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/android/bin/assets" "-S" "/Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/android/res" "-I" "/Users/fuerst/Library/android-sdk/platforms/android-22/android.jar" "-F" "/Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/android/bin/app.ap_" "--auto-add-overlay" "--extra-packages" "ti.modules.titanium.ui:android.support.v7.appcompat" "-S" "/var/folders/25/yvdn9h053sv3htdkzq8558k40000gn/T/115712-1787-opq1g9/res" "-S" "/var/folders/25/yvdn9h053sv3htdkzq8558k40000gn/T/115712-1787-1tzwhyf/res"
+[INFO]   Packaging application: /Users/fuerst/Library/android-sdk/build-tools/22.0.1/aapt "package" "-f" "-m" "-J" "/Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/android/gen" "-M" "/Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/android/AndroidManifest.xml" "-A" "/Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/android/bin/assets" "-S" "/Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/android/res" "-I" "/Users/fuerst/Library/android-sdk/platforms/android-22/android.jar" "-F" "/Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/android/bin/app.ap_" "--auto-add-overlay" "--extra-packages" "ti.modules.titanium.ui:android.support.v7.appcompat" "-S" "/var/folders/25/yvdn9h053sv3htdkzq8558k40000gn/T/115714-3651-1s01n7n/res" "-S" "/var/folders/25/yvdn9h053sv3htdkzq8558k40000gn/T/115714-3651-b9btux/res"
 [INFO]   Building Java source files: /Library/Java/JavaVirtualMachines/jdk1.7.0_80.jdk/Contents/Home/bin/javac "-J-Xmx256M" "-encoding" "utf8" "-bootclasspath" "/Users/fuerst/Library/android-sdk/platforms/android-22/android.jar:/Users/fuerst/Library/Application Support/Titanium/mobilesdk/osx/4.1.0.GA/android/kroll-v8.jar:/Users/fuerst/Library/Application Support/Titanium/mobilesdk/osx/4.1.0.GA/android/modules/titanium-analytics.jar:/Users/fuerst/Library/Application Support/Titanium/mobilesdk/osx/4.1.0.GA/android/aps-analytics.jar:/Users/fuerst/Library/Application Support/Titanium/mobilesdk/osx/4.1.0.GA/android/modules/titanium-android.jar:/Users/fuerst/Library/Application Support/Titanium/mobilesdk/osx/4.1.0.GA/android/jaxen-1.1.1.jar:/Users/fuerst/Library/Application Support/Titanium/mobilesdk/osx/4.1.0.GA/android/ti-commons-codec-1.3.jar:/Users/fuerst/Library/Application Support/Titanium/mobilesdk/osx/4.1.0.GA/android/kroll-common.jar:/Users/fuerst/Library/Application Support/Titanium/mobilesdk/osx/4.1.0.GA/android/titanium.jar:/Users/fuerst/Library/Application Support/Titanium/mobilesdk/osx/4.1.0.GA/android/modules/titanium-app.jar:/Users/fuerst/Library/Application Support/Titanium/mobilesdk/osx/4.1.0.GA/android/modules/titanium-ui.jar:/Users/fuerst/Library/Application Support/Titanium/mobilesdk/osx/4.1.0.GA/android/nineoldandroids-appc-2.4.0.jar:/Users/fuerst/Library/Application Support/Titanium/mobilesdk/osx/4.1.0.GA/android/modules/titanium-filesystem.jar:/Users/fuerst/Library/Application Support/Titanium/mobilesdk/osx/4.1.0.GA/android/modules/titanium-media.jar:/Users/fuerst/Library/Application Support/Titanium/mobilesdk/osx/4.1.0.GA/android/modules/titanium-appcompat.jar:/Users/fuerst/Library/Application Support/Titanium/mobilesdk/osx/4.1.0.GA/android/android-support-v4.jar:/Users/fuerst/Library/Application Support/Titanium/mobilesdk/osx/4.1.0.GA/android/android-support-v7-appcompat.jar:/Users/fuerst/Library/Application Support/Titanium/mobilesdk/osx/4.1.0.GA/android/modules/titanium-locale.jar:/Users/fuerst/Library/Application Support/Titanium/mobilesdk/osx/4.1.0.GA/android/modules/titanium-network.jar:/Users/fuerst/Library/Application Support/Titanium/mobilesdk/osx/4.1.0.GA/android/thirdparty.jar:/Users/fuerst/Library/Application Support/Titanium/mobilesdk/osx/4.1.0.GA/android/modules/titanium-xml.jar:/Users/fuerst/Library/Application Support/Titanium/mobilesdk/osx/4.1.0.GA/android/modules/titanium-platform.jar:/Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/modules/android/de.manumaticx.androidflip/1.0.1/androidflip.jar:/Library/Application Support/Titanium/modules/android/com.alcoapps.actionbarextras/1.6.5/actionbarextras.jar:/Users/fuerst/Library/Application Support/Titanium/mobilesdk/osx/4.1.0.GA/android/kroll-apt.jar:/Users/fuerst/Library/Application Support/Titanium/mobilesdk/osx/4.1.0.GA/android/lib/titanium-verify.jar:R.class:ApplicationStylesheet.class:AssetCryptImpl.class:PasspartoutActivity.class:PasspartoutAppInfo.class:PasspartoutApplication.class" "-d" "/Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/android/bin/classes" "-proc:none" "-target" "1.6" "-source" "1.6" "@/Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/android/java-sources.txt"
 [INFO]   Running dexer: /Library/Java/JavaVirtualMachines/jdk1.7.0_80.jdk/Contents/Home/bin/java "-Xmx1024M" "-XX:-UseGCOverheadLimit" "-Djava.ext.dirs=/Users/fuerst/Library/android-sdk/platform-tools" "-jar" "/Users/fuerst/Library/android-sdk/build-tools/22.0.1/lib/dx.jar" "--dex" "--output=/Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/android/bin/classes.dex" "/Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/android/bin/classes" "/Users/fuerst/Library/Application Support/Titanium/mobilesdk/osx/4.1.0.GA/android/lib/titanium-verify.jar" "/Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/modules/android/de.manumaticx.androidflip/1.0.1/androidflip.jar" "/Library/Application Support/Titanium/modules/android/com.alcoapps.actionbarextras/1.6.5/actionbarextras.jar" "/Users/fuerst/Library/Application Support/Titanium/mobilesdk/osx/4.1.0.GA/android/kroll-v8.jar" "/Users/fuerst/Library/Application Support/Titanium/mobilesdk/osx/4.1.0.GA/android/modules/titanium-analytics.jar" "/Users/fuerst/Library/Application Support/Titanium/mobilesdk/osx/4.1.0.GA/android/aps-analytics.jar" "/Users/fuerst/Library/Application Support/Titanium/mobilesdk/osx/4.1.0.GA/android/modules/titanium-android.jar" "/Users/fuerst/Library/Application Support/Titanium/mobilesdk/osx/4.1.0.GA/android/jaxen-1.1.1.jar" "/Users/fuerst/Library/Application Support/Titanium/mobilesdk/osx/4.1.0.GA/android/ti-commons-codec-1.3.jar" "/Users/fuerst/Library/Application Support/Titanium/mobilesdk/osx/4.1.0.GA/android/kroll-common.jar" "/Users/fuerst/Library/Application Support/Titanium/mobilesdk/osx/4.1.0.GA/android/titanium.jar" "/Users/fuerst/Library/Application Support/Titanium/mobilesdk/osx/4.1.0.GA/android/modules/titanium-app.jar" "/Users/fuerst/Library/Application Support/Titanium/mobilesdk/osx/4.1.0.GA/android/modules/titanium-ui.jar" "/Users/fuerst/Library/Application Support/Titanium/mobilesdk/osx/4.1.0.GA/android/nineoldandroids-appc-2.4.0.jar" "/Users/fuerst/Library/Application Support/Titanium/mobilesdk/osx/4.1.0.GA/android/modules/titanium-filesystem.jar" "/Users/fuerst/Library/Application Support/Titanium/mobilesdk/osx/4.1.0.GA/android/modules/titanium-media.jar" "/Users/fuerst/Library/Application Support/Titanium/mobilesdk/osx/4.1.0.GA/android/modules/titanium-appcompat.jar" "/Users/fuerst/Library/Application Support/Titanium/mobilesdk/osx/4.1.0.GA/android/android-support-v4.jar" "/Users/fuerst/Library/Application Support/Titanium/mobilesdk/osx/4.1.0.GA/android/android-support-v7-appcompat.jar" "/Users/fuerst/Library/Application Support/Titanium/mobilesdk/osx/4.1.0.GA/android/modules/titanium-locale.jar" "/Users/fuerst/Library/Application Support/Titanium/mobilesdk/osx/4.1.0.GA/android/modules/titanium-network.jar" "/Users/fuerst/Library/Application Support/Titanium/mobilesdk/osx/4.1.0.GA/android/thirdparty.jar" "/Users/fuerst/Library/Application Support/Titanium/mobilesdk/osx/4.1.0.GA/android/modules/titanium-xml.jar" "/Users/fuerst/Library/Application Support/Titanium/mobilesdk/osx/4.1.0.GA/android/modules/titanium-platform.jar"
 [INFO]   Creating unsigned apk
@@ -923,18 +924,11 @@ Command
 [DEBUG]  Adding lib/armeabi-v7a/libcom.alcoapps.actionbarextras.so
 [DEBUG]  Adding lib/x86/libcom.alcoapps.actionbarextras.so
 [INFO]   Writing unsigned apk: /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/android/bin/app-unsigned.apk
-[INFO]   Using MD5withRSA signature algorithm
-[INFO]   Signing apk: /Library/Java/JavaVirtualMachines/jdk1.7.0_80.jdk/Contents/Home/bin/jarsigner "-sigalg" "MD5withRSA" "-digestalg" "SHA1" "-keystore" "/Users/fuerst/Library/Application Support/Titanium/mobilesdk/osx/4.1.0.GA/android/dev_keystore" "-storepass" "*******" "-signedjar" "/Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/android/bin/Passpartout.apk" "/Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/android/bin/app-unsigned.apk" "tidev"
+[INFO]   Using SHA1withRSA signature algorithm
+[INFO]   Signing apk: /Library/Java/JavaVirtualMachines/jdk1.7.0_80.jdk/Contents/Home/bin/jarsigner "-sigalg" "SHA1withRSA" "-digestalg" "SHA1" "-keystore" "/users/fuerst/.android.keystore" "-storepass" "*******" "-signedjar" "/Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/android/bin/Passpartout.apk" "/Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/android/bin/app-unsigned.apk" "googlekey"
 [INFO]   Aligning zip file: /Users/fuerst/Library/android-sdk/build-tools/22.0.1/zipalign "-v" "4" "/Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/android/bin/Passpartout.apk" "/Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/android/bin/Passpartout.apkz"
 [INFO]   Writing build manifest: /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/android/build-manifest.json
-[INFO]   Making sure the adb server is running
-[INFO]   Installing apk: /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/android/bin/Passpartout.apk
-[INFO]   Installing app on device: Nexus 5
-[TRACE]  Checking if package manager service is started
-[TRACE]  Package manager has started
-[TRACE]  Executing: /Users/fuerst/Library/android-sdk/platform-tools/adb -s 0621ed32229928e7 install -r /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/android/bin/Passpartout.apk
-[INFO]   App successfully installed
-[INFO]   Starting app: de.appwerft.passpartout/.PasspartoutActivity
-[DEBUG]  Trying to start the app...
-[INFO]   Application pid: 8536
-[INFO]   Project built successfully in 45s 825ms
+[DEBUG]  Copying /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/android/bin/Passpartout.apk => /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/Passpartout.apk
+[INFO]   Packaging complete
+[INFO]   Package location: /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/Passpartout.apk
+[INFO]   Project built successfully in 43s 420ms

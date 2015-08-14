@@ -1,1 +1,1 @@
-/Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/Resources/ui/window.js
+var GLOBALS=require("GLOBALS");module.exports=function(){var e=arguments[0]||{},t=Ti.UI.createWindow({backgroundColor:"white",fullscreen:!0,title:"Title of this page"});return Object.getOwnPropertyNames(e).forEach(function(i){"children"!=i&&"onopen"!=i&&(t[i]=e[i])}),e.children&&Array.isArray(e.children)&&e.children.forEach(function(e){t.add(e)}),GLOBALS.isAndroid&&e.onopen&&t.addEventListener("open",e.onopen),t};
