@@ -5,12 +5,12 @@ module.exports = function() {
 		backgroundColor : 'yellow', // for Android
 		tabs : [Ti.UI.createTab({
 			window : require('ui/accounts.container')(),
-			title : 'Accounts',
-			icon : GLOBALS.isIOS ? 'i2.png' : undefined
+			title : GLOBALS.isIOS ? 'Accounts' : null,
+			icon : GLOBALS.isIOS ? 'i2.png' : '/images/accounts-icon.png'
 		}), Ti.UI.createTab({
 			window : require('ui/projects.container')(),
-			title : 'Projects',
-			icon : GLOBALS.isIOS ? 'i1.png' : undefined
+			title : GLOBALS.isIOS ? 'Projects' : null,
+			icon : GLOBALS.isIOS ? 'i1.png' : '/images/projects-icon.png'
 		})],
 		// hiding of statusbar
 		fullscreen : false,
