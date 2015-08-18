@@ -12,7 +12,8 @@ module.exports = function() {
 			title : 'Projects',
 			icon : GLOBALS.isIOS ? 'i1.png' : undefined
 		})],
-		fullscreen : true,
+		// hiding of statusbar
+		fullscreen : false,
 		swipeable : false,
 		orientationModes : GLOBALS.isTablet ? [Ti.UI.LANDSCAPE_LEFT, Ti.UI.LANDSCAPE_RIGHT] : [Ti.UI.PORTRAIT, Ti.UI.UPSIDE_PORTRAIT]
 	});

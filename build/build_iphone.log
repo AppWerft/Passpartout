@@ -1,5 +1,5 @@
 
-Fri Aug 14 2015 08:25:45 GMT+0200 (CEST)
+Tue Aug 18 2015 12:17:10 GMT+0200 (CEST)
 
 Operating System
   Name                        = Mac OS X
@@ -21,14 +21,10 @@ Titanium SDK
   Target Platform             = iphone
 
 Command
-  /usr/local/bin/node /Users/fuerst/.appcelerator/install/4.1.0/package/node_modules/appc-cli-titanium/node_modules/titanium/bin/titanium build --platform ipad --log-level trace --sdk 4.1.0.GA --project-dir /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout --target simulator --ios-version 8.4 --device-family universal --deploy-type development --sim-type ipad --sim-version 8.4 --device-id 6F12A617-0E2E-4D45-8AA0-B21072181E62 --skip-js-minify --no-colors --no-progress-bars --no-prompt --prompt-type socket-bundle --prompt-port 50083 --config-file /var/folders/25/yvdn9h053sv3htdkzq8558k40000gn/T/build-1439533541854.json --no-banner
+  /usr/local/bin/node /Users/fuerst/.appcelerator/install/4.1.0/package/node_modules/appc-cli-titanium/node_modules/titanium/bin/titanium build --platform iphone --log-level trace --sdk 4.1.0.GA --project-dir /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout --target simulator --ios-version 8.4 --device-family universal --deploy-type development --sim-type iphone --sim-version 8.4 --device-id 759C7DB7-BDB1-4C35-9030-02C0C6F0AF90 --skip-js-minify --no-colors --no-progress-bars --no-prompt --prompt-type socket-bundle --prompt-port 50307 --config-file /var/folders/25/yvdn9h053sv3htdkzq8558k40000gn/T/build-1439893024758.json --no-banner
 
 [DEBUG]  Detecting modules in /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/modules
 [DEBUG]  Detected android module: de.manumaticx.androidflip 1.0.1 @ /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/modules/android/de.manumaticx.androidflip/1.0.1
-[DEBUG]  Detected iphone module: org.bcbhh.iosflipview 1.0.12 @ /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/modules/iphone/org.bcbhh.iosflipview/1.0.12
-[DEBUG]  Detected iphone module: org.bcbhh.iosflipview 1.0.13 @ /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/modules/iphone/org.bcbhh.iosflipview/1.0.13
-[DEBUG]  Detected iphone module: org.bcbhh.iosflipview 1.0.14 @ /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/modules/iphone/org.bcbhh.iosflipview/1.0.14
-[DEBUG]  Detected iphone module: org.bcbhh.iosflipview 1.0.15 @ /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/modules/iphone/org.bcbhh.iosflipview/1.0.15
 [DEBUG]  Detecting modules in /Users/fuerst/Library/Application Support/Titanium/modules
 [DEBUG]  Detected android module: analytics.google 1.0 @ /Users/fuerst/Library/Application Support/Titanium/modules/android/analytics.google/1.0
 [DEBUG]  Detected android module: appcelerator.encrypteddatabase 1.0.4 @ /Users/fuerst/Library/Application Support/Titanium/modules/android/appcelerator.encrypteddatabase/1.0.4
@@ -243,6 +239,7 @@ Command
 [DEBUG]  Detected android module: com.alcoapps.actionbarextras 1.6.1 @ /Library/Application Support/Titanium/modules/android/com.alcoapps.actionbarextras/1.6.1
 [DEBUG]  Detected android module: com.alcoapps.actionbarextras 1.6.5 @ /Library/Application Support/Titanium/modules/android/com.alcoapps.actionbarextras/1.6.5
 [DEBUG]  Detected android module: com.appcelerator.apm 1.1.1 @ /Library/Application Support/Titanium/modules/android/com.appcelerator.apm/1.1.1
+[DEBUG]  Detected android module: com.batasoft.appicons 2.0 @ /Library/Application Support/Titanium/modules/android/com.batasoft.appicons/2.0
 [DEBUG]  Detected android module: com.gbaldera.titouchgallery 1.1 @ /Library/Application Support/Titanium/modules/android/com.gbaldera.titouchgallery/1.1
 [DEBUG]  Detected android module: com.gbaldera.titouchgallery 1.2 @ /Library/Application Support/Titanium/modules/android/com.gbaldera.titouchgallery/1.2
 [DEBUG]  Detected android module: com.googlecode.quicktigame2d 1.0 @ /Library/Application Support/Titanium/modules/android/com.googlecode.quicktigame2d/1.0
@@ -250,6 +247,7 @@ Command
 [DEBUG]  Detected android module: com.liferay.beacons 0.1 @ /Library/Application Support/Titanium/modules/android/com.liferay.beacons/0.1
 [DEBUG]  Detected android module: com.mcongrove.pebble 1.1 @ /Library/Application Support/Titanium/modules/android/com.mcongrove.pebble/1.1
 [DEBUG]  Detected android module: com.mirasense.scanditsdk 4.3.0 @ /Library/Application Support/Titanium/modules/android/com.mirasense.scanditsdk/4.3.0
+[DEBUG]  Detected android module: com.mykingdom.mupdf 1.8 @ /Library/Application Support/Titanium/modules/android/com.mykingdom.mupdf/1.8
 [DEBUG]  Detected android module: com.navid.tabs 1.0 @ /Library/Application Support/Titanium/modules/android/com.navid.tabs/1.0
 [DEBUG]  Detected android module: com.rkam.swiperefreshlayout 0.4.1 @ /Library/Application Support/Titanium/modules/android/com.rkam.swiperefreshlayout/0.4.1
 [DEBUG]  Detected android module: com.tripvi.drawerlayout 1.1.1 @ /Library/Application Support/Titanium/modules/android/com.tripvi.drawerlayout/1.1.1
@@ -318,6 +316,7 @@ Command
 [DEBUG]  Detected android module: yy.tidialogs 0.3 @ /Library/Application Support/Titanium/modules/android/yy.tidialogs/0.3
 [DEBUG]  Detected android module: yy.tidialogs 0.4 @ /Library/Application Support/Titanium/modules/android/yy.tidialogs/0.4
 [DEBUG]  Detected commonjs module: com.baqend.js-sdk 0.9.3-SNAPSHOT @ /Library/Application Support/Titanium/modules/commonjs/com.baqend.js-sdk/0.9.3-SNAPSHOT
+[DEBUG]  Detected commonjs module: ti-htmlparser2 3.8.0 @ /Library/Application Support/Titanium/modules/commonjs/htmlparser2/3.8.0
 [DEBUG]  Detected commonjs module: org.favo.promise 1.0.0 @ /Library/Application Support/Titanium/modules/commonjs/org.favo.promise/1.0.0
 [DEBUG]  Detected commonjs module: superagent 0.7.0 @ /Library/Application Support/Titanium/modules/commonjs/superagent/0.7.0
 [DEBUG]  Detected commonjs module: ti.cloud 2.3.0 @ /Library/Application Support/Titanium/modules/commonjs/ti.cloud/2.3.0
@@ -351,6 +350,7 @@ Command
 [DEBUG]  Detected iphone module: com.appcelerator.urlSession 1.1.0 @ /Library/Application Support/Titanium/modules/iphone/com.appcelerator.urlSession/1.1.0
 [DEBUG]  Detected iphone module: com.appcelerator.urlSession 1.1.1 @ /Library/Application Support/Titanium/modules/iphone/com.appcelerator.urlSession/1.1.1
 [DEBUG]  Detected iphone module: com.appmodulator.offline 1.3 @ /Library/Application Support/Titanium/modules/iphone/com.appmodulator.offline/1.3
+[DEBUG]  Detected iphone module: com.batasoft.appicons 2.0 @ /Library/Application Support/Titanium/modules/iphone/com.batasoft.appicons/2.0
 [DEBUG]  Detected iphone module: com.googlecode.quicktigame2d 1.0 @ /Library/Application Support/Titanium/modules/iphone/com.googlecode.quicktigame2d/1.0
 [DEBUG]  Detected iphone module: com.infinery.pageflip 1.0 @ /Library/Application Support/Titanium/modules/iphone/com.infinery.pageflip/1.0
 [DEBUG]  Detected iphone module: com.kuchbee.quickpdf 2.0 @ /Library/Application Support/Titanium/modules/iphone/com.kuchbee.quickpdf/2.0
@@ -429,16 +429,14 @@ Command
 [DEBUG]  Detected iphone module: tibar 0.4.1 @ /Library/Application Support/Titanium/modules/iphone/tibar/0.4.1
 [DEBUG]  Detected iphone module: tibar 0.4.2 @ /Library/Application Support/Titanium/modules/iphone/tibar/0.4.2
 [DEBUG]  Detected tizen module: tizen 3.0.0 @ /Library/Application Support/Titanium/modules/tizen/tizen/3.0.0
-[DEBUG]  Looking for Titanium module id=org.bcbhh.iosflipview version=latest platform=iphone deploy-type=development
-[INFO]   Found Titanium module id=org.bcbhh.iosflipview version=1.0.15 platform=iphone deploy-type=development path=/Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/modules/iphone/org.bcbhh.iosflipview/1.0.15
 [DEBUG]  No project level plugins to load
 [DEBUG]  Titanium SDK iOS directory: /Users/fuerst/Library/Application Support/Titanium/mobilesdk/osx/4.1.0.GA/iphone
 [INFO]   Deploy type: development
 [INFO]   Building for target: simulator
 [INFO]   Building using iOS SDK: 8.4
-[INFO]   Building for iOS Simulator: iPad Retina
-[DEBUG]  UDID: 6F12A617-0E2E-4D45-8AA0-B21072181E62
-[DEBUG]  Simulator type: ipad
+[INFO]   Building for iOS Simulator: iPhone 5s
+[DEBUG]  UDID: 759C7DB7-BDB1-4C35-9030-02C0C6F0AF90
+[DEBUG]  Simulator type: iphone
 [DEBUG]  Simulator version: 8.4
 [INFO]   Building for device family: universal
 [DEBUG]  Setting Xcode target to Debug
@@ -450,17 +448,20 @@ Command
 [INFO]   Profiler disabled
 [INFO]   Initiating prepare phase
 [INFO]   Updating Xcode project configuration: project.xcconfig
-[DEBUG]  Setting Info.plist CFBundleVersion to 0.0.2
-[DEBUG]  Setting Info.plist CFBundleShortVersionString to 0.0.2
+[DEBUG]  Setting Info.plist CFBundleVersion to 0.0.4
+[DEBUG]  Setting Info.plist CFBundleShortVersionString to 0.0.4
 [DEBUG]  Copying /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/Resources/iphone/appicon.png => /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/iphone/build/Debug-iphonesimulator/Passpartout.app/appicon.png
 [INFO]   Initiating Xcode pre-compile phase
+[DEBUG]  Ignoring /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/Resources/.DS_Store
 [DEBUG]  Ignoring /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/Resources/android
+[DEBUG]  Symlinking /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/Resources/assets/logout.png => /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/iphone/build/Debug-iphonesimulator/Passpartout.app/assets/logout.png
 [DEBUG]  Ignoring /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/Resources/fonts/.DS_Store
 [DEBUG]  Copying /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/Resources/fonts/Frutiger.ttf => /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/iphone/build/Debug-iphonesimulator/Passpartout.app/fonts/Frutiger.ttf
 [DEBUG]  Symlinking /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/Resources/grid.png => /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/iphone/build/Debug-iphonesimulator/Passpartout.app/grid.png
 [DEBUG]  Symlinking /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/Resources/i1.png => /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/iphone/build/Debug-iphonesimulator/Passpartout.app/i1.png
 [DEBUG]  Symlinking /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/Resources/i2.png => /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/iphone/build/Debug-iphonesimulator/Passpartout.app/i2.png
 [DEBUG]  Ignoring /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/Resources/iphone
+[DEBUG]  Ignoring /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/Resources/iphone/.DS_Store
 [DEBUG]  Copying /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/Resources/iphone/Default-568h@2x.png => /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/iphone/build/Debug-iphonesimulator/Passpartout.app/Default-568h@2x.png
 [DEBUG]  Copying /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/Resources/iphone/Default-667h@2x.png => /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/iphone/build/Debug-iphonesimulator/Passpartout.app/Default-667h@2x.png
 [DEBUG]  Copying /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/Resources/iphone/Default-Landscape-736h@3x.png => /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/iphone/build/Debug-iphonesimulator/Passpartout.app/Default-Landscape-736h@3x.png
@@ -471,7 +472,29 @@ Command
 [DEBUG]  Copying /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/Resources/iphone/Default-Portrait@2x.png => /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/iphone/build/Debug-iphonesimulator/Passpartout.app/Default-Portrait@2x.png
 [DEBUG]  Copying /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/Resources/iphone/Default.png => /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/iphone/build/Debug-iphonesimulator/Passpartout.app/Default.png
 [DEBUG]  Copying /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/Resources/iphone/Default@2x.png => /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/iphone/build/Debug-iphonesimulator/Passpartout.app/Default@2x.png
+[DEBUG]  Copying /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/Resources/iphone/appicon-60.png => /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/iphone/build/Debug-iphonesimulator/Passpartout.app/appicon-60.png
+[DEBUG]  Copying /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/Resources/iphone/appicon-60@2x.png => /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/iphone/build/Debug-iphonesimulator/Passpartout.app/appicon-60@2x.png
+[DEBUG]  Copying /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/Resources/iphone/appicon-60@3x.png => /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/iphone/build/Debug-iphonesimulator/Passpartout.app/appicon-60@3x.png
+[DEBUG]  Copying /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/Resources/iphone/appicon-72.png => /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/iphone/build/Debug-iphonesimulator/Passpartout.app/appicon-72.png
+[DEBUG]  Copying /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/Resources/iphone/appicon-72@2x.png => /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/iphone/build/Debug-iphonesimulator/Passpartout.app/appicon-72@2x.png
+[DEBUG]  Copying /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/Resources/iphone/appicon-76.png => /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/iphone/build/Debug-iphonesimulator/Passpartout.app/appicon-76.png
+[DEBUG]  Copying /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/Resources/iphone/appicon-76@2x.png => /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/iphone/build/Debug-iphonesimulator/Passpartout.app/appicon-76@2x.png
+[DEBUG]  Copying /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/Resources/iphone/appicon-Small-40.png => /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/iphone/build/Debug-iphonesimulator/Passpartout.app/appicon-Small-40.png
+[DEBUG]  Copying /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/Resources/iphone/appicon-Small-40@2x.png => /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/iphone/build/Debug-iphonesimulator/Passpartout.app/appicon-Small-40@2x.png
+[DEBUG]  Copying /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/Resources/iphone/appicon-Small-50.png => /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/iphone/build/Debug-iphonesimulator/Passpartout.app/appicon-Small-50.png
+[DEBUG]  Copying /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/Resources/iphone/appicon-Small-50@2x.png => /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/iphone/build/Debug-iphonesimulator/Passpartout.app/appicon-Small-50@2x.png
+[DEBUG]  Copying /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/Resources/iphone/appicon-Small.png => /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/iphone/build/Debug-iphonesimulator/Passpartout.app/appicon-Small.png
+[DEBUG]  Copying /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/Resources/iphone/appicon-Small@2x.png => /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/iphone/build/Debug-iphonesimulator/Passpartout.app/appicon-Small@2x.png
+[DEBUG]  Copying /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/Resources/iphone/appicon-Small@3x.png => /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/iphone/build/Debug-iphonesimulator/Passpartout.app/appicon-Small@3x.png
 [DEBUG]  Copying /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/Resources/iphone/appicon.png => /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/iphone/build/Debug-iphonesimulator/Passpartout.app/appicon.png
+[DEBUG]  Copying /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/Resources/iphone/appicon@2x.png => /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/iphone/build/Debug-iphonesimulator/Passpartout.app/appicon@2x.png
+[DEBUG]  Copying /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/Resources/iphone/iTunesArtwork => /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/iphone/build/Debug-iphonesimulator/Passpartout.app/iTunesArtwork
+[DEBUG]  Copying /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/Resources/iphone/iTunesArtwork@2x => /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/iphone/build/Debug-iphonesimulator/Passpartout.app/iTunesArtwork@2x
+[DEBUG]  Symlinking /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/Resources/iphone/iTunesConnect.png => /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/iphone/build/Debug-iphonesimulator/Passpartout.app/iTunesConnect.png
+[DEBUG]  Symlinking /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/Resources/iphone/icon-120.png => /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/iphone/build/Debug-iphonesimulator/Passpartout.app/icon-120.png
+[DEBUG]  Symlinking /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/Resources/iphone/icon-152.png => /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/iphone/build/Debug-iphonesimulator/Passpartout.app/icon-152.png
+[DEBUG]  Symlinking /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/Resources/iphone/icon-76.png => /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/iphone/build/Debug-iphonesimulator/Passpartout.app/icon-76.png
+[DEBUG]  Symlinking /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/Resources/iphone/image.png => /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/iphone/build/Debug-iphonesimulator/Passpartout.app/image.png
 [INFO]   Processing JavaScript files
 [DEBUG]  Symlinking /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/Resources/GLOBALS.js => /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/iphone/build/Debug-iphonesimulator/Passpartout.app/GLOBALS.js
 [DEBUG]  Symlinking /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/Resources/app.js => /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/iphone/build/Debug-iphonesimulator/Passpartout.app/app.js
@@ -483,28 +506,25 @@ Command
 [DEBUG]  Symlinking /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/Resources/vendor/loremipsum.js => /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/iphone/build/Debug-iphonesimulator/Passpartout.app/vendor/loremipsum.js
 [DEBUG]  Symlinking /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/Resources/vendor/pageflip.widget.js => /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/iphone/build/Debug-iphonesimulator/Passpartout.app/vendor/pageflip.widget.js
 [DEBUG]  Symlinking /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/Resources/iphone/ui/accounts.container.js => /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/iphone/build/Debug-iphonesimulator/Passpartout.app/ui/accounts.container.js
+[DEBUG]  Symlinking /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/Resources/iphone/ui/logoutbutton.widget.js => /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/iphone/build/Debug-iphonesimulator/Passpartout.app/ui/logoutbutton.widget.js
 [DEBUG]  Symlinking /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/Resources/iphone/ui/projects.container.js => /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/iphone/build/Debug-iphonesimulator/Passpartout.app/ui/projects.container.js
 [INFO]   Processing Titanium namespace resources
 [DEBUG]  Copying /Users/fuerst/Library/Application Support/Titanium/mobilesdk/osx/4.1.0.GA/iphone/modules/ui/images => /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/iphone/build/Debug-iphonesimulator/Passpartout.app/modules/ui/images
 [INFO]   Skipping xcodebuild
-[INFO]   Finished building the application in 306ms
+[INFO]   Finished building the application in 680ms
 [INFO]   Launching iOS Simulator
-[DEBUG]  [ioslib] Removing old log file: /Users/fuerst/Library/Developer/CoreSimulator/Devices/6F12A617-0E2E-4D45-8AA0-B21072181E62/data/Containers/Data/Application/3C4CC046-B7EC-413E-ABC8-BBA47042901C/Documents/945b720d-8de5-4383-9555-54dc9276fb84.log
-[DEBUG]  [ioslib] Executing: /Users/fuerst/Library/Application Support/Titanium/mobilesdk/osx/4.1.0.GA/node_modules/ioslib/lib/ios-sim "launch" "/Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/iphone/build/Debug-iphonesimulator/Passpartout.app" "--verbose" "--xcode-dir" "/Applications/Xcode.app/Contents/Developer" "--udid" "6F12A617-0E2E-4D45-8AA0-B21072181E62" "--timeout" "180"
+[DEBUG]  [ioslib] Removing old log file: /Users/fuerst/Library/Developer/CoreSimulator/Devices/759C7DB7-BDB1-4C35-9030-02C0C6F0AF90/data/Containers/Data/Application/E8FDE06A-A9B5-408B-8AC9-770578DCE8FB/Documents/945b720d-8de5-4383-9555-54dc9276fb84.log
+[DEBUG]  [ioslib] Executing: /Users/fuerst/Library/Application Support/Titanium/mobilesdk/osx/4.1.0.GA/node_modules/ioslib/lib/ios-sim "launch" "/Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/iphone/build/Debug-iphonesimulator/Passpartout.app" "--verbose" "--xcode-dir" "/Applications/Xcode.app/Contents/Developer" "--udid" "759C7DB7-BDB1-4C35-9030-02C0C6F0AF90" "--timeout" "180"
 [DEBUG]  [ioslib] Executing: osascript "/Users/fuerst/Library/Application Support/Titanium/mobilesdk/osx/4.1.0.GA/node_modules/ioslib/lib/iphone_sim_activate.scpt" "/Applications/Xcode.app/Contents/Developer/Applications/iOS Simulator.app"
-[DEBUG]  [ioslib] [ios-sim] [DEBUG] App Spec: <DTiPhoneSimulatorApplicationSpecifier 0x7fa379d455d0> specified by app path /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/iphone/build/Debug-iphonesimulator/Passpartout.app
-[DEBUG]  [ioslib] [ios-sim] [DEBUG] SDK Root: <DTiPhoneSimulatorSystemRoot 0x7fa379d45780> path=/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk
-[DEBUG]  [ioslib] [ios-sim] [DEBUG] Creating named pipe at `/var/folders/25/yvdn9h053sv3htdkzq8558k40000gn/T//ios-sim-stderr-pipe-1439533546'
-[DEBUG]  [ioslib] [ios-sim] [DEBUG] Creating named pipe at `/var/folders/25/yvdn9h053sv3htdkzq8558k40000gn/T//ios-sim-stdout-pipe-1439533546'
+[DEBUG]  [ioslib] [ios-sim] [DEBUG] App Spec: <DTiPhoneSimulatorApplicationSpecifier 0x7f9818f05480> specified by app path /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/iphone/build/Debug-iphonesimulator/Passpartout.app
+[DEBUG]  [ioslib] [ios-sim] [DEBUG] SDK Root: <DTiPhoneSimulatorSystemRoot 0x7f9818e25600> path=/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk
+[DEBUG]  [ioslib] [ios-sim] [DEBUG] Creating named pipe at `/var/folders/25/yvdn9h053sv3htdkzq8558k40000gn/T//ios-sim-stderr-pipe-1439893032'
+[DEBUG]  [ioslib] [ios-sim] [DEBUG] Creating named pipe at `/var/folders/25/yvdn9h053sv3htdkzq8558k40000gn/T//ios-sim-stdout-pipe-1439893032'
 [DEBUG]  [ioslib] [ios-sim] [DEBUG] using device family iphone
-[DEBUG]  [ioslib] [ios-sim] [DEBUG] Comparing B5B6B385-E99C-4921-B0B2-93104B781DAE == 6F12A617-0E2E-4D45-8AA0-B21072181E62
-[DEBUG]  [ioslib] [ios-sim] [DEBUG] Comparing 68AAC9D8-0B61-4ABE-931A-3E33524033E6 == 6F12A617-0E2E-4D45-8AA0-B21072181E62
-[DEBUG]  [ioslib] [ios-sim] [DEBUG] Comparing 759C7DB7-BDB1-4C35-9030-02C0C6F0AF90 == 6F12A617-0E2E-4D45-8AA0-B21072181E62
-[DEBUG]  [ioslib] [ios-sim] [DEBUG] Comparing 271614BD-4085-41D3-80E4-8FAC0E8F5BCE == 6F12A617-0E2E-4D45-8AA0-B21072181E62
-[DEBUG]  [ioslib] [ios-sim] [DEBUG] Comparing AD300489-3856-4F12-8D00-5A020DCC6DCA == 6F12A617-0E2E-4D45-8AA0-B21072181E62
-[DEBUG]  [ioslib] [ios-sim] [DEBUG] Comparing B5DCEA56-A6A6-4B03-B6EB-120FFA9468AD == 6F12A617-0E2E-4D45-8AA0-B21072181E62
-[DEBUG]  [ioslib] [ios-sim] [DEBUG] Comparing 6F12A617-0E2E-4D45-8AA0-B21072181E62 == 6F12A617-0E2E-4D45-8AA0-B21072181E62
-[DEBUG]  [ioslib] [ios-sim] [DEBUG] set device to : iPad Retina
+[DEBUG]  [ioslib] [ios-sim] [DEBUG] Comparing B5B6B385-E99C-4921-B0B2-93104B781DAE == 759C7DB7-BDB1-4C35-9030-02C0C6F0AF90
+[DEBUG]  [ioslib] [ios-sim] [DEBUG] Comparing 68AAC9D8-0B61-4ABE-931A-3E33524033E6 == 759C7DB7-BDB1-4C35-9030-02C0C6F0AF90
+[DEBUG]  [ioslib] [ios-sim] [DEBUG] Comparing 759C7DB7-BDB1-4C35-9030-02C0C6F0AF90 == 759C7DB7-BDB1-4C35-9030-02C0C6F0AF90
+[DEBUG]  [ioslib] [ios-sim] [DEBUG] set device to : iPhone 5s
 [DEBUG]  [ioslib] [ios-sim] [DEBUG] Session started
-[DEBUG]  [ioslib] Found application log file: /Users/fuerst/Library/Developer/CoreSimulator/Devices/6F12A617-0E2E-4D45-8AA0-B21072181E62/data/Containers/Data/Application/B32C0149-94BF-497E-B03D-6FCE79242C42/Documents/945b720d-8de5-4383-9555-54dc9276fb84.log
-[INFO]   Project built successfully in 5s 827ms
+[DEBUG]  [ioslib] Found application log file: /Users/fuerst/Library/Developer/CoreSimulator/Devices/759C7DB7-BDB1-4C35-9030-02C0C6F0AF90/data/Containers/Data/Application/8E232537-A6D8-4E7E-A242-1275269EB8E3/Documents/945b720d-8de5-4383-9555-54dc9276fb84.log
+[INFO]   Project built successfully in 5s 933ms

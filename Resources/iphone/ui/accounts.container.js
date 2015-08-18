@@ -1,10 +1,12 @@
 var GLOBALS = require('GLOBALS');
 module.exports = function() {
+	var rightNavButton = require('ui/logoutbutton.widget')();
 	/* Here is all logic to build different ui for all platforms*/
 	if (GLOBALS.isPad) {
 		/* iPad: SplitView with navigationwindow on right side*/
-
-		var self = Ti.UI.iOS.createSplitWindow({});
+		var self = Ti.UI.iOS.createSplitWindow({
+			rightNavButton  : rightNavButton 
+		});
 		// left side:
 		self.setMasterView(require('ui/window')({
 			children : [require('ui/accounts.list')({
@@ -39,7 +41,8 @@ module.exports = function() {
 	} else {
 		/* iPhone/iPod: Navigationgroup (automatic by using of tabgroup)*/
 		var self = require('ui/window')({
-			title : 'List of my accounts'
+			title : 'List of my accounts',
+			rightNavButton : rightNavButton 
 		});
 		self.add(require('ui/accounts.list')({
 			parent : self

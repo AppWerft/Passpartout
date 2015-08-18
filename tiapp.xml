@@ -3,9 +3,9 @@
     <url>http://hamburger-appwerft.de</url>
     <id>de.appwerft.passpartout</id>
     <name>Passpartout</name>
-    <version>0.0.2</version>
+    <version>0.0.4</version>
     <publisher>fuerst</publisher>
-    <description>undefined</description>
+    <description>Nix zu lesen</description>
     <copyright>2015 by fuerst</copyright>
     <icon>appicon.png</icon>
     <fullscreen>true</fullscreen>
@@ -46,7 +46,6 @@
         <theme>default</theme>
     </mobileweb>
     <modules>
-        <module platform="iphone">org.bcbhh.iosflipview</module>
         <module platform="android">de.manumaticx.androidflip</module>
         <module platform="android">com.alcoapps.actionbarextras</module>
     </modules>
