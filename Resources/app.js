@@ -1,5 +1,3 @@
 ! function() {
-	var tabGroup = require('ui/tabgroup')();
-	console.log(tabGroup.apiName);
-	tabGroup.open();
+	var tabGroup = require('ui/tabgroup')().open();
 }();

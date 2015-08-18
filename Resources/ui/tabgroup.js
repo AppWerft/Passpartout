@@ -1,4 +1,6 @@
 var GLOBALS = require('GLOBALS');
+var AwesomeIcon = require('vendor/awesomeicons');
+var iSize = GLOBALS.isAndroid ? 72 : 36;
 
 module.exports = function() {
 	var self = Ti.UI.createTabGroup({
@@ -6,7 +8,10 @@ module.exports = function() {
 		tabs : [Ti.UI.createTab({
 			window : require('ui/accounts.container')(),
 			title : GLOBALS.isIOS ? 'Accounts' : null,
-			icon : GLOBALS.isIOS ? 'i2.png' : '/images/accounts-icon.png'
+			icon : AwesomeIcon.createIcon({
+				size : iSize,
+				name : 'dashboard'
+			})
 		}), Ti.UI.createTab({
 			window : require('ui/projects.container')(),
 			title : GLOBALS.isIOS ? 'Projects' : null,

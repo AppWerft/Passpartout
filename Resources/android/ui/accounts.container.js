@@ -20,7 +20,6 @@ module.exports = function() {
 		var self = require('ui/window')({
 			title : 'List of my accounts',
 			layout : 'horizontal',
-
 			horizontalWrap : false
 		});
 		self.masterView = Ti.UI.createView({
@@ -34,28 +33,23 @@ module.exports = function() {
 		}));
 		/* reference of all views (in this case 2) for scrollable view */
 		var views = [Ti.UI.createView(), Ti.UI.createView()];
-		// Level 2
 		views[BOOKINGSOFACCOUNT].add(require('ui/navbar.widget')({
 			title : ''
 		}));
 		views[BOOKINGSOFACCOUNT].add(Ti.UI.createView({
 			top : NAVBARHEIGHT
 		}));
-		// this will removed and is only  vor filling the empty view
 		views[BOOKINGSOFACCOUNT].add(Ti.UI.createImageView({
 			image : 'http://lorempixel.com/g/1024/768/business/?' + Math.random(),
 			width : Ti.UI.FILL,
 			height : Ti.UI.FILL,
-
 		}));
-		// Level 3
 		views[BOOKING].add(require('ui/navbar.widget')({
 			title : 'Booking'
 		}));
 		views[BOOKING].add(Ti.UI.createView({
 			top : NAVBARHEIGHT
 		}));
-
 		// container for headline and subviews (as scrollable view)
 		self.detailView = Ti.UI.createScrollableView({
 			left : 0,
@@ -66,13 +60,8 @@ module.exports = function() {
 			width : Ti.UI.FILL,
 			height : Ti.UI.FILL
 		});
-
-		/*self.headLineText.addEventListener('singletap', function() {
-		 subviewcontainer && subviewcontainer.scrollToView(0);
-		 });*/
 		self.add(self.masterView);
 		self.add(self.detailView);
-
 		/* user selected account => we show in views[0] the list of BOOKINGSOFACCOUNT of this account */
 		self.addEventListener('selectaccount', function(_e) {
 			/* removing dummy preview */
@@ -113,7 +102,6 @@ module.exports = function() {
 			}, 700);
 		});
 	} else {
-
 		/* Handheld: all ist standard window stack*/
 		var self = require('ui/window')({
 			title : 'List of my accounts'
