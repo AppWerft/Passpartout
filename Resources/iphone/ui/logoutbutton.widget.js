@@ -1,7 +1,8 @@
 var Module = function() {
 	var self = Ti.UI.createButton({
-		width : 50,
-		height : 50,
+		width : 40,
+		height : 40,
+		
 		backgroundImage : 'assets/logout.png'
 	});
 	self.addEventListener('click', function() {
@@ -10,7 +11,7 @@ var Module = function() {
 			options : ['Ausloggen', 'Weiter machen'],
 			selectedIndex : 0,
 			destructive : 0,
-			title : 'Sitzung beenden?s'
+			title : 'Sitzung beenden?'
 		});
 		dialog.show();
 		dialog.addEventListener('click', function(_e) {
@@ -21,6 +22,7 @@ var Module = function() {
 			}
 		});
 	});
+	return self;
 };
 module.exports = Module;
 

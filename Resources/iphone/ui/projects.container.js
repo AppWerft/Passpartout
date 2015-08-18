@@ -1,6 +1,6 @@
 module.exports = function() {
 	var self = require('ui/window')({
-		title : 'List off projects'
+		title : 'List of projects'
 	});
 	return self;
 };

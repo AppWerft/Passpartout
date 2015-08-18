@@ -1,1 +1,0 @@
-/Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/Resources/android/ui/accounts.container.js

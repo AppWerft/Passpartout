@@ -1,1 +1,0 @@
-/Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/Resources/android/images/projects.container.js

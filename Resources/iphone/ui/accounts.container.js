@@ -4,23 +4,29 @@ module.exports = function() {
 	/* Here is all logic to build different ui for all platforms*/
 	if (GLOBALS.isPad) {
 		/* iPad: SplitView with navigationwindow on right side*/
-		var self = Ti.UI.iOS.createSplitWindow({
-			rightNavButton  : rightNavButton 
+		var self = Ti.UI.createWindow({
+			rightNavButton : rightNavButton,
+			title : 'List of my accounts',
 		});
+		self.splitwindow = Ti.UI.iOS.createSplitWindow({
+		});
+		self.add(Ti.UI.createScrollableView({
+			views : [self.splitwindow]
+		}));
 		// left side:
-		self.setMasterView(require('ui/window')({
+		self.splitwindow.setMasterView(require('ui/window')({
 			children : [require('ui/accounts.list')({
 				parent : self
 			})]
 		}));
 		// right side
-		self.setDetailView(Ti.UI.createImageView({
+		self.splitwindow.setDetailView(Ti.UI.createImageView({
 			image : 'http://lorempixel.com/g/1024/768/business/?' + Math.random(),
 			width : Ti.UI.FILL,
 			height : Ti.UI.FILL,
 		}));
 		self.addEventListener('selectaccount', function(_e) {
-			self.setDetailView(Ti.UI.iOS.createNavigationWindow({
+			self.splitwindow.setDetailView(Ti.UI.iOS.createNavigationWindow({
 				window : require('ui/window')({
 					title : 'Bookings in this account (#' + (_e.payload + 1) + ')',
 					children : [require('ui/bookingsbyaccount.list')({
@@ -36,13 +42,14 @@ module.exports = function() {
 			container.add(require('ui/booking')({
 				parent : self
 			}));
-			self.getDetailView().openWindow(container);
+			self.splitwindow.getDetailView().openWindow(container);
 		});
+
 	} else {
 		/* iPhone/iPod: Navigationgroup (automatic by using of tabgroup)*/
 		var self = require('ui/window')({
 			title : 'List of my accounts',
-			rightNavButton : rightNavButton 
+			rightNavButton : rightNavButton
 		});
 		self.add(require('ui/accounts.list')({
 			parent : self
