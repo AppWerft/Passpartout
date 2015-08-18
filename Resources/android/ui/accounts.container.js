@@ -3,18 +3,24 @@ var ActionBar = require('com.alcoapps.actionbarextras');
 
 /*
  *
- *
  Version for Android
  *
- *
  * */
+
+const BOOKINGSOFACCOUNT = 0,
+    BOOKING = 1,
+    HEADER = 0,
+    BODY = 1,
+    DECO = 2;
+const NAVBARHEIGHT = 50;
+
 module.exports = function() {
 	/* Here is all logic to build different ui for all platforms*/
 	if (GLOBALS.isTablet) {
 		var self = require('ui/window')({
 			title : 'List of my accounts',
 			layout : 'horizontal',
-			
+
 			horizontalWrap : false
 		});
 		self.masterView = Ti.UI.createView({
@@ -26,102 +32,88 @@ module.exports = function() {
 		self.masterView.add(require('ui/accounts.list')({
 			parent : self
 		}));
-
-		/* reference of all views (in this case 2) for crollable view */
-		var views = [Ti.UI.createImageView({
+		/* reference of all views (in this case 2) for scrollable view */
+		var views = [Ti.UI.createView(), Ti.UI.createView()];
+		// Level 2
+		views[BOOKINGSOFACCOUNT].add(require('ui/navbar.widget')({
+			title : ''
+		}));
+		views[BOOKINGSOFACCOUNT].add(Ti.UI.createView({
+			top : NAVBARHEIGHT
+		}));
+		// this will removed and is only  vor filling the empty view
+		views[BOOKINGSOFACCOUNT].add(Ti.UI.createImageView({
 			image : 'http://lorempixel.com/g/1024/768/business/?' + Math.random(),
 			width : Ti.UI.FILL,
 			height : Ti.UI.FILL,
-		}), Ti.UI.createView({
-			width : Ti.UI.FILL,
-			height : Ti.UI.FILL
-		})];
+
+		}));
+		// Level 3
+		views[BOOKING].add(require('ui/navbar.widget')({
+			title : 'Booking'
+		}));
+		views[BOOKING].add(Ti.UI.createView({
+			top : NAVBARHEIGHT
+		}));
+
 		// container for headline and subviews (as scrollable view)
-		self.detailView = Ti.UI.createView({
-			layout : 'vertical',
+		self.detailView = Ti.UI.createScrollableView({
 			left : 0,
 			top : 0,
+			views : views,
+			scrollingEnabled : false,
 			backgroundColor : 'gray',
 			width : Ti.UI.FILL,
 			height : Ti.UI.FILL
 		});
-		self.headLine = Ti.UI.createView({
-			backgroundColor : '#666',
-			top : 0,
-			height : 0 /* initial hiding of headline */
-		});
-		self.headLineText = Ti.UI.createLabel({
-			text : 'Überschrift',
-			color : 'white',
-			left : 20,
-			textAlign : 'left',
-			width : Ti.UI.FILL,
-			font : {
-				fontSize : 20
-			}
-		});
-		self.headLine.add(self.headLineText);
-		var subviewcontainer = Ti.UI.createScrollableView({
-			left : 0,
-			top : 0,
-			backgroundImage : '/grid.png',
-			scrollingEnabled : false,
-			views : views,
-			width : Ti.UI.FILL
-		});
+
+		/*self.headLineText.addEventListener('singletap', function() {
+		 subviewcontainer && subviewcontainer.scrollToView(0);
+		 });*/
 		self.add(self.masterView);
 		self.add(self.detailView);
-		self.detailView.add(self.headLine);
-		self.detailView.add(subviewcontainer);
+
+		/* user selected account => we show in views[0] the list of BOOKINGSOFACCOUNT of this account */
 		self.addEventListener('selectaccount', function(_e) {
-			self.headLine.animate({
-				height : 50
-			});
-			self.headLineText.setText('Bookings in this account (#' + (_e.payload + 1) + ')');
-			subviewcontainer.scrollToView(0);
-			views[0].opacity = 0.8;
-			views[0] = require('ui/bookingsbyaccount.list')({
+			/* removing dummy preview */
+			if (views[BOOKINGSOFACCOUNT].children.length > 2) {
+				views[BOOKINGSOFACCOUNT].remove(views[BOOKINGSOFACCOUNT].children[DECO]);
+			}
+			var accountlabel = views[BOOKINGSOFACCOUNT].children[HEADER].headLineText;
+			accountlabel.setText('Bookings in this account (#' + (_e.payload + 1) + ')');
+			self.detailView.scrollToView(BOOKINGSOFACCOUNT);
+			views[BOOKINGSOFACCOUNT].children[BODY].removeAllChildren();
+			views[BOOKINGSOFACCOUNT].children[BODY].add(require('ui/bookingsbyaccount.list')({
 				parent : self
-			});
-			// forced rerendering!
-			subviewcontainer.setViews(views);
-			views[0].animate({
-				opacity : 1,
-				left : 0,
-				duration : 700
-			});
+			}));
+		});
+		views[BOOKING].children[HEADER].addEventListener('singletap',function(){
+			views[BOOKING].children[BODY].removeAllChildren();
+			self.detailView.scrollToView(BOOKINGSOFACCOUNT);
 		});
 		self.addEventListener('selectbooking', function(_e) {
-			self.headLineText.setText('<  This booking (#' + (_e.payload + 1) + ')');
+			views[BOOKING].children[HEADER].headLineText.setText('<  This booking (#' + (_e.payload + 1) + ')');
 			var pages = [];
 			for (var i = 0; i < 23; i++) {
 				pages.push(require('ui/booking')({
 					parent : self
 				}));
 			}
-			views[1] = require('vendor/pageflip.widget')({
+			views[BOOKING].children[BODY].removeAllChildren();
+			views[BOOKING].children[BODY].add(require('vendor/pageflip.widget')({
 				pages : pages,
 				startPage : _e.payload,
 				onflipend : function(_res) {
-					self.headLineText.setText('<  Booking (#' + _res.current + ')');
+					views[BOOKING].children[HEADER].headLineText.setText('<  Booking (#' + _res.current + ')');
 				}
-			});
-
-			/*
-			 views[1] = require('ui/booking')({
-			 parent : self
-			 });*/
-			subviewcontainer.setViews(views);
-			subviewcontainer.scrollToView(1);
+			}));
+			self.detailView.scrollToView(BOOKING);
 			setTimeout(function() {
-				views[1].peakNext(true);
+				views[BOOKING].children[BODY].children[0].peakNext(true);
 			}, 700);
 		});
-		subviewcontainer.addEventListener('scrollend', function(_e) {
-			console.log(_e.currentPage);
-			subviewcontainer.setScrollingEnabled(_e.currentPage == 0 ? false : false);
-		});
 	} else {
+
 		/* Handheld: all ist standard window stack*/
 		var self = require('ui/window')({
 			title : 'List of my accounts'
@@ -133,7 +125,7 @@ module.exports = function() {
 			var nextwindow = require('ui/window')({
 				title : 'Account (#' + (_e.payload + 1) + ')',
 				onopen : require('ui/main.actionbar'),
-				subtitle : 'All bookings of this account'
+				subtitle : 'All BOOKINGSOFACCOUNT of this account'
 			});
 			nextwindow.add(require('ui/bookingsbyaccount.list')({
 				parent : self

@@ -8,9 +8,7 @@ module.exports = function() {
 	var win = arguments[0].source;
 	ActionBar.setTitle(win.title);
 	win.subtitle && ActionBar.setSubtitle(win.subtitle);
-	ActionBar.setFont('Frutiger');
-	ActionBar.subtitleColor = "#ddd";
-	ActionBar.setBackgroundColor('#444');
+	ActionBar.setFont('Frutiger'), ActionBar.subtitleColor = "#ddd", ActionBar.backgroundColor = '#FFD100';
 	var activity = win.getActivity();
 	if (activity) {
 		activity.onCreateOptionsMenu = function() {
