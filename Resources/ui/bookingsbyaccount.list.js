@@ -3,7 +3,7 @@ var GLOBALS = require('GLOBALS');
 module.exports = function() {
 	var args = arguments[0] || {};
 	var rows = [];
-	for (var i = 0; i < Math.round(20 + Math.random() * 50); i++) {
+	for (var i = 0; i < 23; i++) {
 		rows[i] = Ti.UI.createTableViewRow({
 			itemId : i,
 			backgroundColor : 'white',
