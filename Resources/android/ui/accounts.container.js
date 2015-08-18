@@ -14,6 +14,7 @@ module.exports = function() {
 		var self = require('ui/window')({
 			title : 'List of my accounts',
 			layout : 'horizontal',
+			
 			horizontalWrap : false
 		});
 		self.masterView = Ti.UI.createView({

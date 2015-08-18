@@ -7,6 +7,7 @@ module.exports = function() {
 		var self = Ti.UI.createWindow({
 			rightNavButton : rightNavButton,
 			title : 'List of my accounts',
+			barImage :'bgipad.png' 
 		});
 		self.splitwindow = Ti.UI.iOS.createSplitWindow({
 		});
@@ -49,7 +50,8 @@ module.exports = function() {
 		/* iPhone/iPod: Navigationgroup (automatic by using of tabgroup)*/
 		var self = require('ui/window')({
 			title : 'List of my accounts',
-			rightNavButton : rightNavButton
+			rightNavButton : rightNavButton,
+			barImage : 'bgiphone.png',
 		});
 		self.add(require('ui/accounts.list')({
 			parent : self
