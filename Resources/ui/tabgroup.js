@@ -1,21 +1,21 @@
 var GLOBALS = require('GLOBALS');
 var AwesomeIcon = require('vendor/awesomeicons');
 var iSize = GLOBALS.isAndroid ? 72 : 36;
-
+/*
+ AwesomeIcon.createIcon({name:'recents',color:'white',size:56});
+ doesn't work ;-(())
+ * */
 module.exports = function() {
 	var self = Ti.UI.createTabGroup({
-		backgroundColor : 'yellow', // for Android
+		//backgroundColor : 'yellow', // for Android
 		tabs : [Ti.UI.createTab({
 			window : require('ui/accounts.container')(),
-			title : GLOBALS.isIOS ? 'Accounts' : null,
-			icon : AwesomeIcon.createIcon({
-				size : iSize,
-				name : 'dashboard'
-			})
+			title : 'Accounts',
+			icon : '/icons/bar-chart_dddddd.png'
 		}), Ti.UI.createTab({
 			window : require('ui/projects.container')(),
-			title : GLOBALS.isIOS ? 'Projects' : null,
-			icon : GLOBALS.isIOS ? 'i1.png' : '/images/projects-icon.png'
+			title : 'Projects',
+			icon : '/icons/stack-overflow_dddddd.png'
 		})],
 		// hiding of statusbar
 		fullscreen : false,
