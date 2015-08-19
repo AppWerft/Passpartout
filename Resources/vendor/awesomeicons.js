@@ -26,7 +26,8 @@ var Module = function(options) {
 		if (blob.media !== undefined)
 			blob = blob.media;
 		filehandle.write(blob,false);
-		console.log(blob.getFile() + ' has '+ blob.getSize() + ' Bytes');
+		console.log(blob.apiName);
+		console.log(blob.getFile() + ' has '+ blob.getLength() + ' Bytes');
 	}
 	console.log(filehandle);	
 	return filehandle.nativePath;
