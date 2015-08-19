@@ -151,6 +151,7 @@
 	</array>
 	<key>UIAppFonts</key>
 	<array>
+		<string>/fonts/AppIcons.ttf</string>
 		<string>/fonts/Frutiger.ttf</string>
 	</array>
 </dict>
