@@ -27,9 +27,9 @@ var Module = function(options) {
 			blob = blob.media;
 		filehandle.write(blob,false);
 		console.log(blob.apiName);
-		console.log(blob.getFile() + ' has '+ blob.getLength() + ' Bytes');
+		console.log(blob.getNativePath() + ' has '+ blob.getLength() + ' Bytes');
 	}
-	console.log(filehandle);	
+	console.log(filehandle.nativePath);	
 	return filehandle.nativePath;
 };
 exports.createIcon = function(options) {
