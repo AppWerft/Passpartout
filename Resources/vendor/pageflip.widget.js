@@ -28,6 +28,7 @@ module.exports = function() {
 				total : total
 			});
 		});
+		self.bounceForward = self.peakNext;
 		return self;
 	}
 	/* iOS, also iPhone, iPad und iPod*/
@@ -50,6 +51,7 @@ module.exports = function() {
 			rubberBandRatio: 0.6666, // default 0.6666
 			total : total
 		});
+		self.peakNext = self.bounceForward;
 		self.addEventListener('change', function(_e) {
 			options.onflipend && options.onflipend({
 				current : _e.source.currentPage,
@@ -57,7 +59,6 @@ module.exports = function() {
 				pagecount : total
 			});
 		});
-		Ti.API.error('pageflidwidget:     ' + Ti.Platform.availableMemory);
 		return self;
 	}
 };

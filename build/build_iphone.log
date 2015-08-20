@@ -1,5 +1,5 @@
 
-Wed Aug 19 2015 12:07:42 GMT+0200 (CEST)
+Wed Aug 19 2015 16:49:43 GMT+0200 (CEST)
 
 Operating System
   Name                        = Mac OS X
@@ -21,7 +21,7 @@ Titanium SDK
   Target Platform             = iphone
 
 Command
-  /usr/local/bin/node /Users/fuerst/.appcelerator/install/4.1.0/package/node_modules/appc-cli-titanium/node_modules/titanium/bin/titanium build --platform iphone --log-level trace --sdk 4.1.0.GA --project-dir /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout --target simulator --ios-version 8.4 --device-family universal --deploy-type development --sim-type iphone --sim-version 8.4 --device-id AD300489-3856-4F12-8D00-5A020DCC6DCA --skip-js-minify --no-colors --no-progress-bars --no-prompt --prompt-type socket-bundle --prompt-port 50307 --config-file /var/folders/25/yvdn9h053sv3htdkzq8558k40000gn/T/build-1439978858978.json --no-banner
+  /usr/local/bin/node /Users/fuerst/.appcelerator/install/4.1.0/package/node_modules/appc-cli-titanium/node_modules/titanium/bin/titanium build --platform ipad --log-level trace --sdk 4.1.0.GA --project-dir /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout --target simulator --ios-version 8.4 --device-family universal --deploy-type development --sim-type ipad --sim-version 8.4 --device-id B5DCEA56-A6A6-4B03-B6EB-120FFA9468AD --skip-js-minify --no-colors --no-progress-bars --no-prompt --prompt-type socket-bundle --prompt-port 50307 --config-file /var/folders/25/yvdn9h053sv3htdkzq8558k40000gn/T/build-1439995780327.json --no-banner
 
 [DEBUG]  Detecting modules in /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/modules
 [DEBUG]  Detected android module: de.manumaticx.androidflip 1.0.1 @ /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/modules/android/de.manumaticx.androidflip/1.0.1
@@ -434,9 +434,9 @@ Command
 [INFO]   Deploy type: development
 [INFO]   Building for target: simulator
 [INFO]   Building using iOS SDK: 8.4
-[INFO]   Building for iOS Simulator: iPhone 6
-[DEBUG]  UDID: AD300489-3856-4F12-8D00-5A020DCC6DCA
-[DEBUG]  Simulator type: iphone
+[INFO]   Building for iOS Simulator: iPad 2
+[DEBUG]  UDID: B5DCEA56-A6A6-4B03-B6EB-120FFA9468AD
+[DEBUG]  Simulator type: ipad
 [DEBUG]  Simulator version: 8.4
 [INFO]   Building for device family: universal
 [DEBUG]  Setting Xcode target to Debug
@@ -521,22 +521,23 @@ Command
 [INFO]   Processing Titanium namespace resources
 [DEBUG]  Copying /Users/fuerst/Library/Application Support/Titanium/mobilesdk/osx/4.1.0.GA/iphone/modules/ui/images => /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/iphone/build/Debug-iphonesimulator/Passpartout.app/modules/ui/images
 [INFO]   Skipping xcodebuild
-[INFO]   Finished building the application in 409ms
+[INFO]   Finished building the application in 494ms
 [INFO]   Launching iOS Simulator
-[DEBUG]  [ioslib] Removing old log file: /Users/fuerst/Library/Developer/CoreSimulator/Devices/AD300489-3856-4F12-8D00-5A020DCC6DCA/data/Containers/Data/Application/9A28F1B4-BE80-49DC-B35B-C08F45EA102F/Documents/945b720d-8de5-4383-9555-54dc9276fb84.log
-[DEBUG]  [ioslib] Executing: /Users/fuerst/Library/Application Support/Titanium/mobilesdk/osx/4.1.0.GA/node_modules/ioslib/lib/ios-sim "launch" "/Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/iphone/build/Debug-iphonesimulator/Passpartout.app" "--verbose" "--xcode-dir" "/Applications/Xcode.app/Contents/Developer" "--udid" "AD300489-3856-4F12-8D00-5A020DCC6DCA" "--timeout" "180"
+[DEBUG]  [ioslib] Removing old log file: /Users/fuerst/Library/Developer/CoreSimulator/Devices/B5DCEA56-A6A6-4B03-B6EB-120FFA9468AD/data/Containers/Data/Application/4E8086B7-39BF-4915-9F58-9623753DE32C/Documents/945b720d-8de5-4383-9555-54dc9276fb84.log
+[DEBUG]  [ioslib] Executing: /Users/fuerst/Library/Application Support/Titanium/mobilesdk/osx/4.1.0.GA/node_modules/ioslib/lib/ios-sim "launch" "/Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/iphone/build/Debug-iphonesimulator/Passpartout.app" "--verbose" "--xcode-dir" "/Applications/Xcode.app/Contents/Developer" "--udid" "B5DCEA56-A6A6-4B03-B6EB-120FFA9468AD" "--timeout" "180"
 [DEBUG]  [ioslib] Executing: osascript "/Users/fuerst/Library/Application Support/Titanium/mobilesdk/osx/4.1.0.GA/node_modules/ioslib/lib/iphone_sim_activate.scpt" "/Applications/Xcode.app/Contents/Developer/Applications/iOS Simulator.app"
-[DEBUG]  [ioslib] [ios-sim] [DEBUG] App Spec: <DTiPhoneSimulatorApplicationSpecifier 0x7f94ab517c40> specified by app path /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/iphone/build/Debug-iphonesimulator/Passpartout.app
-[DEBUG]  [ioslib] [ios-sim] [DEBUG] SDK Root: <DTiPhoneSimulatorSystemRoot 0x7f94ab52fb80> path=/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk
-[DEBUG]  [ioslib] [ios-sim] [DEBUG] Creating named pipe at `/var/folders/25/yvdn9h053sv3htdkzq8558k40000gn/T//ios-sim-stderr-pipe-1439978863'
-[DEBUG]  [ioslib] [ios-sim] [DEBUG] Creating named pipe at `/var/folders/25/yvdn9h053sv3htdkzq8558k40000gn/T//ios-sim-stdout-pipe-1439978863'
+[DEBUG]  [ioslib] [ios-sim] [DEBUG] App Spec: <DTiPhoneSimulatorApplicationSpecifier 0x7f990bc47fe0> specified by app path /Users/fuerst/Documents/Appcelerator_Studio_Workspace/Passpartout/build/iphone/build/Debug-iphonesimulator/Passpartout.app
+[DEBUG]  [ioslib] [ios-sim] [DEBUG] SDK Root: <DTiPhoneSimulatorSystemRoot 0x7f990bf26470> path=/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk
+[DEBUG]  [ioslib] [ios-sim] [DEBUG] Creating named pipe at `/var/folders/25/yvdn9h053sv3htdkzq8558k40000gn/T//ios-sim-stderr-pipe-1439995785'
+[DEBUG]  [ioslib] [ios-sim] [DEBUG] Creating named pipe at `/var/folders/25/yvdn9h053sv3htdkzq8558k40000gn/T//ios-sim-stdout-pipe-1439995785'
 [DEBUG]  [ioslib] [ios-sim] [DEBUG] using device family iphone
-[DEBUG]  [ioslib] [ios-sim] [DEBUG] Comparing B5B6B385-E99C-4921-B0B2-93104B781DAE == AD300489-3856-4F12-8D00-5A020DCC6DCA
-[DEBUG]  [ioslib] [ios-sim] [DEBUG] Comparing 68AAC9D8-0B61-4ABE-931A-3E33524033E6 == AD300489-3856-4F12-8D00-5A020DCC6DCA
-[DEBUG]  [ioslib] [ios-sim] [DEBUG] Comparing 759C7DB7-BDB1-4C35-9030-02C0C6F0AF90 == AD300489-3856-4F12-8D00-5A020DCC6DCA
-[DEBUG]  [ioslib] [ios-sim] [DEBUG] Comparing 271614BD-4085-41D3-80E4-8FAC0E8F5BCE == AD300489-3856-4F12-8D00-5A020DCC6DCA
-[DEBUG]  [ioslib] [ios-sim] [DEBUG] Comparing AD300489-3856-4F12-8D00-5A020DCC6DCA == AD300489-3856-4F12-8D00-5A020DCC6DCA
-[DEBUG]  [ioslib] [ios-sim] [DEBUG] set device to : iPhone 6
+[DEBUG]  [ioslib] [ios-sim] [DEBUG] Comparing B5B6B385-E99C-4921-B0B2-93104B781DAE == B5DCEA56-A6A6-4B03-B6EB-120FFA9468AD
+[DEBUG]  [ioslib] [ios-sim] [DEBUG] Comparing 68AAC9D8-0B61-4ABE-931A-3E33524033E6 == B5DCEA56-A6A6-4B03-B6EB-120FFA9468AD
+[DEBUG]  [ioslib] [ios-sim] [DEBUG] Comparing 759C7DB7-BDB1-4C35-9030-02C0C6F0AF90 == B5DCEA56-A6A6-4B03-B6EB-120FFA9468AD
+[DEBUG]  [ioslib] [ios-sim] [DEBUG] Comparing 271614BD-4085-41D3-80E4-8FAC0E8F5BCE == B5DCEA56-A6A6-4B03-B6EB-120FFA9468AD
+[DEBUG]  [ioslib] [ios-sim] [DEBUG] Comparing AD300489-3856-4F12-8D00-5A020DCC6DCA == B5DCEA56-A6A6-4B03-B6EB-120FFA9468AD
+[DEBUG]  [ioslib] [ios-sim] [DEBUG] Comparing B5DCEA56-A6A6-4B03-B6EB-120FFA9468AD == B5DCEA56-A6A6-4B03-B6EB-120FFA9468AD
+[DEBUG]  [ioslib] [ios-sim] [DEBUG] set device to : iPad 2
 [DEBUG]  [ioslib] [ios-sim] [DEBUG] Session started
-[DEBUG]  [ioslib] Found application log file: /Users/fuerst/Library/Developer/CoreSimulator/Devices/AD300489-3856-4F12-8D00-5A020DCC6DCA/data/Containers/Data/Application/07B3FE94-E6C2-4A89-B033-608C333ACDA2/Documents/945b720d-8de5-4383-9555-54dc9276fb84.log
-[INFO]   Project built successfully in 8s 741ms
+[DEBUG]  [ioslib] Found application log file: /Users/fuerst/Library/Developer/CoreSimulator/Devices/B5DCEA56-A6A6-4B03-B6EB-120FFA9468AD/data/Containers/Data/Application/10E09907-D915-4105-98C8-A6D1DF932072/Documents/945b720d-8de5-4383-9555-54dc9276fb84.log
+[INFO]   Project built successfully in 7s 393ms
