@@ -1,5 +1,6 @@
 exports.template = {
 	id:"2015/12",
+	norm : 'DIN 5008	',
 	qrcode : true,
 	billaddress : {
 		company : 'Acme',
@@ -12,7 +13,7 @@ exports.template = {
 	posttext :"Bitte überweisen Sie den ausgezeichenten Betrag ungeteilt bis zum Sanktnimmerleinstag auf unser Konto",
 	vat : 0.19,
 	currency : "€",
-	jobs : [{
+	accomplishments : [{
 		unit : "Stunden",
 		text : "Beratung",
 		units: 2,
