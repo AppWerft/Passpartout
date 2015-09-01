@@ -16,6 +16,9 @@ module.exports = function() {
 			window : require('ui/projects.container')(),
 			title : 'Projects',
 			icon : '/icons/stack-overflow_dddddd.png'
+		}), Ti.UI.createTab({
+			window : require('ui/bill.container')(),
+			title : 'Bills'
 		})],
 		// hiding of statusbar
 		fullscreen : false,
