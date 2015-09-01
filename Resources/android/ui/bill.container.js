@@ -7,10 +7,12 @@ module.exports = function() {
 		layout : 'vertical'
 	});
 	var MaterialTextfield = require('vendor/materialtextfield');
-	self.add(MaterialTextfield.createView({
+	var firstInput =MaterialTextfield.createView({
 		titleHint : 'TitleHint1',
 		top : 50
-	}));
+	}); 
+	//firstInput.test();
+	self.add(firstInput);
 	self.add(MaterialTextfield.createView({
 		titleHint : 'TitleHint2',
 		top : 50

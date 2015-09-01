@@ -11,14 +11,15 @@ module.exports = function() {
 		tabs : [Ti.UI.createTab({
 			window : require('ui/accounts.container')(),
 			title : 'Accounts',
-			icon : '/icons/bar-chart_dddddd.png'
+			icon : '/bar-chart_dddddd.png'
 		}), Ti.UI.createTab({
 			window : require('ui/projects.container')(),
 			title : 'Projects',
-			icon : '/icons/stack-overflow_dddddd.png'
+			icon : '/stack-overflow_dddddd.png'
 		}), Ti.UI.createTab({
 			window : require('ui/bill.container')(),
-			title : 'Bills'
+			title : 'Bills',
+			icon : '/bar-chart_dddddd.png'
 		})],
 		// hiding of statusbar
 		fullscreen : false,
@@ -29,3 +30,15 @@ module.exports = function() {
 		self.addEventListener('open', require('ui/main.actionbar'));
 	return self;
 };
+
+Ti.API.info('Ti.Platform.displayCaps.density: ' + Ti.Platform.displayCaps.density);
+Ti.API.info('Ti.Platform.displayCaps.dpi: ' + Ti.Platform.displayCaps.dpi);
+Ti.API.info('Ti.Platform.displayCaps.platformHeight: ' + Ti.Platform.displayCaps.platformHeight);
+Ti.API.info('Ti.Platform.displayCaps.platformWidth: ' + Ti.Platform.displayCaps.platformWidth);
+if ((Ti.Platform.osname === 'iphone') || (Ti.Platform.osname === 'ipad') || (Ti.Platform.osname === 'android')) {
+	Ti.API.info('Ti.Platform.displayCaps.logicalDensityFactor: ' + Ti.Platform.displayCaps.logicalDensityFactor);
+}
+if (Ti.Platform.osname === 'android') {
+	Ti.API.info('Ti.Platform.displayCaps.xdpi: ' + Ti.Platform.displayCaps.xdpi);
+	Ti.API.info('Ti.Platform.displayCaps.ydpi: ' + Ti.Platform.displayCaps.ydpi);
+}
