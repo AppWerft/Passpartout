@@ -13,6 +13,7 @@
     <analytics>false</analytics>
     <guid>945b720d-8de5-4383-9555-54dc9276fb84</guid>
     <property name="ti.ui.defaultunit" type="string">dp</property>
+    <property name="ti.android.bug2373.finishfalseroot" type="bool">true</property>
     <ios>
         <plist>
             <dict>
@@ -48,6 +49,8 @@
     <modules>
         <module platform="android">de.manumaticx.androidflip</module>
         <module platform="android">com.alcoapps.actionbarextras</module>
+        <module platform="commonjs">de.appwerft.qrcode</module>
+        <module platform="android">com.mykingdom.mupdf</module>
     </modules>
     <deployment-targets>
         <target device="android">true</target>

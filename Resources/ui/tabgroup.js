@@ -12,14 +12,14 @@ module.exports = function() {
 			window : require('ui/accounts.container')(),
 			title : 'Accounts',
 			icon : '/bar-chart_dddddd.png'
-		}), Ti.UI.createTab({
-			window : require('ui/projects.container')(),
-			title : 'Projects',
-			icon : '/stack-overflow_dddddd.png'
-		}), Ti.UI.createTab({
+		}),  Ti.UI.createTab({
 			window : require('ui/bill.container')(),
-			title : 'Bills',
+			title : 'Textfields',
 			icon : '/bar-chart_dddddd.png'
+		}), Ti.UI.createTab({
+			window : require('ui/pdf.container')(),
+			title : 'Bills',
+			
 		})],
 		// hiding of statusbar
 		fullscreen : false,
