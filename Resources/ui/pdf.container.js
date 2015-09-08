@@ -3,14 +3,23 @@ var GLOBALS = require('GLOBALS');
 module.exports = function() {
 	var self = require('ui/window')({
 		backgroundColor : 'white',
+		layout : 'vertical'
 	});
-	var button = Ti.UI.createButton({
+	var button1 = Ti.UI.createButton({
 		top : 50,
 		title : 'Generating of PDF',
 		height : 50
 	});
-	self.add(button);
-	button.addEventListener('click', function() {
+	self.add(button1);
+	var button2 = Ti.UI.createButton({
+		top : 50,
+		title : 'Mailing of PDF',
+		height : 50
+	});
+	self.add(button1);
+	self.add(button2);
+
+	button1.addEventListener('click', function() {
 		var pdf = require('controls/billgenerator')();
 		if (Ti.Android) {
 			var pdfView = require("com.mykingdom.mupdf").createView({
@@ -46,6 +55,18 @@ module.exports = function() {
 		}
 
 	});
-
+	button2.addEventListener('click', function() {
+//		http://stackoverflow.com/questions/6078099/android-intent-for-sending-email-with-attachment
+		var pdf = require('controls/billgenerator')();
+		var emailDialog = Ti.UI.createEmailDialog();
+		emailDialog.subject = "Neue Rechnung";
+		emailDialog.toRecipients = ['heinzpeter.olbrueck@intellinet.de'];
+		emailDialog.messageBody = 'Vielen Dank für den Auftrag, den ich hoffentlich …';
+		var f = Ti.Filesystem.getFile(pdf);
+		emailDialog.addAttachment(f);
+		emailDialog.addEventListener('complete', function() {
+		});
+		emailDialog.open();
+	});
 	return self;
 };

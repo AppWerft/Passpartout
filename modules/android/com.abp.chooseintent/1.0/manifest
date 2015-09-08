@@ -1,0 +1,19 @@
+#
+# this is your module manifest and used by Titanium
+# during compilation, packaging, distribution, etc.
+#
+version: 1.0
+apiversion: 2
+description: Build customer intent chooser for Andorid
+author: Eli Mor
+license: FREE
+copyright: Copyright (c) 2013 by Your Company
+
+
+# these should not be edited
+name: chooseintentmodule
+moduleid: com.abp.chooseintent
+guid: 7d90bb17-9335-4d26-bc97-588e2177d1d1
+platform: android
+minsdk: 2.1.3.GA
+architectures: armeabi;armeabi-v7a;x86

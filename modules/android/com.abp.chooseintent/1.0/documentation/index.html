@@ -1,0 +1,44 @@
+<h1>chooseintentmodule Module</h1>
+<h2>Description</h2>
+<p>This module allows to build customer Intentchooser for android, based on the installed packages.
+The module allows to verify if a certain pacakge is installed and </p>
+<h2>Accessing the chooseintentmodule Module</h2>
+<p>To access this module from JavaScript, you would do the following:</p>
+<pre><code>var chooseintentmodule = require("com.abp.chooseintent");
+</code></pre>
+<p>The chooseintentmodule variable is a reference to the Module object.  <br />
+</p>
+<h2>Reference</h2>
+<p>TODO: If your module has an API, you should document
+the reference here.</p>
+<h3><strong>_PROJECTNAMEASIDENTIFIER</strong>.isPackageAvailable([object])</h3>
+<p>Returns if a package is availeble for a given object.</p>
+<p>The object will use the same syntax of the Titanium Intent documentation for <a href="http://docs.appcelerator.com/titanium/2.1/#!/api/Titanium.Android.Intent">Android Intents</a></p>
+<p>For Example:</p>
+<pre><code>var intent = {
+    action : intentField.value,
+    type : "text/plain",
+    packageStr : 'twitter'
+};
+</code></pre>
+<p>Note: Use packageStr as the string parameter for the Intent to be found.</p>
+<h3><strong>_PROJECTNAMEASIDENTIFIER</strong>.getPackages([object])</h3>
+<p>Returns an array of all packages meeting the critiria of [object]</p>
+<h3><strong>_PROJECTNAMEASIDENTIFIER</strong>.addIntentToChooser([object])</h3>
+<p>Adds intent (of syntax [object]) to the list of Intents that will appear in the intent chooser. </p>
+<h3><strong>_PROJECTNAMEASIDENTIFIER</strong>.removeIntentFromChooser([string])</h3>
+<p>Remove the intent of with packageName [string] from the list of Intent chooser.</p>
+<h3><strong>_PROJECTNAMEASIDENTIFIER</strong>.emptyChooser()</h3>
+<p>Empty the Intent Chooser List.</p>
+<h3><strong>_PROJECTNAMEASIDENTIFIER</strong>.showChooser()</h3>
+<p>Display the Intent Chooser List.</p>
+<h3><strong>_PROJECTNAMEASIDENTIFIER</strong>.putExtra()</h3>
+<p>Similar to <a href="http://docs.appcelerator.com/titanium/2.1/#!/api/Titanium.Android.Intent-method-putExtra">putExtra</a> Titanium Intent</p>
+<h3><strong>_PROJECTNAMEASIDENTIFIER</strong>.putExtraUri()</h3>
+<p>Similar to <a href="http://docs.appcelerator.com/titanium/2.1/#!/api/Titanium.Android.Intent-method-putExtraUri">putExtraUri</a> Titanium Intent</p>
+<h2>Usage</h2>
+<p>Refer to app.js in the example folder</p>
+<h2>Author</h2>
+<p>Eli Mor</p>
+<h2>License</h2>
+<p>TODO: Free</p>
