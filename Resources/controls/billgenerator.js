@@ -48,7 +48,7 @@ module.exports = function() {
 	self.text(20, 180, 'This is what I looked like trying to get');
 	self.text(20, 190, 'the save function into the plugin system.');
 	self.text(20, 200, 'It works now');
-	var timeStampName = 'test';
+	var timeStampName = 'Rechnung_GK_' + Ti.App.Properties.getInt('nr',0);
 	var _tempFile = Ti.Filesystem.getFile(Ti.Filesystem.getTempDirectory(), timeStampName + '.pdf');
 	self.save(_tempFile);
 	return _tempFile;
