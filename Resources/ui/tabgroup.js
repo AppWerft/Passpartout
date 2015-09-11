@@ -19,7 +19,7 @@ module.exports = function() {
 		}), Ti.UI.createTab({
 			window : require('ui/pdf.container')(),
 			title : 'Bills',
-			
+			icon : '/bar-chart_dddddd.png'
 		})],
 		// hiding of statusbar
 		fullscreen : false,

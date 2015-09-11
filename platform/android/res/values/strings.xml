@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+<string name="app_name">Passpartout</string>
+<string name="auto_send_perm_label">Automatisches Versenden</string>
+<string name="auto_send_perm_desc">Darum machen wir das</string>
+
+</resources>

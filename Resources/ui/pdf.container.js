@@ -3,24 +3,44 @@ var GLOBALS = require('GLOBALS');
 module.exports = function() {
 	var self = require('ui/window')({
 		backgroundColor : 'white',
-		layout : 'vertical'
+		title : 'Offers/Bills'
 	});
+	if (!Ti.App.Properties.hasProperty('JSON')) {
+		var json = Ti.Filesystem.getFile(Ti.Filesystem.resourcesDirectory,'model','billtemplate.json').read().text;
+	}
+	var jsonField = Ti.UI.createTextArea({
+		bottom : 50,
+		value: json,
+		top : 10,font:{fontFamily:'monospace',fontSize:20},
+		
+		width : Ti.UI.FILL,
+		height : Ti.UI.FILL,
+		borderWidth : 1,
+		borderColor : 'gray'
+	});
+	self.add(jsonField);
+	var buttonBar = Ti.UI.createView({
+		bottom : 0,
+		height : 50,
+		layout : 'horizontal'
+	});
+	self.add(buttonBar);
 	var button1 = Ti.UI.createButton({
-		top : 50,
+		left : 10,
 		title : 'Show PDF',
-		height : 50
+		height : 50,
+		width : '45%'
 	});
-	self.add(button1);
+	buttonBar.add(button1);
 	var button2 = Ti.UI.createButton({
-		top : 50,
-		title : 'Mailing of PDF',
-		height : 50
+		left : 10,
+		width : '45%',
+		title : 'Mailing of PDF'
 	});
-	self.add(button1);
-	self.add(button2);
+	buttonBar.add(button2);
+
 	button1.addEventListener('click', function() {
 		var pdfFile = require('controls/billgenerator')();
-		console.log('pdfFile.apiName=' + pdfFile.apiName);
 		if (GLOBALS.isAndroid) {
 			var pdfView = require("com.mykingdom.mupdf").createView({
 				file : pdfFile
@@ -35,6 +55,7 @@ module.exports = function() {
 				title : 'PDF Preview',
 				width : Ti.UI.FILL
 			});
+			self.tab.open(winPDF);
 			var btnClose = Ti.UI.createButton({
 				title : 'Close'
 			});
@@ -49,11 +70,7 @@ module.exports = function() {
 				width : Ti.UI.FILL
 			});
 			winPDF.add(pdfview);
-			winPDF.open({
-				modal : true
-			});
 		}
-
 	});
 	button2.addEventListener('click', function() {
 		var nr = Ti.App.Properties.getInt('nr', 0);
@@ -70,31 +87,39 @@ module.exports = function() {
 				emailDialog.messageBody = BODY;
 				emailDialog.addAttachment(pdfFile);
 				emailDialog.addEventListener('complete', function() {
+					console.log('Info: PDF successful sendet');
 				});
 				emailDialog.open();
 			} else {
-				alert('Kein eMailkonto eingerichtet');
+				console.log('Info: on this device is not mail app configured');
 			}
 		}
 		if (GLOBALS.isAndroid) {
-			// TODO: detecting if googlemail ist installed
 			console.log('isPDF ' + pdfFile.exists());
 			var intent = Ti.Android.createIntent({
 				action : Ti.Android.ACTION_SEND,
 				packageName : 'com.google.android.gm',
 				type : 'application/octet-stream',
-				//className :'com.google.android.gm.AutoSendActivity'
+				//		className :'com.google.android.gm.AutoSendActivity'
 			});
 			// https://gist.github.com/adumont/8040008
 			intent.putExtra(Ti.Android.EXTRA_EMAIL, EMAIL);
 			intent.putExtra(Ti.Android.EXTRA_SUBJECT, SUBJECT);
 			intent.putExtra(Ti.Android.EXTRA_TEXT, BODY);
 			intent.putExtraUri(Ti.Android.EXTRA_STREAM, pdfFile.nativePath);
-			Ti.Android.currentActivity.startActivityForResult(intent, function(_e) {
+
+			console.log(a.apiName);
+			Ti.Android.currentActivity.startActivityForResult(intent, function(e) {
 				console.log(_e);
 			});
+
 		}
 		Ti.App.Properties.setInt('nr', nr + 1);
 	});
+
 	return self;
 };
+/*
+ https://gist.github.com/dawsontoth/832488
+
+ * */

@@ -1,6 +1,6 @@
-exports.template = {
+{
 	id:"2015/12",
-	norm : 'DIN 5008	',
+	norm : 'DIN 5008',
 	qrcode : true,
 	billaddress : {
 		company : 'Acme',
@@ -25,4 +25,4 @@ exports.template = {
 		amount : 85,
 	}
 	]
-};
+}

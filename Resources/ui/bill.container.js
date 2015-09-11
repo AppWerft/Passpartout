@@ -8,10 +8,11 @@ module.exports = function() {
 	});
 	var container = Ti.UI.createScrollView({layout : 'vertical',scrollType:'vertical'});
 	self.add(container);
-	var MaterialTextfield = require('vendor/materialtextfield');
+	var MaterialTextfield = require('de.appwerft.materialdesigntextfield');
 	
 	var firstInput = MaterialTextfield.createView({
 		titleHint : 'TitleHint1',
+		verysecret : true,  // only * , no characters
 		top : 50
 	}); 
 	//firstInput.test();
