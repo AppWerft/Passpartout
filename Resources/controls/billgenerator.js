@@ -1,5 +1,5 @@
 module.exports = function() {
-	var self = new (require('index'))();
+	var self = new (require('de.appwerft.jspdf'))();
 	self.setProperties({
 		title : 'Title',
 		subject : 'This is the subject',
@@ -29,13 +29,14 @@ module.exports = function() {
 	//console.log(self.autoTableEndPosY());
 	/*
 	 */
+
 	self.setDrawColor(0);
-	self.addImage(Ti.Filesystem.resourcesDirectory + '/assets/image1.jpg', 'JPEG', 10, 180, 128, 72);
+	self.addImage(Ti.Filesystem.resourcesDirectory + '/assets/image1.jpg', 'JPEG', 100	, 180, 128, 72);
 	self.setFont("helvetica");
 	self.setFontType("bold");
 	self.setFontSize(24);
 	self.text(20, 170, 'Hello world');
-	self.text(20, 190, 'This is jsPDF with image support\nusing Titanium');
+	self.text(20, 190, 'auml = ä \nouml = ö \nuuml = ü \nAuml = Ä \nOuml = Ö \nUuml = U \nSZ = ß \nEUR = € \nCafe = Café ');
 	self.addPage();
 	self.rect(20, 120, 10, 10);
 	// empty square
@@ -48,7 +49,7 @@ module.exports = function() {
 	self.text(20, 180, 'This is what I looked like trying to get');
 	self.text(20, 190, 'the save function into the plugin system.');
 	self.text(20, 200, 'It works now');
-	var timeStampName = 'Rechnung_GK_' + Ti.App.Properties.getInt('nr',0);
+	var timeStampName = 'Rechnung_GK_' + Ti.App.Properties.getInt('nr', 0);
 	var _tempFile = Ti.Filesystem.getFile(Ti.Filesystem.getTempDirectory(), timeStampName + '.pdf');
 	self.save(_tempFile);
 	return _tempFile;
