@@ -773,6 +773,7 @@ function jsPDF(/** String */ orientation, /** String */ unit, /** String */ form
 		*/
 		, 'getFont': function(){ return fonts[getFont.apply(API, arguments)]; }
 		, 'getFontSize': function() { return activeFontSize;	}
+		
 		, 'write': function(string1, string2, string3, etc){
 			out(
 				arguments.length === 1? 
@@ -1378,8 +1379,8 @@ function jsPDF(/** String */ orientation, /** String */ unit, /** String */ form
 	@methodOf jsPDF#
 	@name output
 	*/
-	API.output = function() {
-		buildDocument() ;
+	API.output = function(type, options) {
+		return buildDocument() ;
 	};
 
 	// applying plugins (more methods) ON TOP of built-in API.
@@ -1722,6 +1723,7 @@ Copyright (c) 2012 https://github.com/siefkenj/
         }
         var res = this.output();
         var parts = res.split(/#image\s([^#]*)#/gim);
+        
         var intNode = 0, intNodes = parts.length, imgFile;
         for (intNode = 0; intNode < intNodes; intNode = intNode + 1) {
             switch (intNode % 2 ? false : true) {
