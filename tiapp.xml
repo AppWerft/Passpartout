@@ -3,7 +3,7 @@
     <url>http://hamburger-appwerft.de</url>
     <id>de.appwerft.passpartout</id>
     <name>Passpartout</name>
-    <version>1.0.4</version>
+    <version>1.0.5</version>
     <publisher>fuerst</publisher>
     <description>Nix zu lesen</description>
     <copyright>2015 by fuerst</copyright>
@@ -53,7 +53,6 @@
                     <intent-filter>
                         <action android:name="android.intent.action.MAIN"/>
                         <category android:name="android.intent.category.LAUNCHER"/>
-                        <action android:name="com.google.android.gm.action.AUTO_SEND"/>
                     </intent-filter>
                 </activity>
                 <activity
@@ -67,18 +66,12 @@
             <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
             <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
             <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-            <permission
-                android:description="@string/auto_send_perm_desc"
-                android:label="@string/auto_send_perm_label"
-                android:name="com.google.android.gm.permission.AUTO_SEND"
-                android:permissionGroup="android.permission-group.MESSAGES" android:protectionLevel="normal"/>
         </manifest>
     </android>
     <modules>
         <module platform="android">de.manumaticx.androidflip</module>
         <module platform="android">com.alcoapps.actionbarextras</module>
         <module platform="android">com.mykingdom.mupdf</module>
-        <module platform="android">com.abp.chooseintent</module>
         <module platform="commonjs">de.appwerft.qrcode</module>
     </modules>
     <deployment-targets>

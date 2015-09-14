@@ -1,0 +1,43 @@
+{
+	"id": "2015/12",
+	"model": {
+		"type": "offer",
+		"metadata": {
+			"title": "Offer",
+			"subject": "Your Project #2345",
+			"author": "John Doe",
+			"keywords": "one, two, three",
+			"creator": "Düzgün Jildíz"
+		},
+		"printdata": {
+			"qrcode": true,
+			"absender" : "Musterfirma | Musterweg 1 | 12345 Musterstadt",
+			"kunde" : "Herr\nMax Mustermann\nMusterstrasse 1\n12345 Musterstadt",
+			"emailabsender" : "klaus.dieter@musterfirma.de",
+			"angebot_datum" : 0,
+			"angebot_bis"  : 7,
+			"angebot_kontakt" : "Klaus Dieter",
+			"angebot_telefon" : "02234 91133-12",
+			"angebot_email" : "" ,
+			"titel" : "Angebot Nr. 12345",
+			"vortext": "Sehr geehrte Damen und Herren,\n\nherzlichen Dank für Ihre Anfrage. Gerne unterbreiten wir Ihnen hiermit folgendes Angebot:",
+			"nachtext": "Wir würden uns sehr freuen, wenn unser Angebot Ihre Zustimmung findet.\nSie haben Fragen oder wünschen weitere Informationen? Rufen Sie uns an – wir sind für Sie da.",
+			"gruss" :"Mit freundlichen Grüßen\n\nPetra Porta",
+			
+			"accomplishments": [
+				{
+					"unit": "Stunden",
+					"text": "Beratung",
+					"units": 2,
+					"amount": 85
+				}, {
+					"unit": "Stunden",
+					"text": "Daumendrücken",
+					"units": 5,
+					"amount": 85
+				}
+			]
+		}
+	}
+}
+

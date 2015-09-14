@@ -1,0 +1,17 @@
+{
+	"FONTFAMILY" :"Helvetica",
+	"ABSENDER"  : [25.0,45.0],
+	"KUNDE" : [25.0,50.0],
+	"EMAILABSENDER" : [25.0,95.0],
+	"TITEL" : [25,110],
+	"VORTEXT" : [25,130],
+	"NACHTEXT" : [25,-90],
+	"GRUSS" : [25,-60],
+	
+	"ANGEBOT_DATUM" : {"LABEL":[110,75],"TEXT": [150,75]},
+	"ANGEBOT_BIS"  : {"LABEL":[110,80],"TEXT": [150,80]},
+	"ANGEBOT_KONTAKT" : {"LABEL":[110,85],"TEXT": [150,85]},
+	"ANGEBOT_TELEFON" : {"LABEL":[110,90],"TEXT": [150,90]},
+	"ANGEBOT_EMAIL" : {"LABEL":[110,95],"TEXT": [150,95]},
+	"FUSS": ["Musterfirma","Musterweg 7","1234 Musterstadt","Postbank","BLZ 434 500 10","Nummer 1234567689","IBAN DE123456789","BIC: BinLaden","StNr 552/23456","HRB 5123455","Amtsgericht","Dresden","Geschäftsführer","HP Olbrück","Arne Westphal"]
+}

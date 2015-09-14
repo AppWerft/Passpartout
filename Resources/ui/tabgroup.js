@@ -13,12 +13,12 @@ module.exports = function() {
 			title : 'Accounts',
 			icon : '/bar-chart_dddddd.png'
 		}),  Ti.UI.createTab({
-			window : require('ui/bill.container')(),
+			window : require('ui/inputs.container')(),
 			title : 'Textfields',
 			icon : '/bar-chart_dddddd.png'
 		}), Ti.UI.createTab({
 			window : require('ui/pdf.container')(),
-			title : 'Bills',
+			title : 'Offers/Invoices',
 			icon : '/bar-chart_dddddd.png'
 		})],
 		// hiding of statusbar
