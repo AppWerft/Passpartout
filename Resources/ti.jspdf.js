@@ -1246,7 +1246,7 @@ var jsPDF = (function(global) {
 			if (typeof this._runningPageHeight === 'undefined'){
 				this._runningPageHeight = 0;
 			}
-			if (!text)  text='';
+			if (!text)  text = '';
 			if (typeof text === 'string') {
 				text = ESC(text);
 			} else if (text instanceof Array) {
@@ -1261,7 +1261,7 @@ var jsPDF = (function(global) {
 				if (0 <= linesLeft && linesLeft < da.length + 1) {
 					//todo = da.splice(linesLeft-1);
 				}
-
+				
 				if( align ) {
 					var left,
 						prevX,
@@ -1305,6 +1305,7 @@ var jsPDF = (function(global) {
 			} else {
 				throw new Error('Type of text must be string or Array. "' + text + '" is not recognized.');
 			}
+			
 			// Using "'" ("go next line and render text" mark) would save space but would complicate our rendering code, templates
 
 			// BT .. ET does NOT have default settings for Tf. You must state that explicitely every time for BT .. ET
@@ -1359,8 +1360,8 @@ var jsPDF = (function(global) {
 		API.clip = function() {
 			// By patrick-roberts, github.com/MrRio/jsPDF/issues/328
 			// Call .clip() after calling .rect() with a style argument of null
-			out('W') // clip
-			out('S') // stroke path; necessary for clip to work
+			out('W'); // clip
+			out('S'); // stroke path; necessary for clip to work
 		};
 
 		/**
@@ -2136,20 +2137,19 @@ var jsPDF = (function(global) {
 				!imageBuffer[1] === 216 ||
 				!imageBuffer[2] === 255 ||
 				!imageBuffer[3] === 224 ||
-				!imageBuffer[6]===  74 || // J
-				!imageBuffer[7]===  70 || // F
-				!imageBuffer[8]===  73 || // I
-				!imageBuffer[9]===  70 || // F
+				!imageBuffer[6] ===  74 || // J
+				!imageBuffer[7] ===  70 || // F
+				!imageBuffer[8] ===  73 || // I
+				!imageBuffer[9] ===  70 || // F
 				!imageBuffer[10]===  0 ) {
 				throw new Error('getJpegSize requires a binary jpeg file');
 			}
 			var blockLength = imageBuffer[4]*256 + imageBuffer[5];
-
 			var i = 4, len = imgData.length;
 			while ( i < len ) {
 				i += blockLength;
 				if (imageBuffer[i] !== 255) {
-					throw new Error('getJpegSize could not find the size of the image');
+					throw new Error('getJpegSize could not find the size of the image. This may be because the headers of the JPEG have been removed or the image cannot be found.');
 				}
 				if (imageBuffer[i+1] === 192) {
 					height = imageBuffer[i+5]*256 + imageBuffer[i+6];
@@ -2364,7 +2364,7 @@ var jsPDF = (function(global) {
 			}
 			return buffer.toBlob();
 		
-	}
+	};
 	var toBlob = function(jsString) {
 			var data = jsString, len = data.length;
             var buffer = Ti.createBuffer({length:len});
@@ -2375,7 +2375,7 @@ var jsPDF = (function(global) {
 			}
 			return buffer.toBlob();
 		
-	}
+	};
 	
 	jsPDFAPI.save = function (file) {
 		'use strict';
@@ -2738,7 +2738,7 @@ var jsPDF = (function(global) {
 			kerning = options.kerning ? options.kerning : this.internal.getFont().metadata.Unicode.kerning,
 			kerningFractionOf = kerning.fof ? kerning.fof : 1;
 
-		// console.log("widths, kergnings", widths, kerning)
+		// console.log("widths, kernings", widths, kerning)
 
 		var i,
 			l,
@@ -2913,6 +2913,8 @@ var jsPDF = (function(global) {
 	 */
 	API.splitTextToSize = function(text, maxlen, options) {
 		'use strict';
+		console.log(typeof text);
+	//	if (Array.isArray(text)) text = text[0];
 		if (!options) {
 			options = {};
 		}
@@ -3076,7 +3078,7 @@ var jsPDF = (function(global) {
 
 			// Properties
 			startY: false, // false indicates the margin.top value
-			margin: 10,
+			margin: 10, 
 			pageBreak: 'auto', // 'auto', 'avoid', 'always'
 			tableWidth: 'auto', // number, 'auto', 'wrap'
 
@@ -3123,7 +3125,7 @@ var jsPDF = (function(global) {
 
 		// Page break if there is room for only the first data row
 		var firstRowHeight = table.rows[0] && settings.pageBreak === 'auto' ? table.rows[0].height : 0;
-		var minTableBottomPos = settings.startY + settings.margin.bottom + table.headerRow.height + firstRowHeight;
+		var minTableBottomPos = settings.startY + 	 + table.headerRow.height + firstRowHeight;
 		if (settings.pageBreak === 'avoid') {
 			minTableBottomPos += table.height;
 		}
@@ -3191,6 +3193,9 @@ var jsPDF = (function(global) {
 	 * Inspiration from: http://stackoverflow.com/questions/28327510/align-text-right-using-jspdf/28433113#28433113
 	 */
 	API.autoTableText = function (text, x, y, styles) {
+		console.log(x + '   ' + y);
+		if (!styles) styles = {};
+		var doc = this;
 		if (typeof x !== 'number' || typeof y !== 'number') {
 			console.error('The x and y parameters are required. Missing for the text: ', text);
 		}
@@ -3344,7 +3349,7 @@ var jsPDF = (function(global) {
 				row.cells[column.dataKey] = cell;
 				settings.createdCell(cell, {column: column, row: row, settings: settings});
 				cell.contentWidth = cell.styles.cellPadding * 2 + getStringWidth(cell.text, cell.styles);
-				cell.text = cell.text.split(splitRegex);
+				//cell.text = cell.text.split(splitRegex);
 			});
 			table.rows.push(row);
 		});
@@ -3415,7 +3420,16 @@ var jsPDF = (function(global) {
 				var textSpace = col.width - cell.styles.cellPadding * 2;
 				if (cell.styles.overflow === 'linebreak') {
 					// Add one pt to textSpace to fix rounding error
-					cell.text = doc.splitTextToSize(cell.text, textSpace + 1, {fontSize: cell.styles.fontSize});
+					if (!Array.isArray(cell.text)) cell.text = [cell.text];		
+						var templines = [];
+						cell.text.forEach(function(line){
+							console.log(typeof line);
+							var splittedlines = doc.splitTextToSize(line, textSpace + 1, {fontSize: cell.styles.fontSize});
+							splittedlines.forEach(function(l){
+								templines.push(l);
+							}); 
+						});
+						cell.text = templines;
 				} else if (cell.styles.overflow === 'ellipsize') {
 					cell.text = ellipsize(cell.text, textSpace, cell.styles);
 				} else if (cell.styles.overflow === 'visible') {
@@ -3433,6 +3447,7 @@ var jsPDF = (function(global) {
 				}
 			});
 			row.height = row.styles.rowHeight + lineBreakCount * row.styles.fontSize * FONT_ROW_RATIO;
+			console.log(lineBreakCount);
 			table.height += row.height;
 		});
 	}

@@ -9,12 +9,13 @@ var Widget = function(_args) {
 	self.add(Ti.UI.createLabel({
 		height : 28,
 		top : 23,
+		touchEnabled : false,
 		font : {
 			fontSize : 16
 		},
 		opacity : 0.7,
 		left : 10,
-		zIndex : 99
+		zIndex : isAndroid ? undefined : 99
 	}));
 	self.add(Ti.UI.createTextField({
 		width : '99%',

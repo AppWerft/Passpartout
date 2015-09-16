@@ -1,8 +1,8 @@
 {
 	"FONTFAMILY" :"Helvetica",
-	"ABSENDER"  : [25.0,45.0],
-	"KUNDE" : [25.0,50.0],
-	"EMAILABSENDER" : [25.0,95.0],
+	"ABSENDER"  : [25,45.0],
+	"KUNDE" : [25,50.0],
+	"EMAILABSENDER" : [25,95.0],
 	"TITEL" : [25,110],
 	"VORTEXT" : [25,130],
 	"NACHTEXT" : [25,-90],

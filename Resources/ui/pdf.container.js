@@ -5,6 +5,7 @@ module.exports = function() {
 		var json = Ti.Filesystem.getFile(Ti.Filesystem.resourcesDirectory, 'model', 'offer_model.json').read().text;
 		Ti.App.Properties.setString('MODEL', json);
 	}
+
 	var self = require('ui/window')({
 		backgroundColor : 'white',
 		title : 'Offers/Invoices'
@@ -47,7 +48,6 @@ module.exports = function() {
 	buttonBar.add(button2);
 
 	button1.addEventListener('click', function() {
-		console.log(jsonField.getValue());
 		try {
 			JSON.parse(jsonField.getValue());
 			Ti.App.Properties.setString('MODEL', jsonField.getValue());
@@ -56,20 +56,25 @@ module.exports = function() {
 		};
 		var pdfFile = require('controls/billgenerator')(jsonField.getValue());
 		if (pdfFile) {
+			var winPDF = Ti.UI.createWindow({
+				backgroundColor : '#eee',
+				height : Ti.UI.FILL,
+				fullscreen : true,
+				title : 'PDF Preview',
+				width : Ti.UI.FILL
+			});
 			if (GLOBALS.isAndroid) {
 				var pdfView = require("com.mykingdom.mupdf").createView({
 					file : pdfFile
 				});
 				pdfView.setScrollingDirection(require("com.mykingdom.mupdf").DIRECTION_VERTICAL);
-				self.removeAllChildren();
-				self.add(pdfView);
-			} else if (GLOBALS.isIOS) {
-				var winPDF = Ti.UI.createWindow({
-					backgroundColor : '#eee',
-					height : Ti.UI.FILL,
-					title : 'PDF Preview',
-					width : Ti.UI.FILL
+				winPDF.add(pdfView);
+				winPDF.addEventListener('open', function() {
+					winPDF.activity.actionBar.hide();
 				});
+				winPDF.open();
+
+			} else if (GLOBALS.isIOS) {
 				self.tab.open(winPDF);
 				var btnClose = Ti.UI.createButton({
 					title : 'Close'
@@ -113,7 +118,6 @@ module.exports = function() {
 				}
 			}
 			if (GLOBALS.isAndroid) {
-				console.log('isPDF ' + pdfFile.exists());
 				var intent = Ti.Android.createIntent({
 					action : Ti.Android.ACTION_SEND,
 					packageName : 'com.google.android.gm',
@@ -125,8 +129,6 @@ module.exports = function() {
 				intent.putExtra(Ti.Android.EXTRA_SUBJECT, SUBJECT);
 				intent.putExtra(Ti.Android.EXTRA_TEXT, BODY);
 				intent.putExtraUri(Ti.Android.EXTRA_STREAM, pdfFile.nativePath);
-
-				console.log(a.apiName);
 				Ti.Android.currentActivity.startActivityForResult(intent, function(e) {
 					console.log(_e);
 				});

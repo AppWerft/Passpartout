@@ -9,16 +9,16 @@ module.exports = function() {
 	var self = Ti.UI.createTabGroup({
 		//backgroundColor : 'yellow', // for Android
 		tabs : [Ti.UI.createTab({
+			window : require('ui/pdf.container')(),
+			title : 'Offers/Invoices',
+			icon : '/bar-chart_dddddd.png'
+		}),Ti.UI.createTab({
 			window : require('ui/accounts.container')(),
 			title : 'Accounts',
 			icon : '/bar-chart_dddddd.png'
 		}),  Ti.UI.createTab({
 			window : require('ui/inputs.container')(),
 			title : 'Textfields',
-			icon : '/bar-chart_dddddd.png'
-		}), Ti.UI.createTab({
-			window : require('ui/pdf.container')(),
-			title : 'Offers/Invoices',
 			icon : '/bar-chart_dddddd.png'
 		})],
 		// hiding of statusbar
