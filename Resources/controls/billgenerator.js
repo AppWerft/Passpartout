@@ -1,8 +1,12 @@
 var Moment = require('vendor/moment');
 
+Number.prototype.toPt = function() {
+	return this * 72 / 2.504;
+};
+
 module.exports = function(modelStr) {
 	var start = new Date().getTime();
-	var PDF = new (require('ti.jspdf'))();
+	var PDF = new (require('ti.jspdf'))('p', 'mm');
 	var pageHeight = PDF.internal.pageSize.height;
 	const PADDING = {
 		LEFT : 25,
@@ -34,17 +38,12 @@ module.exports = function(modelStr) {
 	PDF.setProperties(metadata);
 	switch (Model.model.type) {
 	case 'offer':
-		const BROTTEXT = 11;
+		const BROTTEXT = 10.5;
 		//dp
 		PDF.setFont(TEMPLATE.FONTFAMILY);
 		PDF.setDrawColor(0);
 		PDF.setFontType("normal");
 		PDF.setFontSize(7);
-		PDF.addText('Test', [0, 0]);
-		// 841.89
-		console.log(PDF.internal.pageSize.height);
-		// 297.0006773335
-		// 2,83464000001137
 		PDF.addText(printdata.absender, TEMPLATE.ABSENDER);
 		PDF.setFontSize(BROTTEXT);
 		PDF.addText(printdata.kunde, TEMPLATE.KUNDE);
@@ -90,32 +89,43 @@ module.exports = function(modelStr) {
 		- Math.abs(TEMPLATE.VORTEXT[1])// position of vortext
 		- 30;
 		// height of vortext
-		console.log('availableHeight=' + availableHeight);
+		//console.log('availableHeight=' + availableHeight);
 		PDF.setFontSize(BROTTEXT);
-
+		var table_y = Math.abs(TEMPLATE.VORTEXT[1]) + 10;
+		//var text = "„Dès Noël où un zéphyr haï me vêt de glaçons würmiens, je dîne d’exquis rôtis de bœuf au kir à l’aÿ d’âge mûr & cætera !“\nVögel üben Gezwitscher oft ähnlich packend wie Jupp die Maus auf dem Xylophon einer Qualle.\nFalsches Üben von Xylophonmusik quält jeden größeren Zwerg";
+		var text = require('vendor/loremipsum')(Math.round(Math.random()*500+10));
 		PDF.addAutoTable({
 			headers : [''],
-			data : [["Dès Noël où un zéphyr haï me vêt de glaçons würmiens, je dîne d’exquis rôtis de bœuf au kir à l’aÿ d’âge mûr & cætera !“"]],
+			data : [[text]],
 			options : {
-				//	theme : 'plain',
+				drawHeaderRow : function() {
+					return false;
+				},
+				theme : 'plain',
 				margin : {
-					top : PDF.internal.pageSize.height - Math.abs(TEMPLATE.NACHTEXT[1]),
+					top : table_y,
 					left : Math.abs(TEMPLATE.NACHTEXT[0]),
 					right : Math.abs(TEMPLATE.NACHTEXT[0])
 				},
-
 				styles : {
 					fontSize : BROTTEXT,
 					valign : 'top',
 					overflow : 'linebreak',
 					columnWidth : 'auto',
 					cellPadding : 0,
-					rowHeight :0
-				},
-				drawHeaderRow : function() {
-					return false;
+					rowHeight : 0
 				}
 			}
+		});
+		PDF.addQRCode({
+			qr : {
+				data : 'http://github.com/',
+				ec : 'M'
+			},
+			x : 25,
+			padding:0,
+			y : PDF.autoTableEndPosY(),
+			width : 10
 		});
 
 		//PDF.addText(printdata.nachtext || '', TEMPLATE.NACHTEXT);

@@ -2913,8 +2913,6 @@ var jsPDF = (function(global) {
 	 */
 	API.splitTextToSize = function(text, maxlen, options) {
 		'use strict';
-		console.log(typeof text);
-	//	if (Array.isArray(text)) text = text[0];
 		if (!options) {
 			options = {};
 		}
@@ -3123,27 +3121,30 @@ var jsPDF = (function(global) {
 		createModels(headers, data);
 		calculateWidths();
 
-		// Page break if there is room for only the first data row
-		var firstRowHeight = table.rows[0] && settings.pageBreak === 'auto' ? table.rows[0].height : 0;
-		var minTableBottomPos = settings.startY + 	 + table.headerRow.height + firstRowHeight;
-		if (settings.pageBreak === 'avoid') {
-			minTableBottomPos += table.height;
-		}
-		if ((settings.pageBreak === 'always' && settings.startY !== false) ||
-			(settings.startY !== false && minTableBottomPos > doc.internal.pageSize.height)) {
-			doc.addPage();
-			cursor.y = settings.margin.top;
-		}
-		applyStyles(userStyles);
-		settings.beforePageContent(hooksData());
-		if (settings.drawHeaderRow(table.headerRow, hooksData({row: table.headerRow})) !== false) {
-			printRow(table.headerRow, settings.drawHeaderCell);
-		}
-		applyStyles(userStyles);
-		printRows();
-		settings.afterPageContent(hooksData());
-		applyStyles(userStyles);
-		return this;
+        // Page break if there is room for only the first data row
+        var firstRowHeight = table.rows[0] && settings.pageBreak === 'auto' ? table.rows[0].height : 0;
+        var minTableBottomPos = settings.startY + settings.margin.bottom + table.headerRow.height + firstRowHeight;
+        if (settings.pageBreak === 'avoid') {
+            minTableBottomPos += table.height;
+        }
+        if ((settings.pageBreak === 'always' && settings.startY !== false) ||
+            (settings.startY !== false && minTableBottomPos > doc.internal.pageSize.height)) {
+            doc.addPage();
+            cursor.y = settings.margin.top;
+        }
+
+        applyStyles(userStyles);
+        settings.beforePageContent(hooksData());
+        if (settings.drawHeaderRow(table.headerRow, hooksData({row: table.headerRow})) !== false) {
+            printRow(table.headerRow, settings.drawHeaderCell);
+        }
+        applyStyles(userStyles);
+        printRows();
+        settings.afterPageContent(hooksData());
+
+        applyStyles(userStyles);
+
+        return this;
 	};
 
 	/**
@@ -3193,39 +3194,31 @@ var jsPDF = (function(global) {
 	 * Inspiration from: http://stackoverflow.com/questions/28327510/align-text-right-using-jspdf/28433113#28433113
 	 */
 	API.autoTableText = function (text, x, y, styles) {
-		console.log(x + '   ' + y);
 		if (!styles) styles = {};
 		var doc = this;
 		if (typeof x !== 'number' || typeof y !== 'number') {
 			console.error('The x and y parameters are required. Missing for the text: ', text);
 		}
 		var fontSize = doc.internal.getFontSize() / doc.internal.scaleFactor;
-
 		// As defined in jsPDF source code
 		var lineHeightProportion = FONT_ROW_RATIO;
-
 		var splitRegex = /\r\n|\r|\n/g;
 		var splittedText = null;
 		var lineCount = 1;
 		if (styles.valign === 'middle' || styles.valign === 'bottom' || styles.halign === 'center' || styles.halign === 'right') {
 			splittedText = typeof text === 'string' ? text.split(splitRegex) : text;
-
 			lineCount = splittedText.length || 1;
 		}
-
 		// Align the top
 		y += fontSize * (2 - lineHeightProportion);
-
 		if (styles.valign === 'middle')
 			y -= (lineCount / 2) * fontSize;
 		else if (styles.valign === 'bottom')
 			y -= lineCount * fontSize;
-
 		if (styles.halign === 'center' || styles.halign === 'right') {
 			var alignSize = fontSize;
 			if (styles.halign === 'center')
 				alignSize *= 0.5;
-
 			if (lineCount >= 1) {
 				for (var iLine = 0; iLine < splittedText.length; iLine++) {
 					doc.text(splittedText[iLine], x - doc.getStringUnitWidth(splittedText[iLine]) * alignSize, y);
@@ -3235,7 +3228,6 @@ var jsPDF = (function(global) {
 			}
 			x -= doc.getStringUnitWidth(text) * alignSize;
 		}
-
 		doc.text(text, x, y);
 		return doc;
 	};
@@ -3263,7 +3255,6 @@ var jsPDF = (function(global) {
 				console.error("Use of deprecated option: " + deprecatedOption + ", use the style " + style + " instead.");
 			}
 		});
-
 		// Unifying
 		var marginSetting = settings.margin;
 		settings.margin = {};
@@ -3283,7 +3274,6 @@ var jsPDF = (function(global) {
 				settings.margin[side] = typeof marginSetting[key] === 'number' ? marginSetting[key] : 40;
 			}
 		});
-
 		return settings;
 	}
 
@@ -3320,14 +3310,12 @@ var jsPDF = (function(global) {
 			col.styles = {};
 			if (typeof col.styles.columnWidth === 'undefined') col.styles.columnWidth = 'auto';
 			table.columns.push(col);
-
 			var cell = new Cell();
 			cell.raw = typeof rawColumn === 'object' ? rawColumn.title : rawColumn;
 			cell.styles = headerRow.styles;
 			cell.text = '' + cell.raw;
 			cell.contentWidth = cell.styles.cellPadding * 2 + getStringWidth(cell.text, cell.styles);
 			cell.text = cell.text.split(splitRegex);
-
 			headerRow.cells[dataKey] = cell;
 			settings.createdHeaderCell(cell, {column: col, row: headerRow, settings: settings});
 		});
@@ -3349,7 +3337,7 @@ var jsPDF = (function(global) {
 				row.cells[column.dataKey] = cell;
 				settings.createdCell(cell, {column: column, row: row, settings: settings});
 				cell.contentWidth = cell.styles.cellPadding * 2 + getStringWidth(cell.text, cell.styles);
-				//cell.text = cell.text.split(splitRegex);
+				cell.text = cell.text.split(splitRegex);
 			});
 			table.rows.push(row);
 		});
@@ -3373,7 +3361,6 @@ var jsPDF = (function(global) {
 			tableContentWidth += column.contentWidth;
 		});
 		table.contentWidth = tableContentWidth;
-
 		var maxTableWidth = doc.internal.pageSize.width - settings.margin.left - settings.margin.right;
 		var preferredTableWidth = maxTableWidth; // settings.tableWidth === 'auto'
 		if (typeof settings.tableWidth === 'number') {
@@ -3382,7 +3369,6 @@ var jsPDF = (function(global) {
 			preferredTableWidth = table.contentWidth;
 		}
 		table.width = preferredTableWidth < maxTableWidth ? preferredTableWidth : maxTableWidth;
-
 		// To avoid subjecting columns with little content with the chosen overflow method,
 		// never shrink a column more than the table divided by column count (its "fair part")
 		var dynamicColumns = [];
@@ -3414,16 +3400,15 @@ var jsPDF = (function(global) {
 		var all = table.rows.concat(table.headerRow);
 		all.forEach(function (row, i) {
 			var lineBreakCount = 0;
-			table.columns.forEach(function (col) {
+			table.columns.forEach(function (col,i) {
 				var cell = row.cells[col.dataKey];
 				applyStyles(cell.styles);
 				var textSpace = col.width - cell.styles.cellPadding * 2;
 				if (cell.styles.overflow === 'linebreak') {
-					// Add one pt to textSpace to fix rounding error
-					if (!Array.isArray(cell.text)) cell.text = [cell.text];		
+					if (!Array.isArray(cell.text)) cell.text = [cell.text];	
 						var templines = [];
 						cell.text.forEach(function(line){
-							console.log(typeof line);
+							// Add one pt to textSpace to fix rounding error
 							var splittedlines = doc.splitTextToSize(line, textSpace + 1, {fontSize: cell.styles.fontSize});
 							splittedlines.forEach(function(l){
 								templines.push(l);
@@ -3441,15 +3426,16 @@ var jsPDF = (function(global) {
 				} else {
 					console.error("Unrecognized overflow type: " + cell.styles.overflow);
 				}
-				var count = Array.isArray(cell.text) ? cell.text.length - 1 : 0;
-				if (count > lineBreakCount) {
+				var count = Array.isArray(cell.text) ? cell.text.length - 1 : 0; // of this cell
+				if (count > lineBreakCount) {  // calc. max of all cells of 1 row
 					lineBreakCount = count;
 				}
-			});
-			row.height = row.styles.rowHeight + lineBreakCount * row.styles.fontSize * FONT_ROW_RATIO;
-			console.log(lineBreakCount);
+				row.height = (cell.styles.overflow === 'linebreak') //
+				? (lineBreakCount+1) * row.styles.fontSize * FONT_ROW_RATIO / doc.internal.scaleFactor//
+				: row.styles.rowHeight; 
+			}); 
 			table.height += row.height;
-		});
+		}); // end of row work
 	}
 
 	function distributeWidth(dynamicColumns, staticWidth, dynamicColumnsContentWidth, fairWidth) {
@@ -3690,7 +3676,7 @@ var Column = function (dataKey) {
 		var y= args.y;
 		var qroptions = args.qr;
 		var width = args.width || 100;
-		var PADDING = args.padding || 3;
+		var PADDING = args.padding != undefined || 3;
 		var color = args.color || 0;
 		var qrcodeModule = require('de.appwerft.qrcode');
 		var qrcode = new qrcodeModule(qroptions.data, qroptions.ecstrategy, qroptions.maskPattern, qroptions.version, qroptions.dataOnly, qroptions.maskTest);
@@ -3701,7 +3687,7 @@ var Column = function (dataKey) {
 		for (var r = 0; r < code.length; r += 1) {
 			for (var c = 0; c < code[r].length; c += 1) {
 				if (code[r][c] === 1) {
-					/*5% more size to cover the border of rect. */
+					// 5% more size to cover the border of rect. 
 					this.rect(PADDING + x + r * R, PADDING + y + c * R, R * 1.05, R * 1.05, 'F');
 				}
 			}
