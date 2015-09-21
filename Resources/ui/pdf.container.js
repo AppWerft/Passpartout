@@ -20,7 +20,7 @@ module.exports = function() {
 		top : 10,
 		font : {
 			fontFamily : 'monospace',
-			fontSize : 18
+			fontSize : 16
 		},
 		color : 'black',
 		width : Ti.UI.FILL,

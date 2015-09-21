@@ -23,8 +23,7 @@
 			"vortext": "Sehr geehrte Damen und Herren,\n\nherzlichen Dank für Ihre Anfrage. Gerne unterbreiten wir Ihnen hiermit folgendes Angebot:",
 			"nachtext": "Wir würden uns sehr freuen, wenn unser Angebot Ihre Zustimmung findet.\nSie haben Fragen oder wünschen weitere Informationen? Rufen Sie uns an – wir sind für Sie da.",
 			"gruss" :"Mit freundlichen Grüßen\n\nPetra Porta",
-			
-			"accomplishments": [
+			"services": [
 				{
 					"unit": "Stunden",
 					"text": "Beratung",

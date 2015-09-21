@@ -3,7 +3,13 @@ var Moment = require('vendor/moment');
 Number.prototype.toPt = function() {
 	return this * 72 / 2.504;
 };
-
+var testTable = function(options) {
+	var pdf = new (require('ti.jspdf'))('p', 'mm');
+	pdf.addAutoTable(options);
+	var h = pdf.autoTableEndPosY() - options.options.margin.top;
+	pdf = null;
+	return h;
+};
 module.exports = function(modelStr) {
 	var start = new Date().getTime();
 	var PDF = new (require('ti.jspdf'))('p', 'mm');
@@ -13,10 +19,37 @@ module.exports = function(modelStr) {
 		RIGHT : 25,
 		BOTTOM : 10
 	};
+	console.log(PDF.internal.pageSize.width - PADDING.RIGHT);
+	PDF.addImage(Ti.Filesystem.resourcesDirectory + '/assets/logo.jpg', 'JPEG', PDF.internal.pageSize.width - 90, 5, 80, 20);
 	PDF.addText = function(text, coords) {
 		var x = coords[0] >= 0 ? parseFloat(coords[0]) : PDF.internal.pageSize.width + coords[0],
 		    y = coords[1] >= 0 ? coords[1] : PDF.internal.pageSize.height + coords[1];
 		return PDF.text(text, x, y);
+	};
+
+	PDF.addTextBox = function(text, x, y, width) {
+		return PDF.addAutoTable({
+			headers : [''],
+			data : [[text]],
+			options : {
+				drawHeaderRow : function() {
+					return false;
+				},
+				theme : 'plain',
+				margin : {
+					top : y,
+					left : x,
+					right : PDF.internal.pageSize.width - x - width
+				},
+				styles : {
+					valign : 'top',
+					overflow : 'linebreak',
+					columnWidth : 'auto',
+					cellPadding : 0,
+					rowHeight : 0
+				}
+			}
+		});
 	};
 	var Model = {};
 	try {
@@ -71,7 +104,6 @@ module.exports = function(modelStr) {
 
 		PDF.setFontSize(BROTTEXT);
 		PDF.setFontType("normal");
-		PDF.addText(printdata.vortext || 'Sehr geehrte Damen und Herren,', TEMPLATE.VORTEXT);
 		/* Rendering of footer */
 		const COLS = 5;
 		var colspan = (PDF.internal.pageSize.width - PADDING.LEFT - PADDING.RIGHT) / COLS;
@@ -90,25 +122,36 @@ module.exports = function(modelStr) {
 		- 30;
 		// height of vortext
 		//console.log('availableHeight=' + availableHeight);
-		PDF.setFontSize(BROTTEXT);
-		var table_y = Math.abs(TEMPLATE.VORTEXT[1]) + 10;
 		//var text = "„Dès Noël où un zéphyr haï me vêt de glaçons würmiens, je dîne d’exquis rôtis de bœuf au kir à l’aÿ d’âge mûr & cætera !“\nVögel üben Gezwitscher oft ähnlich packend wie Jupp die Maus auf dem Xylophon einer Qualle.\nFalsches Üben von Xylophonmusik quält jeden größeren Zwerg";
-		var text = require('vendor/loremipsum')(Math.round(Math.random()*500+10));
-		PDF.addAutoTable({
-			headers : [''],
-			data : [[text]],
+		PDF.setFontSize(BROTTEXT);
+		PDF.setFontType("normal");
+		//require('vendor/loremipsum')(Math.round(Math.random() * 500 + 10));
+		PDF.addTextBox(printdata.vortext, Math.abs(TEMPLATE.NACHTEXT[0]), Math.abs(TEMPLATE.VORTEXT[1]) + 10, PDF.internal.pageSize.width - Math.abs(TEMPLATE.NACHTEXT[0]) - PADDING.RIGHT);
+		var y = PDF.autoTableEndPosY();
+		var availableRoom = PDF.internal.pageSize.height - y - Math.abs(TEMPLATE.NACHTEXT[1]);
+		console.log('availableRoom: ' + availableRoom);
+		var rows = [];
+		printdata.services.forEach(function(s) {
+			var cells = [];
+			cells.push(s.unit);
+			cells.push(s.text);
+			cells.push(s.units);
+			cells.push(s.amount + '  €');
+			cells.push((s.amount * s.units) + '  €');
+
+			rows.push(cells);
+		});
+		var options = {
+			headers : ['Einheit', 'Leistung', 'Anzahl', 'Betrag', 'Summe'],
+			data : rows,
 			options : {
-				drawHeaderRow : function() {
-					return false;
-				},
 				theme : 'plain',
 				margin : {
-					top : table_y,
-					left : Math.abs(TEMPLATE.NACHTEXT[0]),
-					right : Math.abs(TEMPLATE.NACHTEXT[0])
+					top : y + 10,
+					left : PADDING.LEFT,
+					right : PADDING.RIGHT
 				},
 				styles : {
-					fontSize : BROTTEXT,
 					valign : 'top',
 					overflow : 'linebreak',
 					columnWidth : 'auto',
@@ -116,17 +159,33 @@ module.exports = function(modelStr) {
 					rowHeight : 0
 				}
 			}
-		});
-		PDF.addQRCode({
-			qr : {
-				data : 'http://github.com/',
-				ec : 'M'
-			},
-			x : 25,
-			padding:0,
-			y : PDF.autoTableEndPosY(),
-			width : 10
-		});
+		};
+		var h = testTable(options);
+		if (h < availableRoom) {
+			options.options.createdCell = function(cell, data) {
+				if (data.column.dataKey > 1)
+					cell.styles.halign = 'right';
+			};
+			options.options.createdHeaderCell = function(cell, data) {
+				if (data.column.dataKey > 1)
+					cell.styles.halign = 'right';
+				else
+					cell.styles.halign = 'left';
+			};
+			PDF.addAutoTable(options);
+			PDF.addText(printdata.nachtext || '', TEMPLATE.NACHTEXT);
+			PDF.addText(printdata.gruss || '', TEMPLATE.GRUSS);
+		}
+		/*	PDF.addQRCode({
+		qr : {
+		data : 'http://github.com/',
+		ec : 'M'
+		},
+		x : 25,
+		padding : 0,
+		y : PDF.autoTableEndPosY(),
+		width : 10
+		});*/
 
 		//PDF.addText(printdata.nachtext || '', TEMPLATE.NACHTEXT);
 		//PDF.addText(printdata.gruss || '', TEMPLATE.GRUSS);

@@ -2124,6 +2124,9 @@ var jsPDF = (function(global) {
 	var getJpegSize = function(filename) {
 			'use strict';
 			var imgFile = Ti.Filesystem.getFile(filename);
+			if (!imgFile.exists()) {
+				throw new Error("image file "+filename+ " doesn't exists");
+			}
 			var imgData = imgFile.read();
 			var filesize = imgData.length;
 			var width, height;
