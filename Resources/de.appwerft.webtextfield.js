@@ -178,7 +178,6 @@ var Widget = function() {
 				//Animate check
 				if (length == 0 && self.password) {
 					self.password.hide();
-					//Animate out
 					return;
 				} else if (length >= 1) {
 					if (self.password) {
