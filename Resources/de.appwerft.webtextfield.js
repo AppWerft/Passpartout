@@ -30,7 +30,7 @@ var Widget = function() {
 		padding : args.paddingLeft || DEFAULT.PADDING,
 		passwordMask : args.passwordMask
 	};
-	options.fontSize = args.fontSize || options.heigth;
+	options.fontSize = args.fontSize || options.height;
 	options.hinttop = (options.height - 3 * options.fontSize) || '40%';
 
 	console.log(options);
