@@ -6,7 +6,7 @@
 		backgroundColor : 'white'
 	});
 	win.addEventListener('open', function(_e) {
-		_e.source.activity.actionBar.hide();
+		Ti.Android && _e.source.activity.actionBar.hide();
 	});
 	win.open();
 	win.add(tabGroup.createView({
