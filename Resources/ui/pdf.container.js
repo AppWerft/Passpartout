@@ -6,9 +6,8 @@ module.exports = function() {
 		Ti.App.Properties.setString('MODEL', json);
 	}
 
-	var self = require('ui/window')({
-		backgroundColor : 'white',
-		title : 'Offers/Invoices'
+	var self = Ti.UI.createView({
+		backgroundColor : 'whites'
 	});
 	if (!Ti.App.Properties.hasProperty('MODEL')) {
 		presetModel();
@@ -61,7 +60,7 @@ module.exports = function() {
 				height : Ti.UI.FILL,
 				fullscreen : true,
 				title : 'PDF Preview',
-				width : Ti.UI.FILL
+				width : Ti.UI.FILL,modal:true
 			});
 			if (GLOBALS.isAndroid) {
 				var pdfView = require("com.mykingdom.mupdf").createView({
@@ -75,21 +74,23 @@ module.exports = function() {
 				winPDF.open();
 
 			} else if (GLOBALS.isIOS) {
-				self.tab.open(winPDF);
+				winPDF.open();
 				var btnClose = Ti.UI.createButton({
-					title : 'Close'
+					title : 'PDF close',height:50,top:20,right:20
 				});
 				btnClose.addEventListener('click', function(e) {
 					winPDF.close();
 				});
-				winPDF.setRightNavButton(btnClose);
+				//winPDF.setRightNavButton(btnClose);
 				var pdfview = Ti.UI.createWebView({
 					backgroundColor : '#eee',
 					url : pdfFile.nativePath,
 					height : Ti.UI.FILL,
 					width : Ti.UI.FILL
 				});
+				
 				winPDF.add(pdfview);
+				winPDF.add(btnClose);
 			}
 		}
 	});
@@ -99,7 +100,7 @@ module.exports = function() {
 		const EMAIL = ['rs@hamburger-appwerft.de'],
 		    BCC = ['rs@hamburger-appwerft.de'],
 		    SUBJECT = 'New invoice №' + nr,
-		    BODY = "Vielen Dank für den Auftrag, den ich hoffentlich zu Ihrer allergrößten Zugfriedenheit „erledigt“ habe …";
+		    BODY = "Vielen Dank für den Auftrag, den ich hoffentlich zu Ihrer allergrößten Zugfriedenheit „erledigt“ habe … Anbei die entsprechenden Bemerkungen, die ich geflissentlich anbiete";
 		var pdfFile = require('controls/billgenerator')(jsonField.getValue());
 		if (pdfFile) {
 			if (GLOBALS.isIOS) {
@@ -122,7 +123,6 @@ module.exports = function() {
 					action : Ti.Android.ACTION_SEND,
 					packageName : 'com.google.android.gm',
 					type : 'application/octet-stream',
-					//		className :'com.google.android.gm.AutoSendActivity'
 				});
 				// https://gist.github.com/adumont/8040008
 				intent.putExtra(Ti.Android.EXTRA_EMAIL, EMAIL);

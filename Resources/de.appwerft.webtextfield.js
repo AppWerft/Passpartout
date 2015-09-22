@@ -63,6 +63,8 @@ var Widget = function() {
 	self.input = Ti.UI.createTextField({
 		width : Ti.UI.FILL,
 		heigth : Ti.UI.FILL,
+		autocorrect  : false,
+		
 		windowSoftInputMode : isAndroid ? Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN : undefined,
 		left : options.padding,
 		right : options.padding,
@@ -174,9 +176,8 @@ var Widget = function() {
 				console.log(event.source.value);
 				var length = self.input.getValue().length;
 				//Animate check
-				if (length == 0) {
+				if (length == 0 && self.password) {
 					self.password.hide();
-					
 					//Animate out
 					return;
 				} else if (length >= 1) {

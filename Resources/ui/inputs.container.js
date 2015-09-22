@@ -1,16 +1,11 @@
 var GLOBALS = require('GLOBALS');
 
 module.exports = function() {
-	var self = require('ui/window')({
-		title : 'List of projects',
-		backgroundColor : '#666',
-
-	});
-	var container = Ti.UI.createScrollView({
-		layout : 'vertical',
+	
+	var self = Ti.UI.createScrollView({
+		layout : 'vertical',backgroundColor:'#888',
 		scrollType : 'vertical'
 	});
-	self.add(container);
 	var Textfield = require('de.appwerft.webtextfield');
 	
 	var firstInput = Textfield.createView({
@@ -18,9 +13,9 @@ module.exports = function() {
 		
 	});
 	//firstInput.test();
-	container.add(firstInput);
+	self.add(firstInput);
 	
-	container.add(Textfield.createView({
+	self.add(Textfield.createView({
 		hintText : 'Passwort',
 		passwordMask : true, // only * , no characters
 	}));
