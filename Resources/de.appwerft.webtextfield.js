@@ -9,7 +9,6 @@ const DEFAULT = {
 	HEIGHT : 59,
 	SCALE : 0.7,
 	HINTCOLOR : '#666',
-	LABELCOLOR : '#666',
 	INPUTCOLOR : '#0A3478',
 	STAR : '⚫︎︎'
 };
@@ -18,20 +17,35 @@ var Widget = function() {
 	//arguments
 	var args = arguments[0] || {};
 	var options = {
-		"hintcolor" : args.hintcolor || DEFAULT.HINTCOLOR,
-		"labelcolor" : args.labelcolor || DEFAULT.LABELCOLOR,
-		inputcolor : args.inputcolor || DEFAULT.INPUTCOLOR,
+		// container
 		width : args.width || DEFAULT.WIDTH,
 		top : args.top || DEFAULT.TOP,
-		scale : DEFAULT.SCALE,
 		backgroundColor : args.backgroundColor || DEFAULT.BACKGROUNDCOLOR,
 		borderRadius : args.borderRadius || DEFAULT.BORDERRADIUS,
 		height : args.height || DEFAULT.HEIGHT,
 		padding : args.paddingLeft || DEFAULT.PADDING,
-		passwordMask : args.passwordMask
+		
+		// hint
+		hintcolor : args.hintcolor || DEFAULT.HINTCOLOR,
+		hinttop : args.hinttop || 20,
+		hintFontFamily : args.hintFontFamily,
+		hintFontSize : args.hintFontSize,
+		scale : args.scale || DEFAULT.SCALE,
+
+		// input-Feld
+		inputcolor : args.inputcolor || DEFAULT.INPUTCOLOR,
+		inputFontFamily : args.inputFontFamily,
+		inputFontSize : args.inputFontSize,
+		inputTop : args.inputTop || 20,
+
+		// passwordMask
+		passwordMask : args.passwordMask,
+		passwordMaskHeight : args.passwordMaskHeight  || 30,
+		passwordMaskFontSize : args.passwordMaskFontSize  || 20,
+		passwordMaskTop : args.passwordMaskTop  || 20,
 	};
-	options.fontSize = args.fontSize || options.height;
-	options.hinttop = (options.height - 3 * options.fontSize) || '40%';
+	// options.fontSize = args.fontSize || options.heigth;
+	// options.hinttop = (options.height - 3 * options.fontSize) || '40%';
 
 	console.log(options);
 	/* container */
@@ -49,8 +63,9 @@ var Widget = function() {
 		color : options.hintcolor,
 		touchEnabled : false,
 		font : {
-			fontSize : options.fontSize,
-			fontWeight : 'bold'
+			fontFamily : options.hintFontFamily,
+			fontSize : options.hintFontSize,
+			//fontWeight : 'bold'
 		},
 		anchorPoint : {
 			x : 0,
@@ -62,19 +77,20 @@ var Widget = function() {
 	/* the input */
 	self.input = Ti.UI.createTextField({
 		width : Ti.UI.FILL,
-		heigth : Ti.UI.FILL,
+		height : Ti.UI.FILL,
+		top: options.inputTop,
 		autocorrect  : false,
-		
 		windowSoftInputMode : isAndroid ? Ti.UI.Android.SOFT_INPUT_STATE_HIDDEN : undefined,
 		left : options.padding,
 		right : options.padding,
 		backgroundColor : 'transparent',
 		passwordMask : args.passwordMask,
 		font : {
-			fontSize : options.fontSize,
-			fontWeight : 'bold'
+			fontFamily : options.inputFontFamily,
+			fontSize : options.inputFontSize,
+			//fontWeight : 'bold'
 		},
-		color : (args.passwordMask) ? options.backgroundColor : '#444'
+		color : (args.passwordMask) ? options.backgroundColor : options.inputcolor
 	});
 	self.add(self.input);
 	if (args.passwordMask) {
@@ -84,12 +100,13 @@ var Widget = function() {
 			visible : false,
 			color : options.inputcolor,
 			left : options.padding,
-			backgroundColor : 'white',
 			touchEnabled : false,
 			width : Ti.UI.FILL,
+			height: options.passwordMaskHeight,
 			font : {
-				fontSize : 20
-			}
+				fontSize : options.passwordMaskFontSize
+			},
+			top: options.passwordMaskTop,
 		});
 		self.add(self.password);
 	}
@@ -178,6 +195,7 @@ var Widget = function() {
 				//Animate check
 				if (length == 0 && self.password) {
 					self.password.hide();
+					//Animate out
 					return;
 				} else if (length >= 1) {
 					if (self.password) {
