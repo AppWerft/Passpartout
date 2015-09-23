@@ -31,6 +31,7 @@ var Widget = function() {
 		hintFontFamily : args.hintFontFamily,
 		hintFontSize : args.hintFontSize,
 		scale : args.scale || DEFAULT.SCALE,
+		hintAnimationTarget : args.hintAnimationTarget || 0,
 
 		// input-Feld
 		inputcolor : args.inputcolor || DEFAULT.INPUTCOLOR,
@@ -47,7 +48,7 @@ var Widget = function() {
 	// options.fontSize = args.fontSize || options.heigth;
 	// options.hinttop = (options.height - 3 * options.fontSize) || '40%';
 
-	console.log(options);
+	//console.log(options);
 	/* container */
 	var self = Ti.UI.createView({
 		width : options.width,
@@ -132,7 +133,7 @@ var Widget = function() {
 			var lenHint = self.hint.getText().length;
 			lenHint += lenHint * (Number(lenHint) > 25 ? 0.20 : 0.10);
 			self.hint.animate({
-				"top" : 0,
+				"top" : options.hintAnimationTarget,
 				"left" : options.padding,
 				"transform" : Ti.UI.create2DMatrix().scale(options.scale),
 				"duration" : _config.duration
@@ -148,10 +149,10 @@ var Widget = function() {
 				"duration" : _config.duration
 			};
 			if (self.input.getValue()) {
-				attrsHint["top"] = 0;
+				attrsHint["top"] = options.hintAnimationTarget;
 				attrsHint["transform"] = Ti.UI.create2DMatrix().scale(options.scale);
 			}
-			console.log(attrsHint);
+			//console.log(attrsHint);
 			self.hint.animate(attrsHint);
 		}
 	};
@@ -190,7 +191,7 @@ var Widget = function() {
 		
 			//Add on change event listener
 			self.input.addEventListener(_events.CHANGE, function(event) {
-				console.log(event.source.value);
+				//console.log(event.source.value);
 				var length = self.input.getValue().length;
 				//Animate check
 				if (length == 0 && self.password) {
