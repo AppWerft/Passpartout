@@ -55,7 +55,8 @@ var Widget = function() {
 		top : options.top,
 		backgroundColor : options.backgroundColor,
 		borderRadius : options.borderRadius,
-		height : options.height
+		height : options.height,
+		bubbleParent : false,
 	});
 	/* Hint */
 	self.hint = Ti.UI.createLabel({
