@@ -1,10 +1,6 @@
 var GLOBALS = require('GLOBALS');
 var AwesomeIcon = require('vendor/awesomeicons');
-var iSize = GLOBALS.isAndroid ? 72 : 36;
-/*
- AwesomeIcon.createIcon({name:'recents',color:'white',size:56});
- doesn't work ;-(())
- * */
+
 module.exports = function() {
 	var self = Ti.UI.createTabGroup({
 		//backgroundColor : 'yellow', // for Android

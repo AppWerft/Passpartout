@@ -9,8 +9,10 @@
 		Ti.Android && _e.source.activity.actionBar.hide();
 	});
 	win.open();
+	/* customized navigation  like a tabgroup (tablet) or burgermenu (handheld) */
 	win.add(tabGroup.createView({
 		navigation : {
+			type : 'auto',  // 'handheld' || 'tablet'
 			position : 0,
 			height : 66,
 			backgroundColor : '#aaa',
