@@ -7,7 +7,7 @@ module.exports = function() {
 	}
 
 	var self = Ti.UI.createView({
-		backgroundColor : 'whites'
+		backgroundColor : 'white'
 	});
 	if (!Ti.App.Properties.hasProperty('MODEL')) {
 		presetModel();

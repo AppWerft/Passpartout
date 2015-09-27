@@ -13,38 +13,38 @@ var Module = function(args) {
 	    screenwidth = 0;
 
 	var activeTab = nav.activeTab || 0;
-	self.add(Ti.UI.createScrollableView({
+	self.containerView = Ti.UI.createScrollableView({
 		top : position == 'top' ? nav.height : undefined,
 		bottom : position == 'bottom' ? nav.height : undefined,
 		views : args.tabs.map(function(tab) {
 			return tab.view;
 		}),
 		scrollingEnabled : false
-	}));
+	});
+	self.add(self.containerView);
 	/*
 	 now we go separated ways for handheld and tablet
 	 */
 	switch (true) {
 	case args.tablet || isTablet :
-		self.add(Ti.UI.createScrollView({
+		self.navigationView = Ti.UI.createScrollView({
 			top : position == 'top' ? 0 : undefined,
 			bottom : position == 'bottom' ? 0 : undefined,
 			height : nav.height,
 			scrollType : 'horizontal',
 			contentWidth : Ti.UI.SIZE,
 			backgroundColor : nav.backgroundColor,
-		}));
+		});
+		self.add(self.navigationView);
 		var handler = Ti.UI.createView({
 			width : nav.tabWidth,
 			touchEnabled : false,
 			left : activeTab * nav.tabWidth,
 			backgroundColor : nav.backgroundActiveColor
 		});
-
 		args.tabs.forEach(function(tab, ndx) {
 			var color = ndx == nav.activeTab ? nav.activeColor : nav.color;
 			var fontFamily = ndx == nav.activeTab ? nav.fontFamilyActive : nav.fontFamily;
-			console.log(color + ' ' + ndx + '   ' + nav.activeTab);
 			var navLabel = Ti.UI.createLabel({
 				width : nav.tabWidth,
 				height : Ti.UI.FILL,
@@ -67,20 +67,20 @@ var Module = function(args) {
 					backgroundColor : nav.backgroundActiveColor,
 				}));
 			}
-			self.children[0].add(navLabel);
+			self.navigationView.add(navLabel);
 			naviwidth += nav.tabWidth;
 		});
-		self.children[0].add(handler);
-		self.children[0].addEventListener('singletap', function(_e) {
+		self.navigationView.add(handler);
+		self.navigationView.addEventListener('singletap', function(_e) {
 			if (_e.source.itemId == undefined)
 				return;
 			var ndx = _e.source.itemId;
-			self.children[0].children[activeTab].color = nav.color;
-			self.children[0].children[activeTab].setFont({
+			self.navigationView.children[activeTab].color = nav.color;
+			self.navigationView.children[activeTab].setFont({
 				fontFamily : nav.fontFamily
 			});
-			self.children[0].children[ndx].color = nav.activeColor;
-			self.children[0].children[ndx].setFont({
+			self.navigationView.children[ndx].color = nav.activeColor;
+			self.navigationView.children[ndx].setFont({
 				fontFamily : nav.fontFamilyActive
 			});
 			handler.animate({
@@ -89,7 +89,7 @@ var Module = function(args) {
 			}, function() {
 
 			});
-			self.children[1].scrollToView(ndx);
+			self.containerView.scrollToView(ndx);
 			console.log('Info: scrolled to ' + ndx);
 			var ldf = Ti.Platform.displayCaps.logicalDensityFactor || 1;
 			if (Ti.Platform.displayCaps.platformWidth / ldf < naviwidth) {
@@ -106,8 +106,7 @@ var Module = function(args) {
 					break;
 				}
 			}
-			console.log(x);
-			self.children[0].setContentOffset({
+			self.navigationView.setContentOffset({
 				x : x,
 				y : 0
 			});
@@ -115,6 +114,89 @@ var Module = function(args) {
 		});
 		break;
 	case args.handheld || isHandheld :
+		self.navigationView = Ti.UI.createView({
+			top : position == 'top' ? 0 : undefined,
+			bottom : position == 'bottom' ? 0 : undefined,
+			height : nav.height,
+			backgroundColor : nav.backgroundColor,
+		});
+		self.add(self.navigationView);
+		var darker = Ti.UI.createView({
+			backgroundColor : '#7000',
+			top : nav.height
+		});
+		const BURGERWIDTH = 200;
+		var burger = Ti.UI.createTableView({
+			backgroundColor : 'white',
+			top : nav.height,
+			scrollType : 'vertical',
+			contentHeight : Ti.UI.SIZE,
+			height : Ti.UI.FILL,
+			left : -BURGERWIDTH + 3,
+			width : BURGERWIDTH,
+			zIndex : 99,
+			data : args.tabs.map(function(tab, ndx) {
+				return Ti.UI.createTableViewRow({
+					ndx : ndx,
+					title : tab.title.toUpperCase(),
+					hasChild : true
+				});
+
+			})
+		});
+		burger.addEventListener('click', function(_e) {
+			self.remove(darker);
+			handler.animate({
+				left : -5
+			}, function() {
+				handler.out = false;
+			});
+			burger.animate({
+				left : -BURGERWIDTH + 3,
+				duration : 700
+			}, function() {
+				self.containerView.scrollToView(_e.rowData.ndx);
+			});
+
+		});
+		self.add(burger);
+		var handler = Ti.UI.createLabel({
+			color : 'white',
+			left : -5,
+			out : false,
+			text : '☰',
+			font : {
+				fontWeight : 'bold',
+				fontSize : 30
+			},
+
+		});
+		handler.addEventListener('singletap', function() {
+			if (handler.out == false) {
+				self.add(darker);
+				handler.animate({
+					left : -15
+				}, function() {
+					handler.out = true;
+				});
+				burger.animate({
+					left : 0
+				});
+			} else {
+				self.remove(darker);
+				handler.animate({
+					left : -5
+				}, function() {
+					handler.out = false;
+				});
+				burger.animate({
+					left : -BURGERWIDTH + 3
+				});
+			}
+		});
+		self.navigationView.add(handler);
+		console.log('HH');
+
 		break;
 	}
 	return self;
