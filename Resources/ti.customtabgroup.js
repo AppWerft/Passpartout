@@ -115,24 +115,22 @@ var Module = function(args) {
 		break;
 	case args.handheld || isHandheld :
 		self.slideOut = function() {
-			var file = Ti.Filesystem.getFile(Ti.Filesystem.tempDirectory,'blur.png');
-			var bg = self.containerView.views[self.containerView.currentPage].toImage();
-			console.log(bg);
+			self.currentPage = self.containerView.views[self.containerView.currentPage];
 			self.blurView = (Ti.Platform.osname === 'android')//
 			? Blurer.createBasicBlurView({
-				image : bg.media,
+				image : self.currentPage.toImage().media,
 				blurLevel : 4,
 				top : nav.height,
 			})//
 			: Blurer.createView({
 				backgroundView : Ti.UI.createImageView({
-					image : bg,
+					image : self.currentPage.toImage(),
 				}),
 				opacity : 0,
 				blurLevel : 7,
 				top : nav.height,
 			});
-			self.add(self.blurView);
+			self.currentPage.add(self.blurView);
 			self.blurView.animate({
 				opacity : 1
 			});
@@ -147,7 +145,7 @@ var Module = function(args) {
 			});
 		};
 		self.slideIn = function() {
-			blurView && self.remove(self.blurView);
+			self.blurView && self.currentPage.remove(self.blurView);
 			handler.animate({
 				left : -5,
 				duration : 100
@@ -166,7 +164,7 @@ var Module = function(args) {
 			backgroundColor : nav.backgroundColor,
 		});
 		self.add(self.navigationView);
-		var blurView = Ti.UI.createView({
+		self.blurView = Ti.UI.createView({
 			backgroundColor : '#7000',
 			top : nav.height
 		});
@@ -206,7 +204,7 @@ var Module = function(args) {
 				left : -BURGERWIDTH + 3,
 				duration : 700
 			}, function() {
-				self.containerView.scrollToView(_e.rowData.ndx);
+				self.containerView.setCurrentPage(_e.rowData.ndx);
 			});
 			self.slideIn();
 
