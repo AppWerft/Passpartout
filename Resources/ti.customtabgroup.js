@@ -3,6 +3,7 @@ var ldf = Ti.Platform.displayCaps.logicalDensityFactor || 1;
 var maxwidth = Math.max(Ti.Platform.displayCaps.platformHeight / ldf, Ti.Platform.displayCaps.platformWidth / ldf);
 const isTablet = Ti.Platform.osname === 'ipad' || (Ti.Platform.osname === 'android' && (maxwidth > 899 )),
     isHandheld = !isTablet;
+var Blurer = require('bencoding.blur');
 
 var Module = function(args) {
 	var self = Ti.UI.createView({
@@ -11,7 +12,6 @@ var Module = function(args) {
 	    nav = args.navigation,
 	    naviwidth = 0,
 	    screenwidth = 0;
-
 	var activeTab = nav.activeTab || 0;
 	self.containerView = Ti.UI.createScrollableView({
 		top : position == 'top' ? nav.height : undefined,
@@ -114,6 +114,51 @@ var Module = function(args) {
 		});
 		break;
 	case args.handheld || isHandheld :
+		self.slideOut = function() {
+			var file = Ti.Filesystem.getFile(Ti.Filesystem.tempDirectory,'blur.png');
+			var bg = self.containerView.views[self.containerView.currentPage].toImage();
+			console.log(bg);
+			self.blurView = (Ti.Platform.osname === 'android')//
+			? Blurer.createBasicBlurView({
+				image : bg.media,
+				blurLevel : 4,
+				top : nav.height,
+			})//
+			: Blurer.createView({
+				backgroundView : Ti.UI.createImageView({
+					image : bg,
+				}),
+				opacity : 0,
+				blurLevel : 7,
+				top : nav.height,
+			});
+			self.add(self.blurView);
+			self.blurView.animate({
+				opacity : 1
+			});
+			handler.animate({
+				left : -15
+			}, function() {
+				handler.out = true;
+			});
+			burger.animate({
+				left : 0,
+				duration : 200
+			});
+		};
+		self.slideIn = function() {
+			blurView && self.remove(self.blurView);
+			handler.animate({
+				left : -5,
+				duration : 100
+			}, function() {
+				handler.out = false;
+			});
+			burger.animate({
+				left : -BURGERWIDTH + 3,
+				duration : 10
+			});
+		};
 		self.navigationView = Ti.UI.createView({
 			top : position == 'top' ? 0 : undefined,
 			bottom : position == 'bottom' ? 0 : undefined,
@@ -121,7 +166,7 @@ var Module = function(args) {
 			backgroundColor : nav.backgroundColor,
 		});
 		self.add(self.navigationView);
-		var darker = Ti.UI.createView({
+		var blurView = Ti.UI.createView({
 			backgroundColor : '#7000',
 			top : nav.height
 		});
@@ -136,27 +181,34 @@ var Module = function(args) {
 			width : BURGERWIDTH,
 			zIndex : 99,
 			data : args.tabs.map(function(tab, ndx) {
-				return Ti.UI.createTableViewRow({
+				var row = Ti.UI.createTableViewRow({
 					ndx : ndx,
-					title : tab.title.toUpperCase(),
-					hasChild : true
 				});
-
+				row.add(Ti.UI.createLabel({
+					color : '#555',
+					left : 10,
+					width : Ti.UI.FILL,
+					textAlign : 'left',
+					height : Ti.UI.SIZE,
+					top : 5,
+					bottom : 5,
+					font : {
+						fontWeight : 'bold',
+						fontSize : 18
+					},
+					text : tab.title
+				}));
+				return row;
 			})
 		});
 		burger.addEventListener('click', function(_e) {
-			self.remove(darker);
-			handler.animate({
-				left : -5
-			}, function() {
-				handler.out = false;
-			});
 			burger.animate({
 				left : -BURGERWIDTH + 3,
 				duration : 700
 			}, function() {
 				self.containerView.scrollToView(_e.rowData.ndx);
 			});
+			self.slideIn();
 
 		});
 		self.add(burger);
@@ -164,39 +216,22 @@ var Module = function(args) {
 			color : 'white',
 			left : -5,
 			out : false,
-			text : '☰',
+			text : '☰    ',
 			font : {
 				fontWeight : 'bold',
-				fontSize : 30
+				fontSize : 32
 			},
 
 		});
 		handler.addEventListener('singletap', function() {
-			if (handler.out == false) {
-				self.add(darker);
-				handler.animate({
-					left : -15
-				}, function() {
-					handler.out = true;
-				});
-				burger.animate({
-					left : 0
-				});
+			if (false == handler.out) {
+				self.slideOut();
 			} else {
-				self.remove(darker);
-				handler.animate({
-					left : -5
-				}, function() {
-					handler.out = false;
-				});
-				burger.animate({
-					left : -BURGERWIDTH + 3
-				});
-			}
+				self.slideIn();
+
+			};
 		});
 		self.navigationView.add(handler);
-		console.log('HH');
-
 		break;
 	}
 	return self;

@@ -3,7 +3,7 @@
     <url>http://hamburger-appwerft.de</url>
     <id>de.appwerft.passpartout</id>
     <name>Passpartout</name>
-    <version>1.0.8</version>
+    <version>1.0.9</version>
     <publisher>fuerst</publisher>
     <description>Nix zu lesen</description>
     <copyright>2015 by fuerst</copyright>
@@ -76,6 +76,8 @@
         <module platform="android">com.alcoapps.actionbarextras</module>
         <module platform="android">com.mykingdom.mupdf</module>
         <module platform="commonjs">de.appwerft.qrcode</module>
+        <module platform="iphone">bencoding.blur</module>
+        <module platform="android">bencoding.blur</module>
     </modules>
     <deployment-targets>
         <target device="android">true</target>
@@ -84,21 +86,4 @@
         <target device="mobileweb">false</target>
     </deployment-targets>
     <sdk-version>4.0.0.GA</sdk-version>
-    <property name="appc-app-id" type="string">55c99e7c8f9c029a4e6685a1</property>
-    <property name="acs-authbase-url-development" type="string">https://secure-identity.cloud.appcelerator.com</property>
-    <property name="acs-base-url-development" type="string">https://api.cloud.appcelerator.com</property>
-    <property name="acs-oauth-secret-development" type="string">7bCt6BoCh66xrLH27WOHdnn7Jokmdj6f</property>
-    <property name="acs-oauth-key-development" type="string">GPIiQEQCTlmE1CmVYYEEqHtBxl4CGL3G</property>
-    <property name="acs-api-key-development" type="string">ynUimKZmrvegs7j2s8Remn0YZyDfNp2p</property>
-    <property name="acs-username-development" type="string">appc_app_user_dev</property>
-    <property name="acs-password-development" type="string">QiHIWyAqdHBD0kXAxx</property>
-    <property name="acs-authbase-url-production" type="string">https://secure-identity.cloud.appcelerator.com</property>
-    <property name="acs-base-url-production" type="string">https://api.cloud.appcelerator.com</property>
-    <property name="acs-oauth-secret-production" type="string">4qQGWR8HUhRLPaNQBXp4hJRBQK4KQr1I</property>
-    <property name="acs-oauth-key-production" type="string">d53qA5x72cXMMsXhfc7D85EpNDhuIQfI</property>
-    <property name="acs-api-key-production" type="string">48cmH6A5mSbXYaEUvS1BlLPkc8RmaLsm</property>
-    <property name="acs-username-production" type="string">appc_app_user</property>
-    <property name="acs-password-production" type="string">NA3BGgdwfHY4KkQrqt</property>
-    <property name="appc-org-id" type="string">100001896</property>
-    <property name="appc-creator-user-id" type="string">128f7fa0-a54c-43c4-ba7d-7681dceb4c15</property>
 </ti:app>
