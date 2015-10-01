@@ -1,5 +1,6 @@
 ! function() {
 	//var tabGroup = require('ui/tabgroup')().open();
+	 
 	var tabGroup = require('ti.customtabgroup');
 	var win = Ti.UI.createWindow({
 		fullscreen : true,
@@ -10,6 +11,7 @@
 	});
 	win.open();
 	win.add(tabGroup.createView({
+		cd :require('app/ui/util/corporateDesign.util');,
 		navigation : {
 			type : 'auto',  // 'handheld' || 'tablet'
 			position : 0,

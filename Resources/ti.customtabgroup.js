@@ -167,7 +167,7 @@ var Module = function(args) {
 		});
 		const BURGERWIDTH = 200;
 		var burger = Ti.UI.createTableView({
-			backgroundColor : 'white',
+			backgroundColor : args.cd.colors.yellow,
 			top : nav.height,
 			scrollType : 'vertical',
 			contentHeight : Ti.UI.SIZE,
