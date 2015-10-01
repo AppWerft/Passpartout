@@ -1,3 +1,5 @@
+const BLUR = false;
+
 var ldf = Ti.Platform.displayCaps.logicalDensityFactor || 1;
 /* Deciding device class */
 var maxwidth = Math.max(Ti.Platform.displayCaps.platformHeight / ldf, Ti.Platform.displayCaps.platformWidth / ldf);
@@ -5,15 +7,18 @@ const isTablet = Ti.Platform.osname === 'ipad' || (Ti.Platform.osname === 'andro
     isHandheld = !isTablet;
 
 var Module = function(args) {
+	args.cd = args.theme;
 	var self = Ti.UI.createView({
 	});
+	/* only on iOS we have to calc with this height */
+	var statusbarHeight = args.navigation.fullscreen == true || Ti.Platform.osname === 'android' ? 0 : 20;
 	var position = args.navigation.position || 'top',
 	    nav = args.navigation,
 	    naviwidth = 0,
 	    screenwidth = 0;
 	var activeTab = nav.activeTab || 0;
 	self.containerView = Ti.UI.createScrollableView({
-		top : position == 'top' ? nav.height : undefined,
+		top : position == 'top' ? nav.height + statusbarHeight : undefined,
 		bottom : position == 'bottom' ? nav.height : undefined,
 		views : args.tabs.map(function(tab) {
 			return tab.view;
@@ -27,7 +32,7 @@ var Module = function(args) {
 	switch (true) {
 	case args.tablet || isTablet :
 		self.navigationView = Ti.UI.createScrollView({
-			top : position == 'top' ? 0 : undefined,
+			top : position == 'top' ? statusbarHeight : undefined,
 			bottom : position == 'bottom' ? 0 : undefined,
 			height : nav.height,
 			scrollType : 'horizontal',
@@ -84,7 +89,7 @@ var Module = function(args) {
 			});
 			handler.animate({
 				left : nav.tabWidth * ndx,
-				//duration : 500
+				
 			}, function() {
 
 			});
@@ -115,11 +120,10 @@ var Module = function(args) {
 	case args.handheld || isHandheld :
 		self.slideOut = function() {
 			self.currentPage = self;
-			//.views[self.containerView.currentPage];
-			self.blurView = (Ti.Platform.osname === 'android')//
+			self.blurView = (Ti.Platform.osname === 'android' || BLUR == false)//
 			? Ti.UI.createView({
 				backgroundColor : '#8000',
-				top : nav.height,
+				top : nav.height + statusbarHeight,
 			})//
 			: require('com.apaladini.blur').createView({
 				style : 1,
@@ -132,8 +136,12 @@ var Module = function(args) {
 				opacity : 1
 			});
 			handler.animate({
-				left : -15
+				duration:200,
+				transform : Ti.UI.create2DMatrix({
+					rotate : -180
+				})
 			}, function() {
+				handler.setText('→');
 				handler.out = true;
 			});
 			burger.animate({
@@ -144,9 +152,10 @@ var Module = function(args) {
 		self.slideIn = function() {
 			self.blurView && self.currentPage.remove(self.blurView);
 			handler.animate({
-				left : -5,
+				transform: Ti.UI.create2DMatrix({rotate:0}),
 				duration : 100
 			}, function() {
+				handler.setText('☰    ');
 				handler.out = false;
 			});
 			burger.animate({
@@ -155,7 +164,7 @@ var Module = function(args) {
 			});
 		};
 		self.navigationView = Ti.UI.createView({
-			top : position == 'top' ? 0 : undefined,
+			top : position == 'top' ? statusbarHeight : undefined,
 			bottom : position == 'bottom' ? 0 : undefined,
 			height : nav.height,
 			backgroundColor : nav.backgroundColor,
@@ -167,8 +176,8 @@ var Module = function(args) {
 		});
 		const BURGERWIDTH = 200;
 		var burger = Ti.UI.createTableView({
-			backgroundColor : args.cd.colors.yellow,
-			top : nav.height,
+			backgroundColor : args.theme.colors.yellow,
+			top : nav.height + statusbarHeight,
 			scrollType : 'vertical',
 			contentHeight : Ti.UI.SIZE,
 			height : Ti.UI.FILL,
@@ -209,12 +218,12 @@ var Module = function(args) {
 		self.add(burger);
 		var handler = Ti.UI.createLabel({
 			color : 'white',
-			left : -5,
+			left : 0,
 			out : false,
 			text : '☰    ',
 			font : {
 				fontWeight : 'bold',
-				fontSize : 32
+				fontSize : 30
 			},
 
 		});
