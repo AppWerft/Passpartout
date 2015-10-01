@@ -11,8 +11,9 @@
 	});
 	win.open();
 	win.add(tabGroup.createView({
-		cd :require('app/ui/util/corporateDesign.util');,
+		cd :require('app/ui/util/corporateDesign.util'),
 		navigation : {
+			fullscreen : win.fullscreen,
 			type : 'auto',  // 'handheld' || 'tablet'
 			position : 0,
 			height : 66,
