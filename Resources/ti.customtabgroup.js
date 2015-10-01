@@ -3,7 +3,6 @@ var ldf = Ti.Platform.displayCaps.logicalDensityFactor || 1;
 var maxwidth = Math.max(Ti.Platform.displayCaps.platformHeight / ldf, Ti.Platform.displayCaps.platformWidth / ldf);
 const isTablet = Ti.Platform.osname === 'ipad' || (Ti.Platform.osname === 'android' && (maxwidth > 899 )),
     isHandheld = !isTablet;
-var Blurer = require('bencoding.blur');
 
 var Module = function(args) {
 	var self = Ti.UI.createView({
@@ -115,20 +114,18 @@ var Module = function(args) {
 		break;
 	case args.handheld || isHandheld :
 		self.slideOut = function() {
-			self.currentPage = self.containerView.views[self.containerView.currentPage];
+			self.currentPage = self;
+			//.views[self.containerView.currentPage];
 			self.blurView = (Ti.Platform.osname === 'android')//
-			? Blurer.createBasicBlurView({
-				image : self.currentPage.toImage().media,
-				blurLevel : 4,
+			? Ti.UI.createView({
+				backgroundColor : '#8000',
 				top : nav.height,
 			})//
-			: Blurer.createView({
-				backgroundView : Ti.UI.createImageView({
-					image : self.currentPage.toImage(),
-				}),
-				opacity : 0,
-				blurLevel : 7,
+			: require('com.apaladini.blur').createView({
+				style : 1,
 				top : nav.height,
+				height : Ti.UI.FILL
+
 			});
 			self.currentPage.add(self.blurView);
 			self.blurView.animate({

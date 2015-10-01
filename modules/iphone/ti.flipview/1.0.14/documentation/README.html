@@ -1,0 +1,78 @@
+<h1>Ti.FlipViewControler <img alt="" src="https://camo.githubusercontent.com/ecc6562b9e8446bbf967b69b4180fef9080068b3/687474703a2f2f7777772d7374617469632e61707063656c657261746f722e636f6d2f6261646765732f746974616e69756d2d6769742d62616467652d73712e706e67" /></h1>
+<h2>About</h2>
+<p>This is the Titanium version of <a href="https://github.com/Mpospese/mpflipviewcontroller">Mpospese/mpflipviewcontroller</a></p>
+<p><img alt="" src="https://raw.githubusercontent.com/AppWerft/TiFlipViewControler/master/flipviewcontroler.gif" /></p>
+<p>It is the iOS version of <a href="https://github.com/manumaticx/TiAndroidFlip">Manu's TiAndroidFlip</a></p>
+<h2>USAGE</h2>
+<p>~~~
+// open a single window
+var win = Ti.UI.createWindow({
+backgroundColor : 'white'
+});</p>
+<p>var label = Ti.UI.createLabel();
+win.add(label);
+win.open();</p>
+<p>var pages = [];
+for (var i = 0; i &lt; 10; i++) {
+pages.push(require('view'));
+}</p>
+<p>// constructor:
+var flipView = require('org.bcbhh.Iosflipview').createView({
+pages : pages,
+startPage : 5,
+transitionOrientation : 0|1,
+transitionDuration : 0.4,
+tapRecognitionMargin : 10,
+swipeThreshold : 120,
+swipeEscapeVelocity : 650,
+bounceRatio : 0.3, // default 0.3
+rubberBandRatio : 0.6666, // default 0.6666
+});</p>
+<p>Properties:
+flipView.numberOfPages  (read only)</p>
+<p>// events:
+flipView.addEventListener('change', function(e) { 
+console.log('Current page index is ' +e.source.currentPage);
+});</p>
+<p>// methods:
+flipView.insertPageAfter(index,view);
+flipView.insertPageBefore(index,view)
+flipView.appendPage(view);
+flipView.deletePage(index);
+flipView.bounceForward();
+flipView.bounceBackward();
+changeCurrentPage();</p>
+<p>win.add(flipView);
+~~~</p>
+<h2>BUILDING YOUR MODULE</h2>
+<p>Simply run <code>titanium build --platform &lt;name of platform&gt; --build-type production --dir /path/to/module</code>.
+You can omit the --dir option if your working directory is in the module's project directory.</p>
+<h2>INSTALL YOUR MODULE</h2>
+<h2>Mac OS X</h2>
+<p>Copy the distribution zip file into the <code>~/Library/Application Support/Titanium</code> folder</p>
+<h2>Linux</h2>
+<p>Copy the distribution zip file into the <code>~/.titanium</code> folder</p>
+<h2>Windows</h2>
+<p>Copy the distribution zip file into the <code>C:\ProgramData\Titanium</code> folder</p>
+<h2>REGISTER YOUR MODULE</h2>
+<p>Register your module with your application by editing <code>tiapp.xml</code> and adding your module.
+Example:</p>
+<p><modules>
+    <module version="0.1">org.bcbhh.iosflipview</module>
+</modules></p>
+<p>When you run your project, the compiler will combine your module along with its dependencies
+and assets into the application.</p>
+<h2>USING YOUR MODULE IN CODE</h2>
+<p>To use your module in code, you will need to require it.</p>
+<p>For example,</p>
+<pre><code>var my_module = require('org.bcbhh.iosflipview');
+my_module.foo();
+</code></pre>
+<h2>TESTING YOUR MODULE</h2>
+<p>To test with the script, execute:</p>
+<pre><code>titanium run --dir=YOURMODULEDIR
+</code></pre>
+<p>This will execute the app.js in the example folder as a Titanium application.</p>
+<h2>DISTRIBUTING YOUR MODULE</h2>
+<p>You can choose to manually distribute your module distribution zip file or through the Titanium Marketplace!</p>
+<p>Cheers!</p>
