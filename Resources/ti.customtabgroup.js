@@ -1,5 +1,5 @@
-const BLUR = false;
-
+const BLUR = false,
+    BURGERWIDTH = 160;
 var ldf = Ti.Platform.displayCaps.logicalDensityFactor || 1;
 /* Deciding device class */
 var maxwidth = Math.max(Ti.Platform.displayCaps.platformHeight / ldf, Ti.Platform.displayCaps.platformWidth / ldf);
@@ -7,7 +7,6 @@ const isTablet = Ti.Platform.osname === 'ipad' || (Ti.Platform.osname === 'andro
     isHandheld = !isTablet;
 
 var Module = function(args) {
-	args.cd = args.theme;
 	var self = Ti.UI.createView({
 	});
 	/* only on iOS we have to calc with this height */
@@ -75,7 +74,7 @@ var Module = function(args) {
 			naviwidth += nav.tabWidth;
 		});
 		self.navigationView.add(handler);
-		self.navigationView.addEventListener('singletap', function(_e) {
+		self.navigationView.addEventListener('touchstart', function(_e) {
 			if (_e.source.itemId == undefined)
 				return;
 			var ndx = _e.source.itemId;
@@ -89,7 +88,7 @@ var Module = function(args) {
 			});
 			handler.animate({
 				left : nav.tabWidth * ndx,
-				
+
 			}, function() {
 
 			});
@@ -116,6 +115,13 @@ var Module = function(args) {
 			});
 			activeTab = ndx;
 		});
+		Ti.Gesture.addEventListener('orientationchange', function(e) {
+			if (e.orientation == Ti.UI.PORTRAIT || e.orientation == Ti.UI.UPSIDE_PORTRAIT || e.orientation == Ti.UI.FACE_DOWN || e.orientation == Ti.UI.FACE_UP) {
+				self.navigationView.scrollingEnabled = true;
+			} else if (e.orientation == Ti.UI.LANDSCAPE_LEFT || e.orientation == Ti.UI.LANDSCAPE_RIGHT) {
+				self.navigationView.scrollingEnabled = false;
+			}
+		});
 		break;
 	case args.handheld || isHandheld :
 		self.slideOut = function() {
@@ -136,12 +142,12 @@ var Module = function(args) {
 				opacity : 1
 			});
 			handler.animate({
-				duration:200,
+				duration : 200,
 				transform : Ti.UI.create2DMatrix({
 					rotate : -180
 				})
 			}, function() {
-				handler.setText('→');
+				handler.setText(' → ');
 				handler.out = true;
 			});
 			burger.animate({
@@ -152,7 +158,9 @@ var Module = function(args) {
 		self.slideIn = function() {
 			self.blurView && self.currentPage.remove(self.blurView);
 			handler.animate({
-				transform: Ti.UI.create2DMatrix({rotate:0}),
+				transform : Ti.UI.create2DMatrix({
+					rotate : 0
+				}),
 				duration : 100
 			}, function() {
 				handler.setText('☰    ');
@@ -174,9 +182,9 @@ var Module = function(args) {
 			backgroundColor : '#7000',
 			top : nav.height
 		});
-		const BURGERWIDTH = 200;
+
 		var burger = Ti.UI.createTableView({
-			backgroundColor : args.theme.colors.yellow,
+			backgroundColor : nav.backgroundColor,
 			top : nav.height + statusbarHeight,
 			scrollType : 'vertical',
 			contentHeight : Ti.UI.SIZE,
@@ -238,6 +246,7 @@ var Module = function(args) {
 		self.navigationView.add(handler);
 		break;
 	}
+
 	return self;
 };
 

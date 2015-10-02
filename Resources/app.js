@@ -11,14 +11,13 @@
 	});
 	win.open();
 	win.add(tabGroup.createView({
-		theme :require('ui/util/corporateDesign.util'),
 		navigation : {
 			fullscreen : win.getFullScreen(),
 			type : 'auto',  // 'handheld' || 'tablet'
 			position : 0,
 			height : 66,
-			backgroundColor : '#aaa',
-			backgroundActiveColor : '#666',
+			backgroundColor : '#fc0',
+			backgroundActiveColor : '#fa0',
 			fontSize : 24,
 			tabWidth : 195,
 			activeTab : 0,
