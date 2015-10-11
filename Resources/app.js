@@ -1,10 +1,13 @@
 ! function() {
 	//var tabGroup = require('ui/tabgroup')().open();
-	 
+			Ti.UI.backgroundColor = '#fc0';
 	var tabGroup = require('ti.customtabgroup');
 	var win = Ti.UI.createWindow({
 		fullscreen : false,
-		backgroundColor : 'white'
+		tabBarHidden : true,
+		translucent : false,
+		barColor : '#fc0',
+		backgroundColor : 'transparent'
 	});
 	win.addEventListener('open', function(_e) {
 		Ti.Android && _e.source.activity.actionBar.hide();
@@ -13,16 +16,15 @@
 	win.add(tabGroup.createView({
 		navigation : {
 			fullscreen : win.getFullScreen(),
-			type : 'auto',  // 'handheld' || 'tablet'
-			position : 0,
+			position : 'top',
 			height : 66,
-			backgroundColor : '#fc0',
-			backgroundActiveColor : '#fa0',
-			fontSize : 24,
+			backgroundColor : '#ffc0',
+			backgroundActiveColor : '#ffa0',
+			fontSize : 23,
 			tabWidth : 195,
 			activeTab : 0,
-			color : '#333',
-			activeColor : 'white'
+			color : '#f333',
+			activeColor : '#ffff'
 		},
 		tabs : [{
 			title : 'Inputs',

@@ -56,11 +56,12 @@ module.exports = function() {
 		var pdfFile = require('controls/billgenerator')(jsonField.getValue());
 		if (pdfFile) {
 			var winPDF = Ti.UI.createWindow({
-				backgroundColor : '#eee',
+				backgroundColor : '#fc0',
 				height : Ti.UI.FILL,
-				fullscreen : true,
+				top : 20,
+				fullscreen : false,
 				title : 'PDF Preview',
-				width : Ti.UI.FILL,modal:true
+				width : Ti.UI.FILL
 			});
 			if (GLOBALS.isAndroid) {
 				var pdfView = require("com.mykingdom.mupdf").createView({
@@ -76,7 +77,10 @@ module.exports = function() {
 			} else if (GLOBALS.isIOS) {
 				winPDF.open();
 				var btnClose = Ti.UI.createButton({
-					title : 'PDF close',height:50,top:20,right:20
+					title : 'PDF close',
+					height : 50,
+					top : 20,
+					right : 20
 				});
 				btnClose.addEventListener('click', function(e) {
 					winPDF.close();
@@ -88,7 +92,7 @@ module.exports = function() {
 					height : Ti.UI.FILL,
 					width : Ti.UI.FILL
 				});
-				
+
 				winPDF.add(pdfview);
 				winPDF.add(btnClose);
 			}

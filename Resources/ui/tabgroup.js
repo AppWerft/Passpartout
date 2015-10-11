@@ -3,7 +3,7 @@ var AwesomeIcon = require('vendor/awesomeicons');
 
 module.exports = function() {
 	var self = Ti.UI.createTabGroup({
-		//backgroundColor : 'yellow', // for Android
+		backgroundColor : 'white', // for Android
 		tabs : [Ti.UI.createTab({
 			window : require('ui/pdf.container')(),
 			title : 'Offers/Invoices',
