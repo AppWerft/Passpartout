@@ -122,10 +122,11 @@ module.exports = function(modelStr) {
 		PDF.addTextBox(printdata.vortext, Math.abs(TEMPLATE.NACHTEXT[0]), Math.abs(TEMPLATE.VORTEXT[1]) + 10, PDF.internal.pageSize.width - Math.abs(TEMPLATE.NACHTEXT[0]) - PADDING.RIGHT);
 		/* now we get the height of the adding above */
 		var y = PDF.autoTableEndPosY();
-		/* and we know  now the available room for table */
-		var availableRoom = PDF.internal.pageSize.height - y - Math.abs(TEMPLATE.NACHTEXT[1]);
-		console.log('availableRoom: ' + availableRoom);
+		/* and we know  now the available height for table */
+		var availableHeight = PDF.internal.pageSize.height - y - Math.abs(TEMPLATE.NACHTEXT[1]);
+		console.log('availableHeight: ' + availableHeight);
 		var rows = [];
+		/* first we collect all rows which shows data */
 		printdata.services.forEach(function(s) {
 			var cells = [];
 			cells.push(s.unit);
@@ -133,9 +134,9 @@ module.exports = function(modelStr) {
 			cells.push(s.units);
 			cells.push(s.amount + '  €');
 			cells.push((s.amount * s.units) + '  €');
-
 			rows.push(cells);
 		});
+		/* now we build the table */
 		var options = {
 			headers : ['Einheit', 'Leistung', 'Anzahl', 'Betrag', 'Summe'],
 			data : rows,
@@ -155,22 +156,27 @@ module.exports = function(modelStr) {
 				}
 			}
 		};
+		/* hooks for cell rendering */
+		options.options.createdCell = function(cell, data) {
+			if (data.column.dataKey > 1)
+				cell.styles.halign = 'right';
+		};
+		options.options.createdHeaderCell = function(cell, data) {
+			if (data.column.dataKey > 1)
+				cell.styles.halign = 'right';
+			else
+				cell.styles.halign = 'left';
+		};
+		/* and test the options of table in test pdf document */
 		var h = testTable(options);
+		/* first case: it fits */
 		if (h < availableRoom) {
-			options.options.createdCell = function(cell, data) {
-				if (data.column.dataKey > 1)
-					cell.styles.halign = 'right';
-			};
-			options.options.createdHeaderCell = function(cell, data) {
-				if (data.column.dataKey > 1)
-					cell.styles.halign = 'right';
-				else
-					cell.styles.halign = 'left';
-			};
-			PDF.addAutoTable(options);
-			PDF.addText(printdata.nachtext || '', TEMPLATE.NACHTEXT);
-			PDF.addText(printdata.gruss || '', TEMPLATE.GRUSS);
+			PDF.addPage();
 		}
+		PDF.addAutoTable(options);
+		PDF.addText(printdata.nachtext || '', TEMPLATE.NACHTEXT);
+		PDF.addText(printdata.gruss || '', TEMPLATE.GRUSS);
+
 		/*	PDF.addQRCode({
 		qr : {
 		data : 'http://github.com/',
