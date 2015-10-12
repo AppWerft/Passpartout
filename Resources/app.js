@@ -1,4 +1,5 @@
 ! function() {
+	var cd = require('ui/util/corporateDesign.util');
 	//var tabGroup = require('ui/tabgroup')().open();
 			Ti.UI.backgroundColor = '#fc0';
 	var tabGroup = require('ti.customtabgroup');
@@ -17,13 +18,15 @@
 		navigation : {
 			fullscreen : win.getFullScreen(),
 			position : 'top',
-			height : 66,
-			backgroundColor : '#ffc0',
-			backgroundActiveColor : '#ffa0',
-			fontSize : 23,
-			tabWidth : 195,
+			height : 64,
+			backgroundColor : cd.colors.yellow,
+			backgroundActiveColor : cd.colors.yellowNavActive,
+			fontSize : 14,
+			fontFamily : cd.font.roman,
+			fontFamilyActive : cd.font.bold,
+			tabWidth : 120,
 			activeTab : 0,
-			color : '#f333',
+			color : cd.colors.blue,
 			activeColor : '#ffff'
 		},
 		tabs : [{
