@@ -1,7 +1,7 @@
 ! function() {
 	var COOPERATEDESIGN = require('ui/util/corporateDesign.util');
 	//var tabGroup = require('ui/tabgroup')().open();
-			Ti.UI.backgroundColor = '#fc0';
+	Ti.UI.backgroundColor = '#fc0';
 	var tabGroup = require('ti.customtabgroup');
 	var win = Ti.UI.createWindow({
 		fullscreen : false,
@@ -16,7 +16,7 @@
 	win.open();
 	win.add(tabGroup.createView({
 		navigation : {
-			fullscreen : win.getFullScreen(),
+			fullscreen : (win.fullscreen == true) ? true : false,
 			position : 'top',
 			height : 64,
 			backgroundColor : COOPERATEDESIGN.colors.yellow,
