@@ -1,5 +1,5 @@
-const BLUR = false,
-    BURGERWIDTH = 160;
+const DRAWERWIDTH = 160;
+
 var ldf = Ti.Platform.displayCaps.logicalDensityFactor || 1;
 /* Deciding device class */
 var maxwidth = Math.max(Ti.Platform.displayCaps.platformHeight / ldf, Ti.Platform.displayCaps.platformWidth / ldf);
@@ -39,7 +39,7 @@ var Module = function(args) {
 			backgroundColor : nav.backgroundColor,
 		});
 		self.add(self.navigationView);
-		var handler = Ti.UI.createView({
+		var burger = Ti.UI.createView({
 			width : nav.tabWidth,
 			touchEnabled : false,
 			left : activeTab * nav.tabWidth,
@@ -73,26 +73,26 @@ var Module = function(args) {
 			self.navigationView.add(navLabel);
 			naviwidth += nav.tabWidth;
 		});
-		self.navigationView.add(handler);
+		self.navigationView.add(burger);
 		self.navigationView.addEventListener('touchstart', function(_e) {
 			if (_e.source.itemId == undefined)
 				return;
 			var ndx = _e.source.itemId;
 			self.navigationView.children[activeTab].color = nav.color;
 			self.navigationView.children[activeTab].setFont({
-				fontFamily : nav.fontFamily
+				fontFamily : nav.fontFamily,
+				fontSize : nav.fontSize
 			});
 			self.navigationView.children[ndx].color = nav.activeColor;
 			self.navigationView.children[ndx].setFont({
-				fontFamily : nav.fontFamilyActive
+				fontFamily : nav.fontFamilyActive,
+				fontSize : nav.fontSize
 			});
-			handler.animate({
+			burger.animate({
 				left : nav.tabWidth * ndx,
-
-			}, function() {
-
 			});
 			self.containerView.scrollToView(ndx);
+			/*
 			console.log('Info: scrolled to ' + ndx);
 			var ldf = Ti.Platform.displayCaps.logicalDensityFactor || 1;
 			if (Ti.Platform.displayCaps.platformWidth / ldf < naviwidth) {
@@ -112,65 +112,11 @@ var Module = function(args) {
 			self.navigationView.setContentOffset({
 				x : x,
 				y : 0
-			});
+			});*/
 			activeTab = ndx;
-		});
-		Ti.Gesture.addEventListener('orientationchange', function(e) {
-			if (e.orientation == Ti.UI.PORTRAIT || e.orientation == Ti.UI.UPSIDE_PORTRAIT || e.orientation == Ti.UI.FACE_DOWN || e.orientation == Ti.UI.FACE_UP) {
-				self.navigationView.scrollingEnabled = true;
-			} else if (e.orientation == Ti.UI.LANDSCAPE_LEFT || e.orientation == Ti.UI.LANDSCAPE_RIGHT) {
-				self.navigationView.scrollingEnabled = false;
-			}
 		});
 		break;
 	case args.handheld || isHandheld :
-		self.slideOut = function() {
-			self.currentPage = self;
-			self.blurView = (Ti.Platform.osname === 'android' || BLUR == false)//
-			? Ti.UI.createView({
-				backgroundColor : '#8000',
-				top : nav.height + statusbarHeight,
-			})//
-			: require('com.apaladini.blur').createView({
-				style : 1,
-				top : nav.height,
-				height : Ti.UI.FILL
-
-			});
-			self.currentPage.add(self.blurView);
-			self.blurView.animate({
-				opacity : 1
-			});
-			handler.animate({
-				duration : 200,
-				transform : Ti.UI.create2DMatrix({
-					rotate : -180
-				})
-			}, function() {
-				handler.setText(' → ');
-				handler.out = true;
-			});
-			burger.animate({
-				left : 0,
-				duration : 200
-			});
-		};
-		self.slideIn = function() {
-			self.blurView && self.currentPage.remove(self.blurView);
-			handler.animate({
-				transform : Ti.UI.create2DMatrix({
-					rotate : 0
-				}),
-				duration : 100
-			}, function() {
-				handler.setText('☰    ');
-				handler.out = false;
-			});
-			burger.animate({
-				left : -BURGERWIDTH + 3,
-				duration : 10
-			});
-		};
 		self.navigationView = Ti.UI.createView({
 			top : position == 'top' ? statusbarHeight : undefined,
 			bottom : position == 'bottom' ? 0 : undefined,
@@ -178,75 +124,98 @@ var Module = function(args) {
 			backgroundColor : nav.backgroundColor,
 		});
 		self.add(self.navigationView);
-		self.blurView = Ti.UI.createView({
+		var darker = Ti.UI.createView({
 			backgroundColor : '#7000',
-			top : nav.height
+			top : nav.height + statusbarHeight,
 		});
-
-		var burger = Ti.UI.createTableView({
+		var drawerView = Ti.UI.createTableView({
 			backgroundColor : nav.backgroundColor,
 			top : nav.height + statusbarHeight,
 			scrollType : 'vertical',
 			contentHeight : Ti.UI.SIZE,
 			height : Ti.UI.FILL,
-			left : -BURGERWIDTH + 3,
-			width : BURGERWIDTH,
+			left : -DRAWERWIDTH + 3,
+			width : DRAWERWIDTH,
 			zIndex : 99,
+			separatorColor : nav.backgroundActiveColor,
 			data : args.tabs.map(function(tab, ndx) {
 				var row = Ti.UI.createTableViewRow({
 					ndx : ndx,
+					selectedBackgroundColor : nav.backgroundActiveColor
 				});
 				row.add(Ti.UI.createLabel({
-					color : '#555',
+					color : args.navigation.color,
 					left : 10,
 					width : Ti.UI.FILL,
 					textAlign : 'left',
 					height : Ti.UI.SIZE,
-					top : 5,
-					bottom : 5,
+					top : 10,
+					bottom : 10,
 					font : {
-						fontWeight : 'bold',
-						fontSize : 18
+						fontFamily: nav.fontFamily,
+						fontSize : nav.fontSize
 					},
-					text : tab.title
+					text : tab.title.toUpperCase()
 				}));
+				
 				return row;
 			})
 		});
-		burger.addEventListener('click', function(_e) {
+		drawerView.addEventListener('click', function(_e) {
+			self.remove(darker);
 			burger.animate({
-				left : -BURGERWIDTH + 3,
+				left : -5
+			}, function() {
+				burger.out = false;
+			});
+			drawerView.animate({
+				left : -DRAWERWIDTH + 3,
 				duration : 700
 			}, function() {
-				self.containerView.setCurrentPage(_e.rowData.ndx);
+				self.containerView.scrollToView(_e.rowData.ndx);
 			});
-			self.slideIn();
 
 		});
-		self.add(burger);
-		var handler = Ti.UI.createLabel({
+		self.add(drawerView);
+		var burger = Ti.UI.createLabel({
 			color : 'white',
-			left : 0,
+			left : -5,
 			out : false,
-			text : '☰    ',
+			text : '☰',
 			font : {
 				fontWeight : 'bold',
 				fontSize : 30
 			},
 
 		});
-		handler.addEventListener('singletap', function() {
-			if (false == handler.out) {
-				self.slideOut();
+		burger.addEventListener('singletap', function() {
+			if (burger.out == false) {
+				self.add(darker);
+				burger.animate({
+					left : -15
+				}, function() {
+					burger.out = true;
+				});
+				drawerView.animate({
+					left : 0
+				});
 			} else {
-				self.slideIn();
-
-			};
+				self.remove(darker);
+				burger.animate({
+					left : -5
+				}, function() {
+					burger.out = false;
+				});
+				drawerView.animate({
+					left : -DRAWERWIDTH + 3
+				});
+			}
 		});
-		self.navigationView.add(handler);
+		self.navigationView.add(burger);
+		console.log('HH');
+
 		break;
 	}
-
 	return self;
 };
 
