@@ -116,18 +116,13 @@ module.exports = function(modelStr) {
 			PDF.addText(text, [PADDING.LEFT + col * colspan, -row * COLS - 5]);
 		});
 		/* now we have to decide if the tabel fits (plus nachttext and gruss) or not */
-		var availableHeight = PDF.internal.pageSize.height// total length
-		- Math.abs(TEMPLATE.NACHTEXT[1])// position of nachtext
-		- Math.abs(TEMPLATE.VORTEXT[1])// position of vortext
-		- 30;
-		// height of vortext
-		//console.log('availableHeight=' + availableHeight);
-		//var text = "„Dès Noël où un zéphyr haï me vêt de glaçons würmiens, je dîne d’exquis rôtis de bœuf au kir à l’aÿ d’âge mûr & cætera !“\nVögel üben Gezwitscher oft ähnlich packend wie Jupp die Maus auf dem Xylophon einer Qualle.\nFalsches Üben von Xylophonmusik quält jeden größeren Zwerg";
 		PDF.setFontSize(BROTTEXT);
 		PDF.setFontType("normal");
-		//require('vendor/loremipsum')(Math.round(Math.random() * 500 + 10));
+		/* we add vortext with variable height: */
 		PDF.addTextBox(printdata.vortext, Math.abs(TEMPLATE.NACHTEXT[0]), Math.abs(TEMPLATE.VORTEXT[1]) + 10, PDF.internal.pageSize.width - Math.abs(TEMPLATE.NACHTEXT[0]) - PADDING.RIGHT);
+		/* now we get the height of the adding above */
 		var y = PDF.autoTableEndPosY();
+		/* and we know  now the available room for table */
 		var availableRoom = PDF.internal.pageSize.height - y - Math.abs(TEMPLATE.NACHTEXT[1]);
 		console.log('availableRoom: ' + availableRoom);
 		var rows = [];
