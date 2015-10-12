@@ -1,5 +1,5 @@
 ! function() {
-	var cd = require('ui/util/corporateDesign.util');
+	var COOPERATEDESIGN = require('ui/util/corporateDesign.util');
 	//var tabGroup = require('ui/tabgroup')().open();
 			Ti.UI.backgroundColor = '#fc0';
 	var tabGroup = require('ti.customtabgroup');
@@ -19,14 +19,14 @@
 			fullscreen : win.getFullScreen(),
 			position : 'top',
 			height : 64,
-			backgroundColor : cd.colors.yellow,
-			backgroundActiveColor : cd.colors.yellowNavActive,
+			backgroundColor : COOPERATEDESIGN.colors.yellow,
+			backgroundActiveColor : COOPERATEDESIGN.colors.yellowNavActive,
 			fontSize : 14,
-			fontFamily : cd.font.roman,
-			fontFamilyActive : cd.font.bold,
+			fontFamily : COOPERATEDESIGN.font.roman,
+			fontFamilyActive : COOPERATEDESIGN.font.bold,
 			tabWidth : 120,
 			activeTab : 0,
-			color : cd.colors.blue,
+			color : COOPERATEDESIGN.colors.blue,
 			activeColor : '#ffff'
 		},
 		tabs : [{
