@@ -27,7 +27,10 @@
 			tabWidth : 120,
 			activeTab : 0,
 			color : COOPERATEDESIGN.colors.blue,
-			activeColor : '#ffff'
+			activeColor : '#ffff',
+			burgernav : {
+				height : 40
+			}
 		},
 		tabs : [{
 			title : 'Inputs',
