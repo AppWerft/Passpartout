@@ -7,7 +7,8 @@ const isTablet = Ti.Platform.osname === 'ipad' || (Ti.Platform.osname === 'andro
     isHandheld = !isTablet;
 
 var Module = function(args) {
-	var self = Ti.UI.createView();
+	var self = Ti.UI.createView({
+	});
 	/* only on iOS we have to calc with this height */
 	var statusbarHeight = args.navigation.fullscreen == true || Ti.Platform.osname === 'android' ? 0 : 20;
 	var position = args.navigation.position || 'top',
@@ -38,7 +39,7 @@ var Module = function(args) {
 			backgroundColor : nav.backgroundColor,
 		});
 		self.add(self.navigationView);
-		var handler = Ti.UI.createView({
+		var higlighter = Ti.UI.createView({
 			width : nav.tabWidth,
 			touchEnabled : false,
 			left : activeTab * nav.tabWidth,
@@ -72,7 +73,7 @@ var Module = function(args) {
 			self.navigationView.add(navLabel);
 			naviwidth += nav.tabWidth;
 		});
-		self.navigationView.add(handler);
+		self.navigationView.add(higlighter);
 		self.navigationView.addEventListener('touchstart', function(_e) {
 			if (_e.source.itemId == undefined)
 				return;
@@ -87,53 +88,34 @@ var Module = function(args) {
 				fontFamily : nav.fontFamilyActive,
 				fontSize : nav.fontSize
 			});
-			handler.animate({
+			higlighter.animate({
 				left : nav.tabWidth * ndx,
 			});
 			self.containerView.scrollToView(ndx);
-			/*
-			console.log('Info: scrolled to ' + ndx);
-			var ldf = Ti.Platform.displayCaps.logicalDensityFactor || 1;
-			if (Ti.Platform.displayCaps.platformWidth / ldf < naviwidth) {
-				console.log(ndx + '  ' + args.tabs.length);
-				switch (true) {
-				case (ndx==0) :
-					var x = 0;
-					break;
-				case (ndx==args.tabs.length-1) :
-					var x = naviwidth - nav.tabWidth;
-					break;
-				default:
-					var x = nav.tabWidth * ndx - nav.tabWidth / 2;
-					break;
-				}
-			}
-			self.navigationView.setContentOffset({
-				x : x,
-				y : 0
-			});*/
 			activeTab = ndx;
 		});
 		break;
 	case args.handheld || isHandheld :
+		// Position für Handheld anpassen - Parameter: nav.burgernav.height
+		self.containerView.top = nav.burgernav.height + statusbarHeight;
 		self.navigationView = Ti.UI.createView({
 			top : position == 'top' ? statusbarHeight : undefined,
 			bottom : position == 'bottom' ? 0 : undefined,
-			height : nav.height,
+			height : nav.burgernav.height,
 			backgroundColor : nav.backgroundColor,
 		});
 		self.add(self.navigationView);
 		var darker = Ti.UI.createView({
 			backgroundColor : '#7000',
-			top : nav.height + statusbarHeight,
+			top : nav.burgernav.height + statusbarHeight,
 		});
 		var drawerView = Ti.UI.createTableView({
 			backgroundColor : nav.backgroundColor,
-			top : nav.height + statusbarHeight,
+			top : nav.burgernav.height + statusbarHeight,
 			scrollType : 'vertical',
 			contentHeight : Ti.UI.SIZE,
 			height : Ti.UI.FILL,
-			left : -DRAWERWIDTH + 3,
+			left : -DRAWERWIDTH,
 			width : DRAWERWIDTH,
 			zIndex : 99,
 			separatorColor : nav.backgroundActiveColor,
@@ -162,13 +144,9 @@ var Module = function(args) {
 		});
 		drawerView.addEventListener('click', function(_e) {
 			self.remove(darker);
-			burger.animate({
-				left : -5
-			}, function() {
-				burger.out = false;
-			});
+			burger.out = false;
 			drawerView.animate({
-				left : -DRAWERWIDTH + 3,
+				left : -DRAWERWIDTH,
 				duration : 700
 			}, function() {
 				self.containerView.scrollToView(_e.rowData.ndx);
@@ -178,7 +156,7 @@ var Module = function(args) {
 		self.add(drawerView);
 		var burger = Ti.UI.createLabel({
 			color : 'white',
-			left : -5,
+			left : 10,
 			out : false,
 			text : '☰',
 			font : {
@@ -186,30 +164,26 @@ var Module = function(args) {
 				fontSize : 30
 			},
 		});
-		burger.addEventListener('singletap', function() {
+		var toggleMenu = function() {
 			if (burger.out == false) {
 				self.add(darker);
-				burger.animate({
-					left : -15
-				}, function() {
-					burger.out = true;
-				});
+				burger.out = true;
 				drawerView.animate({
 					left : 0
 				});
 			} else {
 				self.remove(darker);
-				burger.animate({
-					left : -5
-				}, function() {
-					burger.out = false;
-				});
+				burger.out = false;
 				drawerView.animate({
-					left : -DRAWERWIDTH + 3
+					left : -DRAWERWIDTH
 				});
 			}
-		});
+		};
+		burger.addEventListener('singletap', toggleMenu);
+		darker.addEventListener('singletap', toggleMenu);
 		self.navigationView.add(burger);
+		console.log('HH');
+
 		break;
 	}
 	return self;
