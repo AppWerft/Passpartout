@@ -7,8 +7,7 @@ const isTablet = Ti.Platform.osname === 'ipad' || (Ti.Platform.osname === 'andro
     isHandheld = !isTablet;
 
 var Module = function(args) {
-	var self = Ti.UI.createView({
-	});
+	var self = Ti.UI.createView();
 	/* only on iOS we have to calc with this height */
 	var statusbarHeight = args.navigation.fullscreen == true || Ti.Platform.osname === 'android' ? 0 : 20;
 	var position = args.navigation.position || 'top',
@@ -39,7 +38,7 @@ var Module = function(args) {
 			backgroundColor : nav.backgroundColor,
 		});
 		self.add(self.navigationView);
-		var burger = Ti.UI.createView({
+		var handler = Ti.UI.createView({
 			width : nav.tabWidth,
 			touchEnabled : false,
 			left : activeTab * nav.tabWidth,
@@ -73,7 +72,7 @@ var Module = function(args) {
 			self.navigationView.add(navLabel);
 			naviwidth += nav.tabWidth;
 		});
-		self.navigationView.add(burger);
+		self.navigationView.add(handler);
 		self.navigationView.addEventListener('touchstart', function(_e) {
 			if (_e.source.itemId == undefined)
 				return;
@@ -88,7 +87,7 @@ var Module = function(args) {
 				fontFamily : nav.fontFamilyActive,
 				fontSize : nav.fontSize
 			});
-			burger.animate({
+			handler.animate({
 				left : nav.tabWidth * ndx,
 			});
 			self.containerView.scrollToView(ndx);
@@ -186,7 +185,6 @@ var Module = function(args) {
 				fontWeight : 'bold',
 				fontSize : 30
 			},
-
 		});
 		burger.addEventListener('singletap', function() {
 			if (burger.out == false) {
@@ -212,8 +210,6 @@ var Module = function(args) {
 			}
 		});
 		self.navigationView.add(burger);
-		console.log('HH');
-
 		break;
 	}
 	return self;
