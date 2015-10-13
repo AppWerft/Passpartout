@@ -154,16 +154,26 @@ var Module = function(args) {
 
 		});
 		self.add(drawerView);
-		var burger = Ti.UI.createLabel({
+		// wrap burger in View to enlarge the clickable area of the burger
+		var burger = Ti.UI.createView({
+			width : Ti.UI.SIZE,
+			height : Ti.UI.SIZE,
+			left : 0,
+		});
+		burger.add(Ti.UI.createLabel({
+			width : Ti.UI.SIZE,
+			height : Ti.UI.SIZE,
 			color : 'white',
 			left : 10,
+			right : 10,
 			out : false,
 			text : '☰',
 			font : {
 				fontWeight : 'bold',
 				fontSize : 30
 			},
-		});
+		}));
+
 		var toggleMenu = function() {
 			if (burger.out == false) {
 				self.add(darker);
