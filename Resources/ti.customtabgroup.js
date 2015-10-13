@@ -39,7 +39,7 @@ var Module = function(args) {
 			backgroundColor : nav.backgroundColor,
 		});
 		self.add(self.navigationView);
-		var higlighter = Ti.UI.createView({
+		var highlighter = Ti.UI.createView({
 			width : nav.tabWidth,
 			touchEnabled : false,
 			left : activeTab * nav.tabWidth,
@@ -73,7 +73,7 @@ var Module = function(args) {
 			self.navigationView.add(navLabel);
 			naviwidth += nav.tabWidth;
 		});
-		self.navigationView.add(higlighter);
+		self.navigationView.add(highlighter);
 		self.navigationView.addEventListener('touchstart', function(_e) {
 			if (_e.source.itemId == undefined)
 				return;
@@ -88,7 +88,7 @@ var Module = function(args) {
 				fontFamily : nav.fontFamilyActive,
 				fontSize : nav.fontSize
 			});
-			higlighter.animate({
+			highlighter.animate({
 				left : nav.tabWidth * ndx,
 			});
 			self.containerView.scrollToView(ndx);
@@ -133,12 +133,12 @@ var Module = function(args) {
 					top : 10,
 					bottom : 10,
 					font : {
-						fontFamily: nav.fontFamily,
+						fontFamily : nav.fontFamily,
 						fontSize : nav.fontSize
 					},
 					text : tab.title.toUpperCase()
 				}));
-				
+
 				return row;
 			})
 		});
