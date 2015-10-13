@@ -1,0 +1,18 @@
+#
+# this is your module manifest and used by Titanium
+# during compilation, packaging, distribution, etc.
+#
+version: 1.0.0
+apiversion: 2
+description: A True Real Time BlurView implementation for Titanium
+author: Adriano Paladini
+license: MIT
+copyright: Copyright (c) 2014 by Adriano Paladini
+
+# these should not be edited
+name: Live-BlurView
+moduleid: com.apaladini.blur
+guid: 5245ba2e-e25e-443b-ad79-5000378ba39d
+platform: iphone
+minsdk: 3.4.1.GA
+architectures: armv7 i386 x86_64 arm64

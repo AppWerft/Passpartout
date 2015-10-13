@@ -11,7 +11,7 @@
     <fullscreen>true</fullscreen>
     <navbar-hidden>true</navbar-hidden>
     <analytics>false</analytics>
-    <guid>945b720d-8de5-4383-9555-54dc9276fb84</guid>
+    <guid>888c1673-e6dd-4bd5-9333-763b5a5cfc24</guid>
     <property name="ti.ui.defaultunit" type="string">dp</property>
     <property name="ti.android.bug2373.finishfalseroot" type="bool">true</property>
     <ios>
@@ -72,12 +72,92 @@
         </manifest>
     </android>
     <modules>
-        <module platform="android">de.manumaticx.androidflip</module>
-        <module platform="android">com.alcoapps.actionbarextras</module>
-        <module platform="android">com.mykingdom.mupdf</module>
-        <module platform="commonjs">de.appwerft.qrcode</module>
-        <module platform="iphone">com.apaladini.blur</module>
-    </modules>
+    <module platform="android">de.manumaticx.androidflip</module>
+    <module platform="android">com.alcoapps.actionbarextras</module>
+    <module platform="android">com.mykingdom.mupdf</module>
+    <module platform="commonjs" version="1.0.0">de.appwerft.qrcode</module>
+    <module platform="iphone" version="1.0.0">com.apaladini.blur</module>
+    <module platform="android" version="2.2.1">ti.imagefactory</module>
+    <module platform="iphone" version="1.2.0">ti.imagefactory</module>
+    <module platform="android" version="2.2.1">ti.imagefactory</module>
+    <module platform="iphone" version="1.2.0">ti.imagefactory</module>
+    <module platform="iphone" version="1.2.0">ti.imagefactory</module>
+    <module platform="android" version="2.2.1">ti.imagefactory</module>
+    <module platform="android" version="2.2.1">ti.imagefactory</module>
+    <module platform="android" version="2.2.1">ti.imagefactory</module>
+    <module platform="iphone" version="1.2.0">ti.imagefactory</module>
+    <module platform="android" version="2.2.1">ti.imagefactory</module>
+    <module platform="android" version="2.2.1">ti.imagefactory</module>
+    <module platform="android" version="2.2.1">ti.imagefactory</module>
+    <module platform="iphone" version="1.2.0">ti.imagefactory</module>
+    <module platform="android" version="2.2.1">ti.imagefactory</module>
+    <module platform="iphone" version="1.2.0">ti.imagefactory</module>
+    <module platform="iphone" version="1.2.0">ti.imagefactory</module>
+    <module platform="android" version="2.2.1">ti.imagefactory</module>
+    <module platform="android" version="2.2.1">ti.imagefactory</module>
+    <module platform="android" version="2.2.1">ti.imagefactory</module>
+    <module platform="iphone" version="1.2.0">ti.imagefactory</module>
+    <module platform="iphone" version="1.2.0">ti.imagefactory</module>
+    <module platform="iphone" version="1.2.0">ti.imagefactory</module>
+    <module platform="iphone" version="1.2.0">ti.imagefactory</module>
+    <module platform="android" version="2.2.1">ti.imagefactory</module>
+    <module platform="android" version="2.2.1">ti.imagefactory</module>
+    <module platform="android" version="2.2.1">ti.imagefactory</module>
+    <module platform="iphone" version="1.2.0">ti.imagefactory</module>
+    <module platform="iphone" version="1.2.0">ti.imagefactory</module>
+    <module platform="iphone" version="1.2.0">ti.imagefactory</module>
+    <module platform="iphone" version="1.2.0">ti.imagefactory</module>
+    <module platform="android" version="2.2.1">ti.imagefactory</module>
+    <module platform="iphone" version="1.2.0">ti.imagefactory</module>
+    <module platform="android" version="2.2.1">ti.imagefactory</module>
+    <module platform="android" version="2.2.1">ti.imagefactory</module>
+    <module platform="android" version="2.2.1">ti.imagefactory</module>
+    <module platform="iphone" version="1.2.0">ti.imagefactory</module>
+    <module platform="android" version="2.2.1">ti.imagefactory</module>
+    <module platform="iphone" version="1.2.0">ti.imagefactory</module>
+    <module platform="iphone" version="1.2.0">ti.imagefactory</module>
+    <module platform="android" version="2.2.1">ti.imagefactory</module>
+    <module platform="iphone" version="1.2.0">ti.imagefactory</module>
+    <module platform="android" version="2.2.1">ti.imagefactory</module>
+    <module platform="iphone" version="1.2.0">ti.imagefactory</module>
+    <module platform="iphone" version="1.2.0">ti.imagefactory</module>
+    <module platform="android" version="2.2.1">ti.imagefactory</module>
+    <module platform="android" version="2.2.1">ti.imagefactory</module>
+    <module platform="iphone" version="1.2.0">ti.imagefactory</module>
+    <module platform="android" version="2.2.1">ti.imagefactory</module>
+    <module platform="iphone" version="1.2.0">ti.imagefactory</module>
+    <module platform="android" version="2.2.1">ti.imagefactory</module>
+    <module platform="android" version="2.2.1">ti.imagefactory</module>
+    <module platform="iphone" version="1.2.0">ti.imagefactory</module>
+    <module platform="iphone" version="1.2.0">ti.imagefactory</module>
+    <module platform="android" version="2.2.1">ti.imagefactory</module>
+    <module platform="iphone" version="1.2.0">ti.imagefactory</module>
+    <module platform="android" version="2.2.1">ti.imagefactory</module>
+    <module platform="android" version="2.2.1">ti.imagefactory</module>
+    <module platform="iphone" version="1.2.0">ti.imagefactory</module>
+    <module platform="android" version="2.2.1">ti.imagefactory</module>
+    <module platform="iphone" version="1.2.0">ti.imagefactory</module>
+    <module platform="iphone" version="1.2.0">ti.imagefactory</module>
+    <module platform="android" version="2.2.1">ti.imagefactory</module>
+    <module platform="iphone" version="1.2.0">ti.imagefactory</module>
+    <module platform="iphone" version="1.2.0">ti.imagefactory</module>
+    <module platform="android" version="2.2.1">ti.imagefactory</module>
+    <module platform="iphone" version="1.2.0">ti.imagefactory</module>
+    <module platform="android" version="2.2.1">ti.imagefactory</module>
+    <module platform="android" version="2.2.1">ti.imagefactory</module>
+    <module platform="android" version="2.2.1">ti.imagefactory</module>
+    <module platform="iphone" version="1.2.0">ti.imagefactory</module>
+    <module platform="iphone" version="1.2.0">ti.imagefactory</module>
+    <module platform="android" version="2.2.1">ti.imagefactory</module>
+    <module platform="iphone" version="1.2.0">ti.imagefactory</module>
+    <module platform="android" version="2.2.1">ti.imagefactory</module>
+    <module platform="android" version="2.2.1">ti.imagefactory</module>
+    <module platform="iphone" version="1.2.0">ti.imagefactory</module>
+    <module platform="android" version="2.2.1">ti.imagefactory</module>
+    <module platform="iphone" version="1.2.0">ti.imagefactory</module>
+    <module platform="iphone" version="1.2.0">ti.imagefactory</module>
+    <module platform="iphone" version="1.2.0">ti.imagefactory</module>
+  </modules>
     <deployment-targets>
         <target device="android">true</target>
         <target device="ipad">true</target>
