@@ -170,7 +170,7 @@ module.exports = function(modelStr) {
 		/* and test the options of table in test pdf document */
 		var h = testTable(options);
 		/* first case: it fits */
-		if (h < availableRoom) {
+		if (h > availableHeight) {
 			PDF.addPage();
 		}
 		PDF.addAutoTable(options);
