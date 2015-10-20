@@ -1,13 +1,13 @@
 ! function() {
 	var cd = require('ui/util/corporateDesign.util');
 	//var tabGroup = require('ui/tabgroup')().open();
-	Ti.UI.backgroundColor = '#fc0';
+	Ti.UI.backgroundColor = '#f90';
 	var tabGroup = require('ti.customtabgroup');
 	var win = Ti.UI.createWindow({
 		fullscreen : false,
 		tabBarHidden : true,
 		translucent : false,
-		barColor : '#fc0',
+		barColor : '#f90',
 		backgroundColor : 'transparent'
 	});
 	win.addEventListener('open', function(_e) {
@@ -35,7 +35,7 @@
 		},
 		tabs : [{
 			title : 'Inputs',
-			view : require('ui/inputs.container')()
+			view : require('ui/splitview.container')()
 		}, {
 			title : 'PDF',
 			view : require('ui/pdf.container')()
