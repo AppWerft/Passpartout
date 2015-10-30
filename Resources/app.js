@@ -1,5 +1,23 @@
 ! function() {
 	var cd = require('ui/util/corporateDesign.util');
+	/* aufrufparameter ist JSON string*/
+	/*var file = Ti.Filesystem.getFile(Ti.Filesystem.resourcesDirectory, 'model/legals.txt');
+	var json = JSON.parse(file.read().getText());
+	var web = Ti.UI.createWebView({
+		html : json.content
+	});
+	var win = Ti.UI.createWindow();
+	win.addEventListener('open', function() {
+		var view = Ti.UI.createScrollableView({
+			top : 100,
+			bottom : 100,
+			views : [web, Ti.UI.createView(),Ti.UI.createView()]
+		});
+		win.add(view);
+	});
+	win.open();
+	return;
+*/
 	//var tabGroup = require('ui/tabgroup')().open();
 	Ti.UI.backgroundColor = '#f90';
 	var tabGroup = require('ti.customtabgroup');
@@ -50,10 +68,8 @@
 				backgroundColor : '#222'
 			})
 		}, {
-			title : 'Help',
-			view : Ti.UI.createView({
-				backgroundColor : '#666'
-			})
+			title : 'BestSign',
+			view : require('ui/bestsign')()
 		}]
 	}));
 }();

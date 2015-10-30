@@ -1,162 +1,92 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ti:app 
-  xmlns:ti="http://ti.appcelerator.org">
-  <url>http://hamburger-appwerft.de</url>
-  <id>de.appwerft.passpartout</id>
-  <name>Passpartout</name>
-  <version>1.0.12</version>
-  <publisher>fuerst</publisher>
-  <description>Nix zu lesen</description>
-  <copyright>2015 by fuerst</copyright>
-  <icon>appicon.png</icon>
-  <fullscreen>true</fullscreen>
-  <navbar-hidden>true</navbar-hidden>
-  <analytics>false</analytics>
-  <guid>9ddaad08-ec1d-4392-9bbb-54dc9276fb84</guid>
-  <property name="ti.ui.defaultunit" type="string">dp</property>
-  <property name="ti.android.bug2373.finishfalseroot" type="bool">true</property>
-  <ios>
-    <plist>
-      <dict>
-        <key>UISupportedInterfaceOrientations~iphone</key>
-        <array>
-          <string>UIInterfaceOrientationPortrait</string>
-          <string>UIInterfaceOrientationPortraitUpsideDown</string>
-        </array>
-        <key>UISupportedInterfaceOrientations~ipad</key>
-        <array>
-          <string>UIInterfaceOrientationLandscapeLeft</string>
-          <string>UIInterfaceOrientationPortrait</string>
-          <string>UIInterfaceOrientationPortraitUpsideDown</string>
-          <string>UIInterfaceOrientationLandscapeRight</string>
-        </array>
-        <key>UIRequiresPersistentWiFi</key>
-        <false/>
-        <key>UIPrerenderedIcon</key>
-        <false/>
-        <key>UIStatusBarHidden</key>
-        <false/>
-        <key>UIStatusBarStyle</key>
-        <string>UIStatusBarStyleDefault</string>
-      </dict>
-    </plist>
-  </ios>
-  <android 
-    xmlns:android="http://schemas.android.com/apk/res/android">
-    <manifest android:versionCode="1" android:versionName="1.0.4" package="de.appwerft.passpartout" 
-      xmlns:android="http://schemas.android.com/apk/res/android">
-      <tool-api-level>20</tool-api-level>
-      <uses-sdk android:minSdkVersion="14" android:targetSdkVersion="22"/>
-      <application android:debuggable="false" android:icon="@drawable/appicon" android:label="Passpartout" android:name="PasspartoutApplication" android:theme="@style/Theme.AppCompat">
-        <activity android:configChanges="keyboardHidden|orientation|screenSize" android:label="@string/app_name" android:name=".PasspartoutActivity" android:theme="@style/Theme.Titanium">
-          <intent-filter>
-            <action android:name="android.intent.action.MAIN"/>
-            <category android:name="android.intent.category.LAUNCHER"/>
-          </intent-filter>
-        </activity>
-        <activity android:configChanges="keyboardHidden|orientation|screenSize" android:name="org.appcelerator.titanium.TiActivity"/>
-        <activity android:configChanges="keyboardHidden|orientation|screenSize" android:name="org.appcelerator.titanium.TiTranslucentActivity" android:theme="@style/Theme.AppCompat.Translucent"/>
-        <activity android:configChanges="screenSize" android:name="ti.modules.titanium.ui.android.TiPreferencesActivity"/>
-      </application>
-      <uses-permission android:name="android.permission.INTERNET"/>
-      <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-      <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-      <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    </manifest>
-  </android>
-  <modules>
-    <module platform="android">de.manumaticx.androidflip</module>
-    <module platform="android">com.alcoapps.actionbarextras</module>
-    <module platform="android">com.mykingdom.mupdf</module>
-    <module platform="commonjs" version="1.0.0">de.appwerft.qrcode</module>
-    <module platform="iphone" version="1.0.0">com.apaladini.blur</module>
-    <module platform="android" version="2.2.1">ti.imagefactory</module>
-    <module platform="iphone" version="1.2.0">ti.imagefactory</module>
-    <module platform="android" version="2.2.1">ti.imagefactory</module>
-    <module platform="iphone" version="1.2.0">ti.imagefactory</module>
-    <module platform="iphone" version="1.2.0">ti.imagefactory</module>
-    <module platform="android" version="2.2.1">ti.imagefactory</module>
-    <module platform="android" version="2.2.1">ti.imagefactory</module>
-    <module platform="android" version="2.2.1">ti.imagefactory</module>
-    <module platform="iphone" version="1.2.0">ti.imagefactory</module>
-    <module platform="android" version="2.2.1">ti.imagefactory</module>
-    <module platform="android" version="2.2.1">ti.imagefactory</module>
-    <module platform="android" version="2.2.1">ti.imagefactory</module>
-    <module platform="iphone" version="1.2.0">ti.imagefactory</module>
-    <module platform="android" version="2.2.1">ti.imagefactory</module>
-    <module platform="iphone" version="1.2.0">ti.imagefactory</module>
-    <module platform="iphone" version="1.2.0">ti.imagefactory</module>
-    <module platform="android" version="2.2.1">ti.imagefactory</module>
-    <module platform="android" version="2.2.1">ti.imagefactory</module>
-    <module platform="android" version="2.2.1">ti.imagefactory</module>
-    <module platform="iphone" version="1.2.0">ti.imagefactory</module>
-    <module platform="iphone" version="1.2.0">ti.imagefactory</module>
-    <module platform="iphone" version="1.2.0">ti.imagefactory</module>
-    <module platform="iphone" version="1.2.0">ti.imagefactory</module>
-    <module platform="android" version="2.2.1">ti.imagefactory</module>
-    <module platform="android" version="2.2.1">ti.imagefactory</module>
-    <module platform="android" version="2.2.1">ti.imagefactory</module>
-    <module platform="iphone" version="1.2.0">ti.imagefactory</module>
-    <module platform="iphone" version="1.2.0">ti.imagefactory</module>
-    <module platform="iphone" version="1.2.0">ti.imagefactory</module>
-    <module platform="iphone" version="1.2.0">ti.imagefactory</module>
-    <module platform="android" version="2.2.1">ti.imagefactory</module>
-    <module platform="iphone" version="1.2.0">ti.imagefactory</module>
-    <module platform="android" version="2.2.1">ti.imagefactory</module>
-    <module platform="android" version="2.2.1">ti.imagefactory</module>
-    <module platform="android" version="2.2.1">ti.imagefactory</module>
-    <module platform="iphone" version="1.2.0">ti.imagefactory</module>
-    <module platform="android" version="2.2.1">ti.imagefactory</module>
-    <module platform="iphone" version="1.2.0">ti.imagefactory</module>
-    <module platform="iphone" version="1.2.0">ti.imagefactory</module>
-    <module platform="android" version="2.2.1">ti.imagefactory</module>
-    <module platform="iphone" version="1.2.0">ti.imagefactory</module>
-    <module platform="android" version="2.2.1">ti.imagefactory</module>
-    <module platform="iphone" version="1.2.0">ti.imagefactory</module>
-    <module platform="iphone" version="1.2.0">ti.imagefactory</module>
-    <module platform="android" version="2.2.1">ti.imagefactory</module>
-    <module platform="android" version="2.2.1">ti.imagefactory</module>
-    <module platform="iphone" version="1.2.0">ti.imagefactory</module>
-    <module platform="android" version="2.2.1">ti.imagefactory</module>
-    <module platform="iphone" version="1.2.0">ti.imagefactory</module>
-    <module platform="android" version="2.2.1">ti.imagefactory</module>
-    <module platform="android" version="2.2.1">ti.imagefactory</module>
-    <module platform="iphone" version="1.2.0">ti.imagefactory</module>
-    <module platform="iphone" version="1.2.0">ti.imagefactory</module>
-    <module platform="android" version="2.2.1">ti.imagefactory</module>
-    <module platform="iphone" version="1.2.0">ti.imagefactory</module>
-    <module platform="android" version="2.2.1">ti.imagefactory</module>
-    <module platform="android" version="2.2.1">ti.imagefactory</module>
-    <module platform="iphone" version="1.2.0">ti.imagefactory</module>
-    <module platform="android" version="2.2.1">ti.imagefactory</module>
-    <module platform="iphone" version="1.2.0">ti.imagefactory</module>
-    <module platform="iphone" version="1.2.0">ti.imagefactory</module>
-    <module platform="android" version="2.2.1">ti.imagefactory</module>
-    <module platform="iphone" version="1.2.0">ti.imagefactory</module>
-    <module platform="iphone" version="1.2.0">ti.imagefactory</module>
-    <module platform="android" version="2.2.1">ti.imagefactory</module>
-    <module platform="iphone" version="1.2.0">ti.imagefactory</module>
-    <module platform="android" version="2.2.1">ti.imagefactory</module>
-    <module platform="android" version="2.2.1">ti.imagefactory</module>
-    <module platform="android" version="2.2.1">ti.imagefactory</module>
-    <module platform="iphone" version="1.2.0">ti.imagefactory</module>
-    <module platform="iphone" version="1.2.0">ti.imagefactory</module>
-    <module platform="android" version="2.2.1">ti.imagefactory</module>
-    <module platform="iphone" version="1.2.0">ti.imagefactory</module>
-    <module platform="android" version="2.2.1">ti.imagefactory</module>
-    <module platform="android" version="2.2.1">ti.imagefactory</module>
-    <module platform="iphone" version="1.2.0">ti.imagefactory</module>
-    <module platform="android" version="2.2.1">ti.imagefactory</module>
-    <module platform="iphone" version="1.2.0">ti.imagefactory</module>
-    <module platform="iphone" version="1.2.0">ti.imagefactory</module>
-    <module platform="iphone" version="1.2.0">ti.imagefactory</module>
-  </modules>
-  <deployment-targets>
-    <target device="android">true</target>
-    <target device="ipad">true</target>
-    <target device="iphone">true</target>
-    <target device="mobileweb">false</target>
-  </deployment-targets>
-  <sdk-version>4.0.0.GA</sdk-version>
-  <property name="appc-app-id" type="string">5624ddbcb09607c5248afffa</property>
+<ti:app xmlns:ti="http://ti.appcelerator.org">
+    <url>http://hamburger-appwerft.de</url>
+    <id>de.appwerft.passpartout</id>
+    <name>Passpartout</name>
+    <version>1.0.14</version>
+    <publisher>fuerst</publisher>
+    <description>Nix zu lesen</description>
+    <copyright>2015 by fuerst</copyright>
+    <icon>appicon.png</icon>
+    <fullscreen>true</fullscreen>
+    <navbar-hidden>true</navbar-hidden>
+    <analytics>false</analytics>
+    <guid>9ddaad08-ec1d-4392-9bbb-54dc9276fb84</guid>
+    <property name="ti.ui.defaultunit" type="string">dp</property>
+    <property name="ti.android.bug2373.finishfalseroot" type="bool">true</property>
+    <ios>
+        <plist>
+            <dict>
+                <key>UISupportedInterfaceOrientations~iphone</key>
+                <array>
+                    <string>UIInterfaceOrientationPortrait</string>
+                    <string>UIInterfaceOrientationPortraitUpsideDown</string>
+                </array>
+                <key>UISupportedInterfaceOrientations~ipad</key>
+                <array>
+                    <string>UIInterfaceOrientationLandscapeLeft</string>
+                    <string>UIInterfaceOrientationPortrait</string>
+                    <string>UIInterfaceOrientationPortraitUpsideDown</string>
+                    <string>UIInterfaceOrientationLandscapeRight</string>
+                </array>
+                <key>UIRequiresPersistentWiFi</key>
+                <false/>
+                <key>UIPrerenderedIcon</key>
+                <false/>
+                <key>UIStatusBarHidden</key>
+                <false/>
+                <key>UIStatusBarStyle</key>
+                <string>UIStatusBarStyleDefault</string>
+            </dict>
+        </plist>
+    </ios>
+    <android xmlns:android="http://schemas.android.com/apk/res/android">
+        <manifest android:versionCode="1" android:versionName="1.0.4"
+            package="de.appwerft.passpartout" xmlns:android="http://schemas.android.com/apk/res/android">
+            <tool-api-level>20</tool-api-level>
+            <uses-sdk android:minSdkVersion="14" android:targetSdkVersion="22"/>
+            <application android:debuggable="false"
+                android:icon="@drawable/appicon"
+                android:label="Passpartout"
+                android:name="PasspartoutApplication" android:theme="@style/Theme.AppCompat">
+                <activity
+                    android:configChanges="keyboardHidden|orientation|screenSize"
+                    android:label="@string/app_name"
+                    android:name=".PasspartoutActivity" android:theme="@style/Theme.Titanium">
+                    <intent-filter>
+                        <action android:name="android.intent.action.MAIN"/>
+                        <category android:name="android.intent.category.LAUNCHER"/>
+                    </intent-filter>
+                </activity>
+                <activity
+                    android:configChanges="keyboardHidden|orientation|screenSize" android:name="org.appcelerator.titanium.TiActivity"/>
+                <activity
+                    android:configChanges="keyboardHidden|orientation|screenSize"
+                    android:name="org.appcelerator.titanium.TiTranslucentActivity" android:theme="@style/Theme.AppCompat.Translucent"/>
+                <activity android:configChanges="screenSize" android:name="ti.modules.titanium.ui.android.TiPreferencesActivity"/>
+            </application>
+            <uses-permission android:name="android.permission.INTERNET"/>
+            <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+            <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+            <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+        </manifest>
+    </android>
+    <modules>
+        <module platform="android">de.manumaticx.androidflip</module>
+        <module platform="android">com.alcoapps.actionbarextras</module>
+        <module platform="android">com.mykingdom.mupdf</module>
+        <module platform="commonjs" version="1.0.0">de.appwerft.qrcode</module>
+        <module platform="iphone" version="1.0.0">com.apaladini.blur</module>
+        <module platform="android" version="2.2.1">ti.imagefactory</module>
+        <module platform="iphone" version="1.2.0">ti.imagefactory</module>
+        <module platform="iphone">bcbhh.bestsign</module>
+    </modules>
+    <deployment-targets>
+        <target device="android">true</target>
+        <target device="ipad">true</target>
+        <target device="iphone">true</target>
+        <target device="mobileweb">false</target>
+    </deployment-targets>
+    <sdk-version>4.0.0.GA</sdk-version>
+    <property name="appc-app-id" type="string">5624ddbcb09607c5248afffa</property>
 </ti:app>
