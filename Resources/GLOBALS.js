@@ -13,14 +13,16 @@ var SCREENHEIGHT = Ti.Platform.displayCaps.platformHeight,
 if (Ti.Platform.osname === 'android') {
 	SCREENHEIGHT /= Ti.Platform.displayCaps.logicalDensityFactor;
 	SCREENWIDTH /= Ti.Platform.displayCaps.logicalDensityFactor;
+} else {
+	// iPad || iPad Pro
+	GLOBALS.isPad = (Math.min(SCREENHEIGHT.SCREENWIDTH) == 768 || Math.min(SCREENHEIGHT.SCREENWIDTH) == 1024 ) ? strue : false;
 }
 /* Deciding device class */
-GLOBALS.isTablet = Ti.Platform.osname === 'ipad' || (Ti.Platform.osname === 'android' && (SCREENWIDTH > 899 || SCREENHEIGHT > 899));
+GLOBALS.isTablet = GLOBALS.isPad || (Ti.Platform.osname === 'android' && (SCREENWIDTH > 899 || SCREENHEIGHT > 899));
 GLOBALS.isHandheld = !GLOBALS.isTablet;
-GLOBALS.isPad = (Ti.Platform.osname === 'ipad') ? true : false;
+
 GLOBALS.isIOS = (Ti.Platform.osname[0] === 'i') ? true : false;
 GLOBALS.isAndroid = (Ti.Platform.osname === 'android') ? true : false;
-
 
 /* normalizing of w/h depending of device class */
 var ratio = Math.max(SCREENWIDTH, SCREENHEIGHT) / Math.min(SCREENWIDTH, SCREENHEIGHT);

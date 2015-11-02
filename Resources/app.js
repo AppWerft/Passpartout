@@ -68,7 +68,7 @@
 				backgroundColor : '#222'
 			})
 		}, {
-			title : 'BestSign',
+			title : 'Bankproxy',
 			view : require('ui/bestsign')()
 		}]
 	}));

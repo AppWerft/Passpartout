@@ -3,7 +3,7 @@
     <url>http://hamburger-appwerft.de</url>
     <id>de.appwerft.passpartout</id>
     <name>Passpartout</name>
-    <version>1.0.14</version>
+    <version>1.0.19</version>
     <publisher>fuerst</publisher>
     <description>Nix zu lesen</description>
     <copyright>2015 by fuerst</copyright>
@@ -17,6 +17,8 @@
     <ios>
         <plist>
             <dict>
+                <key>UIRequiresFullScreen</key>
+                <string>yes</string>
                 <key>UISupportedInterfaceOrientations~iphone</key>
                 <array>
                     <string>UIInterfaceOrientationPortrait</string>
@@ -87,6 +89,6 @@
         <target device="iphone">true</target>
         <target device="mobileweb">false</target>
     </deployment-targets>
-    <sdk-version>4.0.0.GA</sdk-version>
+    <sdk-version>4.1.0.GA</sdk-version>
     <property name="appc-app-id" type="string">5624ddbcb09607c5248afffa</property>
 </ti:app>
