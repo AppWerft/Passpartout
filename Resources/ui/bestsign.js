@@ -1,46 +1,35 @@
-// TODO singleton pattern (calling of Proxy subscribing only once)!
-
-var GLOBALS = require('GLOBALS');
-
 function Widget() {
-	//create object instance, a parasitic subclass of Observable
-	var self = Ti.UI.createView();
-	var bestSignModule = require("bcbhh.bestsign");
-
-	bestSignModule.create(GLOBALS.isPad ? bestSignModule.MODE_IPAD_DEVELOPMENT : bestSignModule.MODE_IPHONE_DEVELOPMENT);
-	//	bestSignModule.create(MODE_IPAD_DEVELOPMENT);
-	//	bestSignModule.create(MODE_IPHONE_PRODUCTION);
-	//	bestSignModule.create(MODE_IPAD_PRODUCTION);
-
-	var button = Titanium.UI.createButton({
-		"title" : " BankProxy for " + Ti.Platform.osname + ' ',
-		"width" : Ti.UI.SIZE,
+	var t = Ti.UI.createView(),
+	    e = require("bcbhh.bestsign");
+	e.create(GLOBALS.isPad ? e.MODE_IPAD_DEVELOPMENT : e.MODE_IPHONE_DEVELOPMENT);
+	var o = Titanium.UI.createButton({
+		title : " BankProxy for " + Ti.Platform.osname + " ",
+		width : Ti.UI.SIZE,
 		borderWidth : 1,
-
-		borderColor : 'gray',
-		"height" : 50,
-		backgroundColor : 'white',
+		borderColor : "gray",
+		height : 50,
+		backgroundColor : "white",
 		font : {
 			fontSize : 56
 		}
 	});
-
-	button.addEventListener("click", function() {
-		bestSignModule.showConfigDialog();
-	});
-
-	Ti.App.addEventListener("resumed", function() {
-		bestSignModule.onAppDidBecomeActive();
-	});
-	// TODO Is there any event we can register on for applicationWillTerminate?
-	Ti.App.addEventListener("app:Termination", function() {
-		bestSignModule.onAppWillTerminate();
-	});
-	Ti.App.addEventListener("pause", function() {
-		bestSignModule.onAppWillResignActive();
-	});
-	self.add(button);
-	return self;
+	return o.addEventListener("click", function() {
+		e.showConfigDialog();
+	}), Ti.App.addEventListener("resumed", function() {
+		e.onAppDidBecomeActive();
+	}), Ti.App.addEventListener("app:Termination", function() {
+		e.onAppWillTerminate();
+	}), Ti.App.addEventListener("pause", function() {
+		e.onAppWillResignActive();
+	}), t.add(o), t.add(Ti.UI.createLabel({
+		text : "screenWidth=" + Ti.Platform.displayCaps.platformWidth + "\nscreenHeight=" + Ti.Platform.displayCaps.platformHeight + "\nOS-Name=" + Ti.Platform.osname,
+		bottom : 50,
+		font : {
+			fontFamily : "monospace",
+			fontSize : 48
+		}
+	})), t;
 }
 
-module.exports = Widget;
+var GLOBALS = require("GLOBALS");
+module.exports = Widget; 
