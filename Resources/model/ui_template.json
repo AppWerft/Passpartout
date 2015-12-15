@@ -1,0 +1,106 @@
+{
+	"id": "2015/12",
+	"model": {
+
+		"provider": {
+			"sender": {
+				"x": 25,
+				"y": 50,
+				"size": 11,
+				"pages" : [1,2,3]
+			},
+			"address": {
+				"company": {"x":158,"y":50,"pages": [1]},
+				"street":  {"x":158,"y":60,"pages": [1]},
+				"zip":  {"x":158,"y":70,"pages": [1]},
+				"city":  {"x":168,"y":70,"pages": [1]}
+			},
+			"phone": {
+				"label": {"x":158,"y":80,"pages": [1]},
+				"value":{"x":170,"y":80,"pages": [1]}
+			},
+			"fax": {
+				"label": {"x":158,"y":90,"pages": [1]},
+				"value":{"x":170,"y":90,"pages": [1]}
+			},
+			"email": {
+				"label": "eMail:",
+				"value": "klaus.dieter@musterfirma.de"
+			},
+			"web": {
+				"label": "Internet:",
+				"value": "musterfirma.de"
+			},
+			
+			"cto": {
+				"label": "Geschäftsführer:",
+				"value": "HP OLbrück"
+			},
+			"contact_name": {
+				"label": "Ansprechpartner:",
+				"value": "Hubert Meyer"
+			},
+			"account": [
+				{
+					"label": "Kreditinstitut:",
+					"value": "HASPA"
+				}, {
+					"label": "IBAN",
+					"value": "DE345678902345678"
+				}, {
+					"label": "BIC",
+					"value": "ABCDE"
+				}
+			],
+			"legal_form": {
+				"label": "Amtsgericht Köln",
+				"value": "HRB 58345"
+			}
+		},
+		"client": {
+			"address": {
+				"company": "",
+				"street": "",
+				"zip": "",
+				"city": "",
+				"client_number": {
+					"label": "Kundennummer:",
+					"value": "client_number"
+				}
+			}
+		}
+	},
+	"content": {
+		"type": "offer",
+		"qrcode": "bank://sepasinglepayment?",
+		"date": {
+			"label": "Angebotsdatum:",
+			"value": "12.12.2015"
+		},
+		"valid_util": {
+			"label": "gültig bis:",
+			"value": "31.12.2015"
+		},
+		"contact_person": {
+			"label": "Bearbeiter:",
+			"value": "Klaus Dieter"
+		},
+		"contact_email": {
+			"label": "Unsere eMail:",
+			"value": ""
+		},
+		"title": {"x":25,"y":150,"w":120},
+		"pretext": {"x":25,"y":160,"w":120},
+		"posttext":  {"x":25,"y":-60},
+		"services": {
+			"x":25,
+			"width":120,
+			"row_widths":[15,35,25,25,"auto"],
+			"haligns":["right","left","left","right","right"],
+			"theme": "grid",
+			"header_repeat" : true,
+			"table_on_single_page": false
+		}
+	}
+}
+

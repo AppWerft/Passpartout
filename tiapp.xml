@@ -17,6 +17,16 @@
     <ios>
         <plist>
             <dict>
+                <key>NSAppTransportSecurity</key>
+                
+                <dict>
+                    
+                    <key>NSAllowsArbitraryLoads</key>
+                    
+                    <true/>
+                
+                </dict>
+                
                 <key>UIRequiresFullScreen</key>
                 <string>yes</string>
                 <key>UISupportedInterfaceOrientations~iphone</key>
