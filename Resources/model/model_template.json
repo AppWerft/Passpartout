@@ -1,6 +1,6 @@
 {
 	"id": "2015/12",
-	"model": {
+	
 		"metadata": {
 			"title": "Offer",
 			"subject": "Your Project #2345",
@@ -68,8 +68,8 @@
 					"value": "client_number"
 				}
 			}
-		}
-	},
+		},
+	
 	"content": {
 		"type": "offer",
 		"qrcode": "bank://sepasinglepayment?",

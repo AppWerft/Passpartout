@@ -1,79 +1,205 @@
-var Moment=require("vendor/moment");
-Number.prototype.toPt= function() {
-return 72*this/2.504;
+var Moment = require('vendor/moment');
+
+Number.prototype.toPt = function() {
+	return this * 72 / 2.504;
 };
-var testTable= function(e) {
-var t=new (require("ti.jspdf"))("p","mm");
-t.addAutoTable(e);
-var a=t.autoTableEndPosY()-e.options.margin.top;
-return t=null,a;
+var testTable = function(options) {
+	var pdf = new (require('ti.jspdf'))('p', 'mm');
+	pdf.addAutoTable(options);
+	var h = pdf.autoTableEndPosY() - options.options.margin.top;
+	pdf = null;
+	return h;
 };
-module.exports= function(e) {
-var t=(new Date).getTime(), a=new (require("ti.jspdf"))("p","mm");
-a.internal.pageSize.height
-const o= {
-LEFT:25,RIGHT:25,BOTTOM:10
-};
-console.log(a.internal.pageSize.width-o.RIGHT),a.addImage(Ti.Filesystem.resourcesDirectory+"/assets/logo.jpg","JPEG",a.internal.pageSize.width-90,5,80,20),a.addText= function(e,t) {
-var o=t[0]>=0?parseFloat(t[0]):a.internal.pageSize.width+t[0], i=t[1]>=0?t[1]:a.internal.pageSize.height+t[1];
-return a.text(e,o,i)
-},a.addTextBox= function(e,t,o,i) {
-return a.addAutoTable({
-headers:[""],data:[[e]],options: {
-drawHeaderRow: function() {
-return !1
-},theme:"plain",margin: {
-top:o,left:t,right:a.internal.pageSize.width-t-i
-},styles: {
-valign:"top",overflow:"linebreak",columnWidth:"auto",cellPadding:0,rowHeight:0
-}
-}
-})
-};
-var i= {};
-try {
-i=JSON.parse(e)
-} catch(n) {
-return console.log(n),alert("This configuration is not valid JSON"),null
-}
-var r=Ti.Filesystem.getFile(Ti.Filesystem.resourcesDirectory,"model",i.model.type+"_template.json");
-if(!r.exists())
-	return alert("No template for "+i.model.type+"found"),null;
-var l=JSON.parse(r.read().getText()), s=i.model.metadata, d=i.model.printdata;
-switch(a.setProperties(s),i.model.type) {
-case"offer":
-const T=10.5;
-a.setFont(l.FONTFAMILY),a.setDrawColor(0),a.setFontType("normal"),a.setFontSize(7),a.addText(d.absender,l.ABSENDER),a.setFontSize(T),a.addText(d.kunde,l.KUNDE),a.addText(d.emailabsender,l.EMAILABSENDER),a.addText("Angebotsdatum:",l.ANGEBOT_DATUM.LABEL),a.addText(Moment().add(d.angebot_datum,"day").format("DD. MM. YYYY"),l.ANGEBOT_DATUM.TEXT),a.addText("Gültig bis:",l.ANGEBOT_BIS.LABEL),a.addText(Moment().add(d.angebot_bis,"day").format("DD. MM. YYYY"),l.ANGEBOT_BIS.TEXT),a.addText("Ansprechpartner:",l.ANGEBOT_KONTAKT.LABEL),a.addText(d.angebot_kontakt,l.ANGEBOT_KONTAKT.TEXT),a.addText("Telefon:",l.ANGEBOT_TELEFON.LABEL),a.addText(d.angebot_telefon,l.ANGEBOT_TELEFON.TEXT),a.addText("E-Mail:",l.ANGEBOT_EMAIL.LABEL),a.addText(d.angebot_email||"",l.ANGEBOT_EMAIL.TEXT),a.setFontType("bold"),a.setFontSize(18),a.addText(d.titel||"Angebot",l.TITEL),a.setFontSize(T),a.setFontType("normal");
-const E=5;
-var u=(a.internal.pageSize.width-o.LEFT-o.RIGHT)/E;
-a.setFontSize(7),a.setFontType("normal"),l.FUSS.forEach(function(e,t) {
-var i=t%E;
-row=Math.floor(t/E),a.addText(e,[o.LEFT+i*u,-row*E-5])
-}),a.setFontSize(T),a.setFontType("normal"),a.addTextBox(d.vortext,Math.abs(l.NACHTEXT[0]),Math.abs(l.VORTEXT[1])+10,a.internal.pageSize.width-Math.abs(l.NACHTEXT[0])-o.RIGHT);
-var m=a.autoTableEndPosY(), c=a.internal.pageSize.height-m-Math.abs(l.NACHTEXT[1]);
-console.log("availableHeight: "+c);
-var p=[];
-d.services.forEach(function(e) {
-var t=[];
-t.push(e.unit),t.push(e.text),t.push(e.units),t.push(e.amount+"  €"),t.push(e.amount*e.units+"  €"),p.push(t)
-});
-var g= {
-headers:["Einheit","Leistung","Anzahl","Betrag","Summe"],data:p,options: {
-theme:"plain",margin: {
-top:m+10,left:o.LEFT,right:o.RIGHT
-},styles: {
-valign:"top",overflow:"linebreak",columnWidth:"auto",cellPadding:0,rowHeight:0
-}
-}
-};
-g.options.createdCell= function(e,t) {
-t.column.dataKey>1&&(e.styles.halign="right")
-},g.options.createdHeaderCell= function(e,t) {
-e.styles.halign=t.column.dataKey>1?"right":"left"
-};
-var h=testTable(g);
-h>c&&a.addPage(),a.addAutoTable(g),a.addText(d.nachtext||"",l.NACHTEXT),a.addText(d.gruss||"",l.GRUSS)
-}
-var S="Rechnung_GK_"+Ti.App.Properties.getInt("nr",0), f=Ti.Filesystem.getFile(Ti.Filesystem.getTempDirectory(),S+".pdf");
-return a.save(f),console.log("Info: time for PDF creation: "+((new Date).getTime()-t)),f
+
+module.exports = function(modelStr) {
+	var start = new Date().getTime();
+	var PDF = new (require('ti.jspdf'))('p', 'mm');
+	/* Erweiterungen des PDF-Objektes: */
+	PDF.addText = function(text, coords) {
+		var x = coords[0] >= 0 ? parseFloat(coords[0]) : PDF.internal.pageSize.width + coords[0],
+		    y = coords[1] >= 0 ? coords[1] : PDF.internal.pageSize.height + coords[1];
+		return PDF.text(text, x, y);
+	};
+
+	PDF.addTextBox = function(text, x, y, width) {
+		return PDF.addAutoTable({
+			headers : [''],
+			data : [[text]],
+			options : {
+				drawHeaderRow : function() {
+					return false;
+				},
+				theme : 'plain',
+				margin : {
+					top : y,
+					left : x,
+					right : PDF.internal.pageSize.width - x - width
+				},
+				styles : {
+					valign : 'top',
+					overflow : 'linebreak',
+					columnWidth : 'auto',
+					cellPadding : 0,
+					rowHeight : 0
+				}
+			}
+		});
+	};
+	/* Ende der PDF-Erweiterungen */
+
+	var pageHeight = PDF.internal.pageSize.height;
+
+	/* Logo rechts oben: */
+	PDF.addImage(Ti.Filesystem.resourcesDirectory + '/assets/logo.jpg', 'JPEG', PDF.internal.pageSize.width - 90, 5, 80, 20);
+
+	var MODEL = {};
+	try {
+		MODEL = JSON.parse(modelStr);
+	} catch (E) {
+		console.log(E);
+		alert('This configuration is not valid JSON');
+		return null;
+	}
+	/* hier liegen die mAße usw: */
+	var templateFile = Ti.Filesystem.getFile(Ti.Filesystem.resourcesDirectory, 'model', 'ui_template.json');
+	if (!templateFile.exists()) {
+		alert('No template for ' + Model.model.type + 'found');
+		return null;
+	}
+	var UI = JSON.parse(templateFile.read().getText());
+
+	PDF.setProperties(MODEL.metadata);
+
+	/* Start rendering, setting defaults */
+	const BROTTEXT = 10.5;  /*dp */
+	PDF.setFont(UI.FONTFAMILY);
+	PDF.setDrawColor(0);
+	PDF.setFontType("normal");
+	
+	
+	
+	
+	
+	PDF.setFontSize(7);
+	PDF.addText(printdata.absender, TEMPLATE.ABSENDER);
+	PDF.setFontSize(BROTTEXT);
+	PDF.addText(printdata.kunde, TEMPLATE.KUNDE);
+	PDF.addText(printdata.emailabsender, TEMPLATE.EMAILABSENDER);
+
+	/* rechte Box */
+	PDF.addText("Angebotsdatum:", TEMPLATE.ANGEBOT_DATUM.LABEL);
+	PDF.addText(Moment().add(printdata.angebot_datum, 'day').format("DD. MM. YYYY"), TEMPLATE.ANGEBOT_DATUM.TEXT);
+
+	PDF.addText("Gültig bis:", TEMPLATE.ANGEBOT_BIS.LABEL);
+	PDF.addText(Moment().add(printdata.angebot_bis, 'day').format("DD. MM. YYYY"), TEMPLATE.ANGEBOT_BIS.TEXT);
+
+	PDF.addText("Ansprechpartner:", TEMPLATE.ANGEBOT_KONTAKT.LABEL);
+	PDF.addText(printdata.angebot_kontakt, TEMPLATE.ANGEBOT_KONTAKT.TEXT);
+
+	PDF.addText("Telefon:", TEMPLATE.ANGEBOT_TELEFON.LABEL);
+	PDF.addText(printdata.angebot_telefon, TEMPLATE.ANGEBOT_TELEFON.TEXT);
+
+	PDF.addText("E-Mail:", TEMPLATE.ANGEBOT_EMAIL.LABEL);
+	PDF.addText(printdata.angebot_email || '', TEMPLATE.ANGEBOT_EMAIL.TEXT);
+
+	PDF.setFontType("bold");
+	PDF.setFontSize(18);
+	PDF.addText(printdata.titel || 'Angebot', TEMPLATE.TITEL);
+
+	PDF.setFontSize(BROTTEXT);
+	PDF.setFontType("normal");
+	/* Rendering of footer */
+	const COLS = 5;
+	var colspan = (PDF.internal.pageSize.width - PADDING.LEFT - PADDING.RIGHT) / COLS;
+	PDF.setFontSize(7);
+	PDF.setFontType("normal");
+
+	TEMPLATE.FUSS.forEach(function(text, i) {
+		var col = i % COLS;
+		row = Math.floor(i / COLS);
+		PDF.addText(text, [PADDING.LEFT + col * colspan, -row * COLS - 5]);
+	});
+	/* now we have to decide if the tabel fits (plus nachttext and gruss) or not */
+	PDF.setFontSize(BROTTEXT);
+	PDF.setFontType("normal");
+	/* we add vortext with variable height: */
+	PDF.addTextBox(printdata.vortext, Math.abs(TEMPLATE.NACHTEXT[0]), Math.abs(TEMPLATE.VORTEXT[1]) + 10, PDF.internal.pageSize.width - Math.abs(TEMPLATE.NACHTEXT[0]) - PADDING.RIGHT);
+	/* now we get the height of the adding above */
+	var y = PDF.autoTableEndPosY();
+	/* and we know  now the available height for table */
+	var availableHeight = PDF.internal.pageSize.height - y - Math.abs(TEMPLATE.NACHTEXT[1]);
+	console.log('availableHeight: ' + availableHeight);
+	var rows = [];
+	/* first we collect all rows which shows data */
+	printdata.services.forEach(function(s) {
+		var cells = [];
+		cells.push(s.unit);
+		cells.push(s.text);
+		cells.push(s.units);
+		cells.push(s.amount + '  €');
+		cells.push((s.amount * s.units) + '  €');
+		rows.push(cells);
+	});
+	/* now we build the table */
+	var options = {
+		headers : ['Einheit', 'Leistung', 'Anzahl', 'Betrag', 'Summe'],
+		data : rows,
+		options : {
+			theme : 'plain',
+			margin : {
+				top : y + 10,
+				left : PADDING.LEFT,
+				right : PADDING.RIGHT
+			},
+			styles : {
+				valign : 'top',
+				overflow : 'linebreak',
+				columnWidth : 'auto',
+				cellPadding : 0,
+				rowHeight : 0
+			}
+		}
+	};
+	/* hooks for cell rendering */
+	options.options.createdCell = function(cell, data) {
+		if (data.column.dataKey > 1)
+			cell.styles.halign = 'right';
+	};
+	options.options.createdHeaderCell = function(cell, data) {
+		if (data.column.dataKey > 1)
+			cell.styles.halign = 'right';
+		else
+			cell.styles.halign = 'left';
+	};
+	/* and test the options of table in test pdf document */
+	var h = testTable(options);
+	/* first case: it fits */
+	if (h > availableHeight) {
+		PDF.addPage();
+	}
+	PDF.addAutoTable(options);
+	PDF.addText(printdata.nachtext || '', TEMPLATE.NACHTEXT);
+	PDF.addText(printdata.gruss || '', TEMPLATE.GRUSS);
+
+	/*	PDF.addQRCode({
+	qr : {
+	data : 'http://github.com/',
+	ec : 'M'
+	},
+	x : 25,
+	padding : 0,
+	y : PDF.autoTableEndPosY(),
+	width : 10
+	});*/
+
+	//PDF.addText(printdata.nachtext || '', TEMPLATE.NACHTEXT);
+	//PDF.addText(printdata.gruss || '', TEMPLATE.GRUSS);
+	break;
+	// end of offer type
+	s
+	var timeStampName = 'Rechnung_GK_' + Ti.App.Properties.getInt('nr', 0);
+	var _tempFile = Ti.Filesystem.getFile(Ti.Filesystem.getTempDirectory(), timeStampName + '.pdf');
+	PDF.save(_tempFile);
+	console.log('Info: time for PDF creation: ' + (new Date().getTime() - start));
+	return _tempFile;
 };

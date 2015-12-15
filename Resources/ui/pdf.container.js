@@ -1,1 +1,149 @@
-var GLOBALS=require("GLOBALS");module.exports=function(){function t(){var t=Ti.Filesystem.getFile(Ti.Filesystem.resourcesDirectory,"model","offer_model.json").read().text;Ti.App.Properties.setString("MODEL",t)}var e=Ti.UI.createView({backgroundColor:"white"});Ti.App.Properties.hasProperty("MODEL")||t();var o=Ti.App.Properties.getString("MODEL"),n=Ti.UI.createTextArea({bottom:50,value:o,top:10,font:{fontFamily:"monospace",fontSize:16},color:"black",width:Ti.UI.FILL,height:Ti.UI.FILL});e.add(n);var r=Ti.UI.createView({bottom:0,height:50,layout:"horizontal"});e.add(r);var i=Ti.UI.createButton({left:10,title:"Show PDF",height:50,width:"45%"});r.add(i);var s=Ti.UI.createButton({left:10,width:"45%",title:"Mailing of PDF"});return r.add(s),i.addEventListener("click",function(){try{JSON.parse(n.getValue()),Ti.App.Properties.setString("MODEL",n.getValue())}catch(e){t()}var o=require("controls/billgenerator")(n.getValue());if(o){var r=Ti.UI.createWindow({backgroundColor:"#fc0",height:Ti.UI.FILL,top:20,fullscreen:!1,title:"PDF Preview",width:Ti.UI.FILL});if(GLOBALS.isAndroid){var i=require("com.mykingdom.mupdf").createView({file:o});i.setScrollingDirection(require("com.mykingdom.mupdf").DIRECTION_VERTICAL),r.add(i),r.addEventListener("open",function(){r.activity.actionBar.hide()}),r.open()}else if(GLOBALS.isIOS){r.open();var s=Ti.UI.createButton({title:"PDF close",height:50,top:20,right:20});s.addEventListener("click",function(){r.close()});var a=Ti.UI.createWebView({backgroundColor:"#eee",url:o.nativePath,height:Ti.UI.FILL,width:Ti.UI.FILL});r.add(a),r.add(s)}}}),s.addEventListener("click",function(){Ti.App.Properties.setString("MODEL",n.getValue());var t=Ti.App.Properties.getInt("nr",0);const e=["rs@hamburger-appwerft.de"],o="New invoice №"+t,r="Vielen Dank für den Auftrag, den ich hoffentlich zu Ihrer allergrößten Zugfriedenheit „erledigt“ habe … Anbei die entsprechenden Bemerkungen, die ich geflissentlich anbiete";var i=require("controls/billgenerator")(n.getValue());if(i){if(GLOBALS.isIOS){var s=Ti.UI.createEmailDialog();s.isSupported()?(s.subject=o,s.toRecipients=e,s.messageBody=r,s.addAttachment(i),s.addEventListener("complete",function(){console.log("Info: PDF successful sendet")}),s.open()):console.log("Info: on this device is not mail app configured")}if(GLOBALS.isAndroid){var a=Ti.Android.createIntent({action:Ti.Android.ACTION_SEND,packageName:"com.google.android.gm",type:"application/octet-stream"});a.putExtra(Ti.Android.EXTRA_EMAIL,e),a.putExtra(Ti.Android.EXTRA_SUBJECT,o),a.putExtra(Ti.Android.EXTRA_TEXT,r),a.putExtraUri(Ti.Android.EXTRA_STREAM,i.nativePath),Ti.Android.currentActivity.startActivityForResult(a,function(){console.log(_e)})}Ti.App.Properties.setInt("nr",t+1)}}),e};
+var GLOBALS = require('GLOBALS');
+
+module.exports = function() {
+	function presetModel() {
+		var json = Ti.Filesystem.getFile(Ti.Filesystem.resourcesDirectory, 'MODEL2', 'model_template.json').read().text;
+		Ti.App.Properties.setString('MODEL2', json);
+	}
+
+	var self = Ti.UI.createView({
+		backgroundColor : 'white'
+	});
+	if (!Ti.App.Properties.hasProperty('MODEL2')) {
+		presetModel();
+	}
+	var json = Ti.App.Properties.getString('MODEL2');
+	var jsonField = Ti.UI.createTextArea({
+		bottom : 50,
+		value : json,
+		top : 10,
+		font : {
+			fontFamily : 'monospace',
+			fontSize : 16
+		},
+		color : 'black',
+		width : Ti.UI.FILL,
+		height : Ti.UI.FILL
+	});
+	self.add(jsonField);
+	var buttonBar = Ti.UI.createView({
+		bottom : 0,
+		height : 50,
+		layout : 'horizontal'
+	});
+	self.add(buttonBar);
+	var button1 = Ti.UI.createButton({
+		left : 10,
+		title : 'Show PDF',
+		height : 50,
+		width : '45%'
+	});
+	buttonBar.add(button1);
+	var button2 = Ti.UI.createButton({
+		left : 10,
+		width : '45%',
+		title : 'Mailing of PDF'
+	});
+	buttonBar.add(button2);
+
+	button1.addEventListener('click', function() {
+		try {
+			JSON.parse(jsonField.getValue());
+			Ti.App.Properties.setString('MODEL2', jsonField.getValue());
+		} catch(E) {
+			presetModel();
+		};
+		var pdfFile = require('controls/billgenerator')(jsonField.getValue());
+		if (pdfFile) {
+			var winPDF = Ti.UI.createWindow({
+				backgroundColor : '#fc0',
+				height : Ti.UI.FILL,
+				top : 20,
+				fullscreen : false,
+				title : 'PDF Preview',
+				width : Ti.UI.FILL
+			});
+			if (GLOBALS.isAndroid) {
+				var pdfView = require("com.mykingdom.mupdf").createView({
+					file : pdfFile
+				});
+				pdfView.setScrollingDirection(require("com.mykingdom.mupdf").DIRECTION_VERTICAL);
+				winPDF.add(pdfView);
+				winPDF.addEventListener('open', function() {
+					winPDF.activity.actionBar.hide();
+				});
+				winPDF.open();
+
+			} else if (GLOBALS.isIOS) {
+				winPDF.open();
+				var btnClose = Ti.UI.createButton({
+					title : 'PDF close',
+					height : 50,
+					top : 20,
+					right : 20
+				});
+				btnClose.addEventListener('click', function(e) {
+					winPDF.close();
+				});
+				//winPDF.setRightNavButton(btnClose);
+				var pdfview = Ti.UI.createWebView({
+					backgroundColor : '#eee',
+					url : pdfFile.nativePath,
+					height : Ti.UI.FILL,
+					width : Ti.UI.FILL
+				});
+
+				winPDF.add(pdfview);
+				winPDF.add(btnClose);
+			}
+		}
+	});
+	button2.addEventListener('click', function() {
+		Ti.App.Properties.setString('MODEL2', jsonField.getValue());
+		var nr = Ti.App.Properties.getInt('nr', 0);
+		const EMAIL = ['rs@hamburger-appwerft.de'],
+		    BCC = ['rs@hamburger-appwerft.de'],
+		    SUBJECT = 'New invoice №' + nr,
+		    BODY = "Vielen Dank für den Auftrag, den ich hoffentlich zu Ihrer allergrößten Zugfriedenheit „erledigt“ habe … Anbei die entsprechenden Bemerkungen, die ich geflissentlich anbiete";
+		var pdfFile = require('controls/billgenerator')(jsonField.getValue());
+		if (pdfFile) {
+			if (GLOBALS.isIOS) {
+				var emailDialog = Ti.UI.createEmailDialog();
+				if (emailDialog.isSupported()) {
+					emailDialog.subject = SUBJECT;
+					emailDialog.toRecipients = EMAIL;
+					emailDialog.messageBody = BODY;
+					emailDialog.addAttachment(pdfFile);
+					emailDialog.addEventListener('complete', function() {
+						console.log('Info: PDF successful sendet');
+					});
+					emailDialog.open();
+				} else {
+					console.log('Info: on this device is not mail app configured');
+				}
+			}
+			if (GLOBALS.isAndroid) {
+				var intent = Ti.Android.createIntent({
+					action : Ti.Android.ACTION_SEND,
+					packageName : 'com.google.android.gm',
+					type : 'application/octet-stream',
+				});
+				// https://gist.github.com/adumont/8040008
+				intent.putExtra(Ti.Android.EXTRA_EMAIL, EMAIL);
+				intent.putExtra(Ti.Android.EXTRA_SUBJECT, SUBJECT);
+				intent.putExtra(Ti.Android.EXTRA_TEXT, BODY);
+				intent.putExtraUri(Ti.Android.EXTRA_STREAM, pdfFile.nativePath);
+				Ti.Android.currentActivity.startActivityForResult(intent, function(e) {
+					console.log(_e);
+				});
+			}
+			Ti.App.Properties.setInt('nr', nr + 1);
+		}
+
+	});
+	return self;
+};
+/*
+ https://gist.github.com/dawsontoth/832488
+
+ * */
