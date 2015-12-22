@@ -71,57 +71,18 @@ module.exports = function(modelStr) {
 	PDF.setProperties(MODEL.metadata);
 
 	/* Start rendering, setting defaults */
-	const BROTTEXT = 10.5;  /*dp */
-	PDF.setFont(UI.FONTFAMILY);
-	PDF.setDrawColor(0);
-	PDF.setFontType("normal");
+	PDF.setFont(UI.fontfamily);
+	PDF.setDrawColor(UI.color);
+	PDF.setFontType(UI.fonttype);
+	
+	require('controls/adressfenster').add(PDF,MODEL,UI);
+	require('controls/provider').add(PDF,MODEL,UI);
+	/* das war der Kopfbogen, nun der Inhalt: 
+	 */
 	
 	
 	
-	
-	
-	PDF.setFontSize(7);
-	PDF.addText(printdata.absender, TEMPLATE.ABSENDER);
-	PDF.setFontSize(BROTTEXT);
-	PDF.addText(printdata.kunde, TEMPLATE.KUNDE);
-	PDF.addText(printdata.emailabsender, TEMPLATE.EMAILABSENDER);
-
-	/* rechte Box */
-	PDF.addText("Angebotsdatum:", TEMPLATE.ANGEBOT_DATUM.LABEL);
-	PDF.addText(Moment().add(printdata.angebot_datum, 'day').format("DD. MM. YYYY"), TEMPLATE.ANGEBOT_DATUM.TEXT);
-
-	PDF.addText("Gültig bis:", TEMPLATE.ANGEBOT_BIS.LABEL);
-	PDF.addText(Moment().add(printdata.angebot_bis, 'day').format("DD. MM. YYYY"), TEMPLATE.ANGEBOT_BIS.TEXT);
-
-	PDF.addText("Ansprechpartner:", TEMPLATE.ANGEBOT_KONTAKT.LABEL);
-	PDF.addText(printdata.angebot_kontakt, TEMPLATE.ANGEBOT_KONTAKT.TEXT);
-
-	PDF.addText("Telefon:", TEMPLATE.ANGEBOT_TELEFON.LABEL);
-	PDF.addText(printdata.angebot_telefon, TEMPLATE.ANGEBOT_TELEFON.TEXT);
-
-	PDF.addText("E-Mail:", TEMPLATE.ANGEBOT_EMAIL.LABEL);
-	PDF.addText(printdata.angebot_email || '', TEMPLATE.ANGEBOT_EMAIL.TEXT);
-
-	PDF.setFontType("bold");
-	PDF.setFontSize(18);
-	PDF.addText(printdata.titel || 'Angebot', TEMPLATE.TITEL);
-
-	PDF.setFontSize(BROTTEXT);
-	PDF.setFontType("normal");
-	/* Rendering of footer */
-	const COLS = 5;
-	var colspan = (PDF.internal.pageSize.width - PADDING.LEFT - PADDING.RIGHT) / COLS;
-	PDF.setFontSize(7);
-	PDF.setFontType("normal");
-
-	TEMPLATE.FUSS.forEach(function(text, i) {
-		var col = i % COLS;
-		row = Math.floor(i / COLS);
-		PDF.addText(text, [PADDING.LEFT + col * colspan, -row * COLS - 5]);
-	});
-	/* now we have to decide if the tabel fits (plus nachttext and gruss) or not */
-	PDF.setFontSize(BROTTEXT);
-	PDF.setFontType("normal");
+		PDF.setFontType("normal");
 	/* we add vortext with variable height: */
 	PDF.addTextBox(printdata.vortext, Math.abs(TEMPLATE.NACHTEXT[0]), Math.abs(TEMPLATE.VORTEXT[1]) + 10, PDF.internal.pageSize.width - Math.abs(TEMPLATE.NACHTEXT[0]) - PADDING.RIGHT);
 	/* now we get the height of the adding above */

@@ -1,4 +1,4 @@
-module.exports = function(PDF,MODEL,UI){
+exports.add = function(PDF,MODEL,UI){
 	PDF.setFontSize(7);
 	PDF.addText(MODEL.provider.sender, UI.provider.sender);
 	PDF.setFontSize(UI.fontsize);

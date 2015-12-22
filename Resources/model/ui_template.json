@@ -2,6 +2,8 @@
     "id": "2015/12",
     "fontfamily": "Helvetica",
     "fontsize": "10.5",
+    "fonttype" : "normal",
+    "color" : "0",
     "provider": {
         "sender": {
             "x": 25,

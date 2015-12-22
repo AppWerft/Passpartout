@@ -1,75 +1,75 @@
 {
 	"id": "2015/12",
-	
-		"metadata": {
-			"title": "Offer",
-			"subject": "Your Project #2345",
-			"author": "John Doe",
-			"keywords": "one, two, three",
-			"creator": "Düzgün Jildíz"
+
+	"metadata": {
+		"title": "Offer",
+		"subject": "Your Project #2345",
+		"author": "John Doe",
+		"keywords": "one, two, three",
+		"creator": "Düzgün Jildíz"
+	},
+	"provider": {
+		"sender": "Intellinet, Augustinusstraße 9b",
+		"address": {
+			"company": "Intellinet Beratungs- und Technologie GmbH",
+			"street": "Augustinusstraße 9b",
+			"zip": "50256",
+			"city": "Frechen-Großkönigsdorf"
 		},
-		"provider": {
-			"sender": "Intellinet, Augustinusstraße 9b",
-			"address": {
-				"company": "Intellinet Beratungs- und Technologie GmbH",
-				"street": "Augustinusstraße 9b",
-				"zip": "50256",
-				"city": "Frechen-Großkönigsdorf"
-			},
-			"email": {
-				"label": "eMail:",
-				"value": "klaus.dieter@musterfirma.de"
-			},
-			"web": {
-				"label": "Internet:",
-				"value": "musterfirma.de"
-			},
-			"phone": {
-				"label": "Telefon:",
-				"value": "02234 91133-12"
-			},
-			"fax": {
-				"label": "Telefax:",
-				"value": "02234 91133-12"
-			},
-			"cto": {
-				"label": "Geschäftsführer:",
-				"value": "HP OLbrück"
-			},
-			"contact_name": {
-				"label": "Ansprechpartner:",
-				"value": "Hubert Meyer"
-			},
-			"account": [
-				{
-					"label": "Kreditinstitut:",
-					"value": "HASPA"
-				}, {
-					"label": "IBAN",
-					"value": "DE345678902345678"
-				}, {
-					"label": "BIC",
-					"value": "ABCDE"
-				}
-			],
-			"legal_form": {
-				"label": "Amtsgericht Köln",
-				"value": "HRB 58345"
+		"email": {
+			"label": "eMail:",
+			"value": "klaus.dieter@musterfirma.de"
+		},
+		"web": {
+			"label": "Internet:",
+			"value": "musterfirma.de"
+		},
+		"phone": {
+			"label": "Telefon:",
+			"value": "02234 91133-12"
+		},
+		"fax": {
+			"label": "Telefax:",
+			"value": "02234 91133-12"
+		},
+		"cto": {
+			"label": "Geschäftsführer:",
+			"value": "HP OLbrück"
+		},
+		"contact_name": {
+			"label": "Ansprechpartner:",
+			"value": "Hubert Meyer"
+		},
+		"account": [
+			{
+				"label": "Kreditinstitut:",
+				"value": "HASPA"
+			}, {
+				"label": "IBAN",
+				"value": "DE345678902345678"
+			}, {
+				"label": "BIC",
+				"value": "ABCDE"
 			}
-		},
-		"client": {
-			"address": {
-				"company": "",
-				"street": "",
-				"zip": "",
-				"city": "",
-				"client_number": {
-					"label": "Kundennummer:",
-					"value": "client_number"
-				}
+		],
+		"legal_form": {
+			"label": "Amtsgericht Köln",
+			"value": "HRB 58345"
+		}
+	},
+	"client": {
+		"address": {
+			"company": "",
+			"street": "",
+			"zip": "",
+			"city": "",
+			"client_number": {
+				"label": "Kundennummer:",
+				"value": "client_number"
 			}
-		},
-	
+		}
+	},
+
 	"content": {
 		"type": "offer",
 		"qrcode": "bank://sepasinglepayment?",
