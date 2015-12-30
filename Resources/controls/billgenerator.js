@@ -1,3 +1,5 @@
+const X =0, Y=1;
+
 var Moment = require('vendor/moment');
 
 Number.prototype.toPt = function() {
@@ -74,25 +76,22 @@ module.exports = function(modelStr) {
 	PDF.setFont(UI.fontfamily);
 	PDF.setDrawColor(UI.color);
 	PDF.setFontType(UI.fonttype);
-	
-	require('controls/adressfenster').add(PDF,MODEL,UI);
-	require('controls/provider').add(PDF,MODEL,UI);
-	/* das war der Kopfbogen, nun der Inhalt: 
-	 */
-	
-	
-	
-		PDF.setFontType("normal");
+
+	require('controls/adressfenster').add(PDF, MODEL, UI);
+	require('controls/provider').add(PDF, MODEL, UI);
+	/* das war der Kopfbogen, nun der Inhalt: */
+
+	PDF.setFontType(UI.fonttype);
 	/* we add vortext with variable height: */
-	PDF.addTextBox(printdata.vortext, Math.abs(TEMPLATE.NACHTEXT[0]), Math.abs(TEMPLATE.VORTEXT[1]) + 10, PDF.internal.pageSize.width - Math.abs(TEMPLATE.NACHTEXT[0]) - PADDING.RIGHT);
+	var ypos = require('controls/pretext').add(PDF, MODEL, UI);
 	/* now we get the height of the adding above */
-	var y = PDF.autoTableEndPosY();
+
 	/* and we know  now the available height for table */
-	var availableHeight = PDF.internal.pageSize.height - y - Math.abs(TEMPLATE.NACHTEXT[1]);
+	var availableHeight = PDF.internal.pageSize.height - ypos - Math.abs(UI.content.posttext[Y]);
 	console.log('availableHeight: ' + availableHeight);
 	var rows = [];
 	/* first we collect all rows which shows data */
-	printdata.services.forEach(function(s) {
+	/*printdata.services.forEach(function(s) {
 		var cells = [];
 		cells.push(s.unit);
 		cells.push(s.text);
@@ -100,7 +99,7 @@ module.exports = function(modelStr) {
 		cells.push(s.amount + '  €');
 		cells.push((s.amount * s.units) + '  €');
 		rows.push(cells);
-	});
+	});*/
 	/* now we build the table */
 	var options = {
 		headers : ['Einheit', 'Leistung', 'Anzahl', 'Betrag', 'Summe'],
@@ -139,8 +138,8 @@ module.exports = function(modelStr) {
 		PDF.addPage();
 	}
 	PDF.addAutoTable(options);
-	PDF.addText(printdata.nachtext || '', TEMPLATE.NACHTEXT);
-	PDF.addText(printdata.gruss || '', TEMPLATE.GRUSS);
+	//PDF.addText(printdata.nachtext || '', TEMPLATE.NACHTEXT);
+	//PDF.addText(printdata.gruss || '', TEMPLATE.GRUSS);
 
 	/*	PDF.addQRCode({
 	qr : {
@@ -155,9 +154,8 @@ module.exports = function(modelStr) {
 
 	//PDF.addText(printdata.nachtext || '', TEMPLATE.NACHTEXT);
 	//PDF.addText(printdata.gruss || '', TEMPLATE.GRUSS);
-	break;
 	// end of offer type
-	s
+
 	var timeStampName = 'Rechnung_GK_' + Ti.App.Properties.getInt('nr', 0);
 	var _tempFile = Ti.Filesystem.getFile(Ti.Filesystem.getTempDirectory(), timeStampName + '.pdf');
 	PDF.save(_tempFile);

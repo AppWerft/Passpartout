@@ -2,7 +2,7 @@ var GLOBALS = require('GLOBALS');
 
 module.exports = function() {
 	function presetModel() {
-		var json = Ti.Filesystem.getFile(Ti.Filesystem.resourcesDirectory, 'MODEL2', 'model_template.json').read().text;
+		var json = Ti.Filesystem.getFile(Ti.Filesystem.resourcesDirectory, 'model', 'model_template.json').read().text;
 		Ti.App.Properties.setString('MODEL2', json);
 	}
 
