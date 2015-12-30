@@ -1,6 +1,7 @@
-const X =0, Y=1;
-exports.add = function(PDF,MODEL,UI){
-
-	PDF.addTextBox(MODEL.content.pretext, Math.abs(UI.content.pretext[Y]), Math.abs(UI.content.pretext[Y]) + 10, PDF.internal.pageSize.width - Math.abs(UI.content.posttext[Y]));
+exports.add = function(PDF, MODEL, UI) {
+	console.log(UI.content.pretext);
+	PDF.setFontSize(UI.fontsize);
+	
+	PDF.addTextBox(MODEL.content.pretext, Math.abs(UI.content.pretext[0]), Math.abs(UI.content.pretext[1]),UI.content.pretext[2] );
 	return PDF.autoTableEndPosY();
 };

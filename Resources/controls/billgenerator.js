@@ -1,4 +1,4 @@
-const X =0, Y=1;
+const X =0, Y=1, PADDING=10;
 
 var Moment = require('vendor/moment');
 
@@ -16,13 +16,15 @@ var testTable = function(options) {
 module.exports = function(modelStr) {
 	var start = new Date().getTime();
 	var PDF = new (require('ti.jspdf'))('p', 'mm');
+	var pageHeight = PDF.internal.pageSize.height;
+	PDF.setFillColor(200,10,60);
 	/* Erweiterungen des PDF-Objektes: */
 	PDF.addText = function(text, coords) {
 		var x = coords[0] >= 0 ? parseFloat(coords[0]) : PDF.internal.pageSize.width + coords[0],
 		    y = coords[1] >= 0 ? coords[1] : PDF.internal.pageSize.height + coords[1];
+		console.log(x + ' ≈ ' + y + ' ≈ ',text);    
 		return PDF.text(text, x, y);
 	};
-
 	PDF.addTextBox = function(text, x, y, width) {
 		return PDF.addAutoTable({
 			headers : [''],
@@ -49,7 +51,7 @@ module.exports = function(modelStr) {
 	};
 	/* Ende der PDF-Erweiterungen */
 
-	var pageHeight = PDF.internal.pageSize.height;
+	
 
 	/* Logo rechts oben: */
 	PDF.addImage(Ti.Filesystem.resourcesDirectory + '/assets/logo.jpg', 'JPEG', PDF.internal.pageSize.width - 90, 5, 80, 20);
@@ -62,7 +64,7 @@ module.exports = function(modelStr) {
 		alert('This configuration is not valid JSON');
 		return null;
 	}
-	/* hier liegen die mAße usw: */
+	/* hier liegen die Maße usw: */
 	var templateFile = Ti.Filesystem.getFile(Ti.Filesystem.resourcesDirectory, 'model', 'ui_template.json');
 	if (!templateFile.exists()) {
 		alert('No template for ' + Model.model.type + 'found');
@@ -74,15 +76,17 @@ module.exports = function(modelStr) {
 
 	/* Start rendering, setting defaults */
 	PDF.setFont(UI.fontfamily);
-	PDF.setDrawColor(UI.color);
-	PDF.setFontType(UI.fonttype);
-
+	PDF.setDrawColor(200,100,100);
+	
+	
 	require('controls/adressfenster').add(PDF, MODEL, UI);
+	
 	require('controls/provider').add(PDF, MODEL, UI);
 	/* das war der Kopfbogen, nun der Inhalt: */
 
-	PDF.setFontType(UI.fonttype);
 	/* we add vortext with variable height: */
+	console.log('Vorspann');
+	
 	var ypos = require('controls/pretext').add(PDF, MODEL, UI);
 	/* now we get the height of the adding above */
 
@@ -107,7 +111,7 @@ module.exports = function(modelStr) {
 		options : {
 			theme : 'plain',
 			margin : {
-				top : y + 10,
+				top : ypos + 10,
 				left : PADDING.LEFT,
 				right : PADDING.RIGHT
 			},

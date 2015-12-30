@@ -59,14 +59,10 @@
 	},
 	"client": {
 		"address": {
-			"company": "",
-			"street": "",
-			"zip": "",
-			"city": "",
-			"client_number": {
-				"label": "Kundennummer:",
-				"value": "client_number"
-			}
+			"company": "Hamburger Appwerft",
+			"street": "Rothenbaumchaussee 19",
+			"zip": "20147",
+			"city": "Hamburg"
 		}
 	},
 

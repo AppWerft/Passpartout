@@ -1,81 +1,29 @@
 {
     "id": "2015/12",
     "fontfamily": "Helvetica",
-    "fontsize": "10.5",
+    "fontsize": "10",
+    "smallfontsize": "7",
     "fonttype" : "normal",
-    "color" : "0",
+    "padding-left" : 25,
+    "padding-right" : 25,
+    "color" : 0,
     "provider": {
-        "sender": {
-            "x": 25,
-            "y": 50,
-            "size": 11,
-            "pages": [
-                1,
-                2,
-                3
-            ]
-        },
+        "sender": [25,50],
+        
         "address": {
-            "company": {
-                "x": 158,
-                "y": 50,
-                "pages": [
-                    1
-                ]
-            },
-            "street": {
-                "x": 158,
-                "y": 60,
-                "pages": [
-                    1
-                ]
-            },
-            "zip": {
-                "x": 158,
-                "y": 70,
-                "pages": [
-                    1
-                ]
-            },
-            "city": {
-                "x": 168,
-                "y": 70,
-                "pages": [
-                    1
-                ]
-            }
+            "company": [158,50],
+            "street": [158,60],
+            "zip": [158,70],
+            "city": [168,70]
         },
         "phone": {
-            "label": {
-                "x": 158,
-                "y": 80,
-                "pages": [
-                    1
-                ]
-            },
-            "value": {
-                "x": 170,
-                "y": 80,
-                "pages": [
-                    1
-                ]
-            }
+            "label": [158,80],
+            "value": [170,80]
+            
         },
         "fax": {
-            "label": {
-                "x": 158,
-                "y": 90,
-                "pages": [
-                    1
-                ]
-            },
-            "value": {
-                "x": 170,
-                "y": 90,
-                "pages": [
-                    1
-                ]
-            }
+            "label": [158,90],
+            "value": [170,90]
         },
         "email": {
             "label": "eMail:",
@@ -114,14 +62,10 @@
     },
     "client": {
         "address": {
-            "company": "",
-            "street": "",
-            "zip": "",
-            "city": "",
-            "client_number": {
-                "label": "Kundennummer:",
-                "value": "client_number"
-            }
+            "company": [25,55],
+            "street": [25,61],
+            "zip": [25,67],
+            "city": [35,67]
         }
     },
     "content": {
@@ -143,20 +87,9 @@
             "label": "Unsere eMail:",
             "value": ""
         },
-        "title": {
-            "x": 25,
-            "y": 150,
-            "w": 120
-        },
-        "pretext": {
-            "x": 25,
-            "y": 160,
-            "w": 120
-        },
-        "posttext": {
-            "x": 25,
-            "y": -60
-        },
+        "title": [25,150],
+        "pretext": [25,120,160],
+        "posttext": [25,-60,160],
         "services": {
             "x": 25,
             "width": 120,
