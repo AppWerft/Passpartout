@@ -1,6 +1,5 @@
 {
 	"id": "2015/12",
-
 	"metadata": {
 		"title": "Offer",
 		"subject": "Your Project #2345",
@@ -65,7 +64,6 @@
 			"city": "Hamburg"
 		}
 	},
-
 	"content": {
 		"type": "offer",
 		"qrcode": "bank://sepasinglepayment?",
@@ -89,11 +87,18 @@
 		"pretext": "Sehr geehrte Damen und Herren,\n\nherzlichen Dank für Ihre Anfrage. Gerne unterbreiten wir Ihnen hiermit folgendes Angebot:",
 		"posttext": "Wir würden uns sehr freuen, wenn unser Angebot Ihre Zustimmung findet.\nSie haben Fragen oder wünschen weitere Informationen? Rufen Sie uns an – wir sind für Sie da.",
 		"services": {
-			"header": ["Position", "Leistung", "Einheit", "Einzelpreis", "Gesamtpreis"],
-			"rows": [["1", "Kalkulation", "2", "47,00 €", "94,00 €"],["2", "Kalkulation", "2", "47,00 €", "94,00 €"]
+			"headers": ["Position", "Leistung", "Einheit", "Einzelpreis", "Gesamtpreis"],
+			"rows": [
+				["1", "Kalkulation", "2", "47,00 €", "94,00 €"],["1", "Kalkulation", "2", "47,00 €", "94,00 €"],
+				["1", "Kalkulation", "2", "47,00 €", "94,00 €"],["1", "Kalkulation", "2", "47,00 €", "94,00 €"],
+				["1", "Kalkulation", "2", "47,00 €", "94,00 €"],["1", "Kalkulation", "2", "47,00 €", "94,00 €"],
+				["1", "Kalkulation", "2", "47,00 €", "94,00 €"],["1", "Kalkulation", "2", "47,00 €", "94,00 €"],
+				["2", "Kalkulation", "2", "47,00 €", "94,00 €"],["1", "Kalkulation", "2", "47,00 €", "94,00 €"],
+				["1", "Kalkulation", "2", "47,00 €", "94,00 €"],["1", "Kalkulation", "2", "47,00 €", "94,00 €"],
+				["1", "Kalkulation", "2", "47,00 €", "94,00 €"],["1", "Kalkulation", "2", "47,00 €", "94,00 €"],
+				["1", "Kalkulation", "2", "47,00 €", "94,00 €"],["1", "Kalkulation", "2", "47,00 €", "94,00 €"],
+				["1", "Kalkulation", "2", "47,00 €", "94,00 €"],["2", "Kalkulation", "2", "47,00 €", "94,00 €"]
 			]
 		}
 	}
 }
-
-

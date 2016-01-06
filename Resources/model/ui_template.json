@@ -89,7 +89,7 @@
         },
         "title": [25,150],
         "pretext": [25,120,160],
-        "posttext": [25,-60,160],
+        "posttext": [25,10,160],
         "services": {
             "x": 25,
             "width": 120,

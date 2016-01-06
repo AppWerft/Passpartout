@@ -2,20 +2,27 @@ var GLOBALS = require('GLOBALS');
 
 module.exports = function() {
 	function presetModel() {
-		var json = Ti.Filesystem.getFile(Ti.Filesystem.resourcesDirectory, 'model', 'model_template.json').read().text;
-		Ti.App.Properties.setString('MODEL2', json);
+		Ti.App.Properties.setString('MODEL2', Ti.Filesystem.getFile(Ti.Filesystem.resourcesDirectory, 'model', 'model_template.json').read().text);
+	}
+
+	function presetUI() {
+		Ti.App.Properties.setString('UI2', Ti.Filesystem.getFile(Ti.Filesystem.resourcesDirectory, 'model', 'ui_template.json').read().text);
 	}
 
 	var self = Ti.UI.createView({
-		backgroundColor : 'white'
+		backgroundColor : 'white',
 	});
 	if (!Ti.App.Properties.hasProperty('MODEL2')) {
 		presetModel();
 	}
-	var json = Ti.App.Properties.getString('MODEL2');
-	var jsonField = Ti.UI.createTextArea({
-		bottom : 50,
-		value : json,
+	if (!Ti.App.Properties.hasProperty('UI2')) {
+		presetUI();
+	}
+	var model = Ti.App.Properties.getString('MODEL2');
+	var ui = Ti.App.Properties.getString('UI2');
+
+	var ModelField = Ti.UI.createTextArea({
+		value : model,
 		top : 10,
 		font : {
 			fontFamily : 'monospace',
@@ -23,9 +30,48 @@ module.exports = function() {
 		},
 		color : 'black',
 		width : Ti.UI.FILL,
-		height : Ti.UI.FILL
+		height : 400
 	});
-	self.add(jsonField);
+	self.add(ModelField);
+	var UIField = Ti.UI.createTextArea({
+		value : ui,
+		top : 410,
+		font : {
+			fontFamily : 'monospace',
+			fontSize : 16
+		},
+		color : 'black',
+		width : Ti.UI.FILL,
+		height : 400,
+		borderWidth : 1,
+		borderColor : 'yellow',
+		borderRadius : 5
+	});
+	self.add(ModelField);
+	ModelField.add(Ti.UI.createLabel({
+		top : 10,
+		font : {
+			fontSize : 60,
+			fontWeight : 'bold'
+		},
+		color : 'black',
+		touchEnabled : false,
+		opacity : 0.2,
+		text : 'Model'
+	}));
+	self.add(UIField);
+	UIField.add(Ti.UI.createLabel({
+		top : 10,
+		font : {
+			fontSize : 60,
+			fontWeight : 'bold'
+		},
+		color : 'black',
+		touchEnabled : false,
+		opacity : 0.2,
+		text : 'UI Styles'
+	}));
+
 	var buttonBar = Ti.UI.createView({
 		bottom : 0,
 		height : 50,
@@ -48,12 +94,18 @@ module.exports = function() {
 
 	button1.addEventListener('click', function() {
 		try {
-			JSON.parse(jsonField.getValue());
-			Ti.App.Properties.setString('MODEL2', jsonField.getValue());
+			JSON.parse(ModelField.getValue());
+			Ti.App.Properties.setString('MODEL2', ModelField.getValue());
 		} catch(E) {
 			presetModel();
 		};
-		var pdfFile = require('controls/billgenerator')(jsonField.getValue());
+		try {
+			JSON.parse(UIField.getValue());
+			Ti.App.Properties.setString('UI2', UIField.getValue());
+		} catch(E) {
+			presetUI();
+		};
+		var pdfFile = require('controls/billgenerator')(ModelField.getValue(), UIField.getValue());
 		if (pdfFile) {
 			var winPDF = Ti.UI.createWindow({
 				backgroundColor : '#fc0',
