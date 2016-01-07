@@ -1,6 +1,6 @@
 const X = 0,
     Y = 1,
-    PADDING = 10;
+    PADDING = 25;
 
 var Moment = require('vendor/moment');
 
@@ -89,58 +89,64 @@ module.exports = function(modelStr) {
 	/* and we know  now the available height for table */
 	//var ypos = require('controls/table.widget').add(PDF, MODEL, UI,ypos);
 
-	console.log(ypos);
-
 	/* first we collect all rows which shows data */
 	var headers = MODEL.content.services.headers.map(function(head, ndx) {
 		return {
 			title : head,
-			dataKey : 'col' + ndx
+			dataKey : ndx
 		};
 	});
-
-	var rows = MODEL.content.services.rows.map(function(rowarray, rowndx) {
+	var data = MODEL.content.services.rows.map(function(rowarray, rowndx) {
 		var row = {};
 		headers.forEach(function(head, ndx) {
 			row[head.dataKey] = rowarray[ndx];
 		});
 		return row;
 	});
-	console.log(headers);
-	console.log(rows);
-
-	//TODO validation of array of array
-	var tableoptions = {
-		headers : headers,
-		data : rows,
-		options : {
-			startY : ypos + 10,
-			theme : 'striped',
-			margin : {
-				left : PADDING.LEFT,
-				right : PADDING.RIGHT
+	var options = {
+		startY : PDF.autoTableEndPosY() + 10,
+		theme : 'striped',
+		tableWidth : 'auto', //PDF.internal.pageSize.height-50,
+		/*columnStyles : {
+			col0 : {
+				columnWidth : 20
 			},
-			styles : {
-				valign : 'top',
-				overflow : 'linebreak',
-				columnWidth : 'auto',
-				cellPadding : 5,
-				rowHeight : 0
-			},
-			createdCell : function(cell, data) {
-				if (data.column.dataKey > 1)
-					cell.styles.halign = 'right';
-			},
-			createdHeaderCell : function(cell, data) {
-				if (data.column.dataKey > 1)
-					cell.styles.halign = 'right';
-				else
-					cell.styles.halign = 'left';
+			col1 : {
+				columnWidth : 120
 			}
+		},*/
+		margin : {
+			left:40,
+			right:40,
+			top:30,
+			bottom:30,
+			
+
+		},
+		styles : {
+			valign : 'top',
+			overflow : 'linebreak',
+			columnWidth : 'auto',
+			cellPadding : 5,
+			rowHeight : 0
+		},
+		createdCell : function(cell, data) {
+			if (data.column.dataKey > 1)
+				cell.styles.halign = 'right';
+		},
+		createdHeaderCell : function(cell, data) {
+			if (data.column.dataKey > 1)
+				cell.styles.halign = 'right';
+			else
+				cell.styles.halign = 'left';
 		}
 	};
-	PDF.addAutoTable(tableoptions);
-	console.log(PDF.autoTableEndPosY());
+	PDF.addAutoTable({
+		headers : headers,
+		data : data,
+		options : options
+	});
+
 	require('controls/posttext.widget').add(PDF, MODEL, UI);
 
 	var timeStampName = 'Rechnung_GK_' + Ti.App.Properties.getInt('nr', 0);

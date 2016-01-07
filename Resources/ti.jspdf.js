@@ -3095,10 +3095,17 @@ var jsPDF = (function(global) {
 	 * @param {Object[][]|String[][]} data Either as an array of objects or array of strings
 	 * @param {Object} [options={}] Options that will override the default ones
 	 */
-	API.addAutoTable = function (args) {
-		var headers = args.headers || [];
-		var data=args.data || [[]];
-		var options = args.options|| {};
+	API.addAutoTable = function () {
+		console.log(arguments[0]);
+		if (typeof arguments[0] == 'object') {
+			var headers = arguments[0].headers || [];
+			var data = arguments[0].data || [[]];
+			var options = arguments[0].options|| {};
+		} else {
+			var headers = arguments[0];
+			var data = arguments[1];
+			var options = arguments[2];
+		}
 		doc = this;
 		settings = initOptions(options || {});
 		pageCount = 1;
@@ -3139,7 +3146,6 @@ var jsPDF = (function(global) {
         settings.afterPageContent(hooksData());
 
         applyStyles(userStyles);
-
         return this;
 	};
 
@@ -3230,7 +3236,7 @@ var jsPDF = (function(global) {
 
 	function initOptions(userOptions) {
 		var settings = extend(defaultOptions(), userOptions);
-
+		
 		// Options
 		if (typeof settings.extendWidth !== 'undefined') {
 			settings.tableWidth = settings.extendWidth ? 'auto' : 'wrap';
@@ -3251,6 +3257,7 @@ var jsPDF = (function(global) {
 				console.error("Use of deprecated option: " + deprecatedOption + ", use the style " + style + " instead.");
 			}
 		});
+		
 		// Unifying
 		var marginSetting = settings.margin;
 		settings.margin = {};
@@ -3356,8 +3363,11 @@ var jsPDF = (function(global) {
 			column.width = column.contentWidth;
 			tableContentWidth += column.contentWidth;
 		});
+		console.log('tableContentWidth=' + tableContentWidth);
 		table.contentWidth = tableContentWidth;
 		var maxTableWidth = doc.internal.pageSize.width - settings.margin.left - settings.margin.right;
+		console.log('tableMaxWidth=' + maxTableWidth);
+		
 		var preferredTableWidth = maxTableWidth; // settings.tableWidth === 'auto'
 		if (typeof settings.tableWidth === 'number') {
 			preferredTableWidth = settings.tableWidth;
@@ -3365,6 +3375,8 @@ var jsPDF = (function(global) {
 			preferredTableWidth = table.contentWidth;
 		}
 		table.width = preferredTableWidth < maxTableWidth ? preferredTableWidth : maxTableWidth;
+		console.log('tablewidth=' + table.width);
+		
 		// To avoid subjecting columns with little content with the chosen overflow method,
 		// never shrink a column more than the table divided by column count (its "fair part")
 		var dynamicColumns = [];
