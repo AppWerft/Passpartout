@@ -91,10 +91,8 @@
         "pretext": [25,120,160],
         "posttext": [25,10,160],
         "services": {
-            "x": 25,
-            "width": 120,
             "row_widths": [
-                15,
+                10,
                 35,
                 25,
                 25,
