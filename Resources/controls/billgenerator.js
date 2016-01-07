@@ -90,9 +90,25 @@ module.exports = function(modelStr) {
 	//var ypos = require('controls/table.widget').add(PDF, MODEL, UI,ypos);
 
 	console.log(ypos);
+
 	/* first we collect all rows which shows data */
-	var headers = MODEL.content.services.headers;
-	var rows = MODEL.content.services.rows;
+	var headers = MODEL.content.services.headers.map(function(head, ndx) {
+		return {
+			title : head,
+			dataKey : 'col' + ndx
+		};
+	});
+
+	var rows = MODEL.content.services.rows.map(function(rowarray, rowndx) {
+		var row = {};
+		headers.forEach(function(head, ndx) {
+			row[head.dataKey] = rowarray[ndx];
+		});
+		return row;
+	});
+	console.log(headers);
+	console.log(rows);
+
 	//TODO validation of array of array
 	var tableoptions = {
 		headers : headers,
@@ -126,29 +142,6 @@ module.exports = function(modelStr) {
 	PDF.addAutoTable(tableoptions);
 	console.log(PDF.autoTableEndPosY());
 	require('controls/posttext.widget').add(PDF, MODEL, UI);
-	
-    
-    
-     
-	//PDF.addText(printdata.nachtext || '', TEMPLATE.NACHTEXT);
-	//PDF.addText(printdata.gruss || '', TEMPLATE.GRUSS);
-
-	/*
-	PDF.addQRCode({
-	qr : {
-	data : 'http://github.com/',
-	ec : 'M'
-	},
-	x : 25,
-	padding : 0,
-	y : PDF.autoTableEndPosY(),
-	width : 10
-	});
-	*/
-
-	//PDF.addText(printdata.nachtext || '', TEMPLATE.NACHTEXT);
-	//PDF.addText(printdata.gruss || '', TEMPLATE.GRUSS);
-	// end of offer type
 
 	var timeStampName = 'Rechnung_GK_' + Ti.App.Properties.getInt('nr', 0);
 	var _tempFile = Ti.Filesystem.getFile(Ti.Filesystem.getTempDirectory(), timeStampName + '.pdf');
