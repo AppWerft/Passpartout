@@ -3,7 +3,7 @@
     <url>http://hamburger-appwerft.de</url>
     <id>de.appwerft.passpartout</id>
     <name>Passpartout</name>
-    <version>1.0.22</version>
+    <version>1.0.24</version>
     <publisher>fuerst</publisher>
     <description>Nix zu lesen</description>
     <copyright>2015 by fuerst</copyright>
@@ -18,15 +18,10 @@
         <plist>
             <dict>
                 <key>NSAppTransportSecurity</key>
-                
                 <dict>
-                    
                     <key>NSAllowsArbitraryLoads</key>
-                    
                     <true/>
-                
                 </dict>
-                
                 <key>UIRequiresFullScreen</key>
                 <string>yes</string>
                 <key>UISupportedInterfaceOrientations~iphone</key>

@@ -16,30 +16,35 @@
             "zip": [158,70],
             "city": [168,70]
         },
+        
+        "email": {
+            "label": [140,40],
+            "value": [155,40]
+        },
+        "web": {
+            "label": [140,45],
+            "value": [155,45]
+        },
         "phone": {
-            "label": [158,80],
-            "value": [170,80]
+            "label": [140,50],
+            "value": [155,50]
             
         },
         "fax": {
-            "label": [158,90],
-            "value": [170,90]
-        },
-        "email": {
-            "label": "eMail:",
-            "value": "klaus.dieter@musterfirma.de"
-        },
-        "web": {
-            "label": "Internet:",
-            "value": "musterfirma.de"
+            "label": [140,55],
+            "value": [155,55]
         },
         "cto": {
-            "label": "Geschäftsführer:",
-            "value": "HP OLbrück"
+            "label": [140,60],
+            "value": [170,60]
         },
         "contact_name": {
-            "label": "Ansprechpartner:",
-            "value": "Hubert Meyer"
+            "label":[140,65],
+            "value": [170,65] 
+        },
+        "legal_form": {
+            "label": [140,75],
+            "value": [170,75]
         },
         "account": [
             {
@@ -54,11 +59,8 @@
                 "label": "BIC",
                 "value": "ABCDE"
             }
-        ],
-        "legal_form": {
-            "label": "Amtsgericht Köln",
-            "value": "HRB 58345"
-        }
+        ]
+        
     },
     "client": {
         "address": {

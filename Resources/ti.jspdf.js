@@ -932,7 +932,6 @@ var jsPDF = (function(global) {
 				buffer.fill(u8[idx],idx,len);
 				idx++;
 			}
-			console.log("Index " + idx + " Len " + len);
 			return buffer.toBlob();
 		},
 		getBlob = function() {
@@ -3096,7 +3095,6 @@ var jsPDF = (function(global) {
 	 * @param {Object} [options={}] Options that will override the default ones
 	 */
 	API.addAutoTable = function () {
-		console.log(arguments[0]);
 		if (typeof arguments[0] == 'object') {
 			var headers = arguments[0].headers || [];
 			var data = arguments[0].data || [[]];
@@ -3363,7 +3361,6 @@ var jsPDF = (function(global) {
 			column.width = column.contentWidth;
 			tableContentWidth += column.contentWidth;
 		});
-		console.log('tableContentWidth=' + tableContentWidth);
 		table.contentWidth = tableContentWidth;
 		var maxTableWidth = doc.internal.pageSize.width - settings.margin.left - settings.margin.right;
 		console.log('tableMaxWidth=' + maxTableWidth);
@@ -3375,7 +3372,6 @@ var jsPDF = (function(global) {
 			preferredTableWidth = table.contentWidth;
 		}
 		table.width = preferredTableWidth < maxTableWidth ? preferredTableWidth : maxTableWidth;
-		console.log('tablewidth=' + table.width);
 		
 		// To avoid subjecting columns with little content with the chosen overflow method,
 		// never shrink a column more than the table divided by column count (its "fair part")

@@ -93,62 +93,28 @@ module.exports = function() {
 	buttonBar.add(button2);
 
 	button1.addEventListener('click', function() {
+		var valide = true;
 		try {
 			JSON.parse(ModelField.getValue());
 			Ti.App.Properties.setString('MODEL2', ModelField.getValue());
 		} catch(E) {
-			presetModel();
+			alert('Ungültige JSON für Daten');
+			valide = false;
+			//presetModel();
 		};
 		try {
 			JSON.parse(UIField.getValue());
 			Ti.App.Properties.setString('UI2', UIField.getValue());
 		} catch(E) {
-			presetUI();
+			alert('Ungültige JSON für Template');
+			valide = false;
+			//presetUI();
 		};
-		var pdfFile = require('controls/billgenerator')(ModelField.getValue(), UIField.getValue());
-		if (pdfFile) {
-			var winPDF = Ti.UI.createWindow({
-				backgroundColor : '#fc0',
-				height : Ti.UI.FILL,
-				top : 20,
-				fullscreen : false,
-				title : 'PDF Preview',
-				width : Ti.UI.FILL
-			});
-			if (GLOBALS.isAndroid) {
-				var pdfView = require("com.mykingdom.mupdf").createView({
-					file : pdfFile
-				});
-				pdfView.setScrollingDirection(require("com.mykingdom.mupdf").DIRECTION_VERTICAL);
-				winPDF.add(pdfView);
-				winPDF.addEventListener('open', function() {
-					winPDF.activity.actionBar.hide();
-				});
-				winPDF.open();
-
-			} else if (GLOBALS.isIOS) {
-				winPDF.open();
-				var btnClose = Ti.UI.createButton({
-					title : 'PDF close',
-					height : 50,
-					top : 20,
-					right : 20
-				});
-				btnClose.addEventListener('click', function(e) {
-					winPDF.close();
-				});
-				//winPDF.setRightNavButton(btnClose);
-				var pdfview = Ti.UI.createWebView({
-					backgroundColor : '#eee',
-					url : pdfFile.nativePath,
-					height : Ti.UI.FILL,
-					width : Ti.UI.FILL
-				});
-
-				winPDF.add(pdfview);
-				winPDF.add(btnClose);
-			}
+		if (valide) {
+			var pdfFile = require('controls/billgenerator')(ModelField.getValue(), UIField.getValue());
+			require('ui/pdfpreview.window')(pdfFile);
 		}
+
 	});
 	button2.addEventListener('click', function() {
 		Ti.App.Properties.setString('MODEL2', jsonField.getValue());

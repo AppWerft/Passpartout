@@ -15,7 +15,7 @@ var testTable = function(options) {
 	return h;
 };
 
-module.exports = function(modelStr) {
+module.exports = function(modelStr,UIStr) {
 	var start = new Date().getTime();
 	var PDF = new (require('ti.jspdf'))('p', 'mm');
 	var pageHeight = PDF.internal.pageSize.height;
@@ -24,7 +24,7 @@ module.exports = function(modelStr) {
 	PDF.addText = function(text, coords) {
 		var x = coords[0] >= 0 ? parseFloat(coords[0]) : PDF.internal.pageSize.width + coords[0],
 		    y = coords[1] >= 0 ? coords[1] : PDF.internal.pageSize.height + coords[1];
-		console.log(x + ' ≈ ' + y + ' ≈ ', text);
+		
 		return PDF.text(text, x, y);
 	};
 	PDF.addTextBox = function(text, x, y, width) {
@@ -52,7 +52,8 @@ module.exports = function(modelStr) {
 		});
 	};
 	/* Ende der PDF-Erweiterungen */
-
+    
+    /* ≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈ */
 	/* Logo rechts oben: */
 	PDF.addImage(Ti.Filesystem.resourcesDirectory + '/assets/logo.jpg', 'JPEG', PDF.internal.pageSize.width - 90, 5, 80, 20);
 
@@ -64,14 +65,7 @@ module.exports = function(modelStr) {
 		alert('This configuration is not valid JSON');
 		return null;
 	}
-	/* hier liegen die Maße usw: */
-	var templateFile = Ti.Filesystem.getFile(Ti.Filesystem.resourcesDirectory, 'model', 'ui_template.json');
-	if (!templateFile.exists()) {
-		alert('No template for ' + Model.model.type + 'found');
-		return null;
-	}
-	var UI = JSON.parse(templateFile.read().getText());
-
+	var UI = JSON.parse(UIStr);
 	PDF.setProperties(MODEL.metadata);
 
 	/* Start rendering, setting defaults */
