@@ -4,7 +4,6 @@ const PADDING = {
 };
 
 exports.add = function(PDF, MODEL, UI, ypos) {
-	console.log(ypos);
 	/* first we collect all rows which shows data */
 	var headers = MODEL.content.services.headers;
 	var rows = MODEL.content.services.rows;
@@ -28,7 +27,6 @@ exports.add = function(PDF, MODEL, UI, ypos) {
 			}
 		}
 	};
-	console.log(tableoptions);
 	/* hooks for cell rendering */
 	tableoptions.options.createdCell = function(cell, data) {
 		if (data.column.dataKey > 1)
@@ -40,6 +38,6 @@ exports.add = function(PDF, MODEL, UI, ypos) {
 		else
 			cell.styles.halign = 'left';
 	};
-	PDF.addAutoTable(tableoptions);
+	PDF.autoTable(tableoptions.headers,tableoptions.data, tableoptions.options );
 	return PDF.autoTableEndPosY();
 }; 

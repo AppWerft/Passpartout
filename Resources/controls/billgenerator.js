@@ -7,15 +7,8 @@ var Moment = require('vendor/moment');
 Number.prototype.toPt = function() {
 	return this * 72 / 2.504;
 };
-var testTable = function(options) {
-	var pdf = new (require('ti.jspdf'))('p', 'mm');
-	pdf.addAutoTable(options);
-	var h = pdf.autoTableEndPosY() - options.options.margin.top;
-	pdf = null;
-	return h;
-};
 
-module.exports = function(modelStr,UIStr) {
+module.exports = function(modelStr, UIStr) {
 	var start = new Date().getTime();
 	var PDF = new (require('ti.jspdf'))('p', 'mm');
 	var pageHeight = PDF.internal.pageSize.height;
@@ -24,36 +17,38 @@ module.exports = function(modelStr,UIStr) {
 	PDF.addText = function(text, coords) {
 		var x = coords[0] >= 0 ? parseFloat(coords[0]) : PDF.internal.pageSize.width + coords[0],
 		    y = coords[1] >= 0 ? coords[1] : PDF.internal.pageSize.height + coords[1];
-		
+
 		return PDF.text(text, x, y);
 	};
 	PDF.addTextBox = function(text, x, y, width) {
-		return PDF.addAutoTable({
-			headers : [''],
-			data : [[text]],
-			options : {
-				drawHeaderRow : function() {
-					return false;
-				},
-				theme : 'plain',
-				margin : {
-					top : y,
-					left : x,
-					right : PDF.internal.pageSize.width - x - width
-				},
-				styles : {
-					valign : 'top',
-					overflow : 'linebreak',
-					columnWidth : 'auto',
-					cellPadding : 0,
-					rowHeight : 0
-				}
+		console.log('Info: start addTextBox');
+		return PDF.autoTable([{
+			title : "",
+			dataKey : "first"
+		}], [{
+			first : text
+		}], {
+			drawHeaderRow : function() {
+				return false;
+			},
+			theme : 'plain',
+			margin : {
+				top : y,
+				left : x,
+				right : PDF.internal.pageSize.width - x - width
+			},
+			styles : {
+				valign : 'top',
+				overflow : 'linebreak',
+				columnWidth : 'auto',
+				cellPadding : 0,
+				rowHeight : 0
 			}
 		});
 	};
 	/* Ende der PDF-Erweiterungen */
-    
-    /* ≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈ */
+
+	/* ≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈ */
 	/* Logo rechts oben: */
 	PDF.addImage(Ti.Filesystem.resourcesDirectory + '/assets/logo.jpg', 'JPEG', PDF.internal.pageSize.width - 90, 5, 80, 20);
 
@@ -73,11 +68,14 @@ module.exports = function(modelStr,UIStr) {
 	PDF.setDrawColor(200, 100, 100);
 
 	require('controls/adressfenster.widget').add(PDF, MODEL, UI);
-
+	console.log('Info: adressfenster gebaut ');
 	require('controls/provider.widget').add(PDF, MODEL, UI);
+	console.log('Info: provider gebaut ');
+
 	/* das war der Kopfbogen, nun der Inhalt: */
 
 	var ypos = require('controls/pretext.widget').add(PDF, MODEL, UI);
+	console.log('Info: pretext gebaut ');
 	/* now we get the height of the adding above */
 
 	/* and we know  now the available height for table */
@@ -98,29 +96,27 @@ module.exports = function(modelStr,UIStr) {
 		return row;
 	});
 	var options = {
-		startY : PDF.autoTableEndPosY() + 10,
+		startY : PDF.autoTableEndPosY() + 0,
 		theme : 'striped',
 		tableWidth : 'auto', //PDF.internal.pageSize.height-50,
 		/*columnStyles : {
-			col0 : {
-				columnWidth : 20
-			},
-			col1 : {
-				columnWidth : 120
-			}
-		},*/
+		 col0 : {
+		 columnWidth : 20
+		 },
+		 col1 : {
+		 columnWidth : 120
+		 }
+		 },*/
 		margin : {
-			left:40,
-			right:40,
-			top:30,
-			bottom:30,
-			
-
+			left : 40,
+			right : 40,
+			top : 0,
+			bottom : 30,
 		},
 		styles : {
 			valign : 'top',
 			overflow : 'linebreak',
-			columnWidth : 'auto',
+			//columnWidth : 'auto',
 			cellPadding : 5,
 			rowHeight : 0
 		},
@@ -135,11 +131,7 @@ module.exports = function(modelStr,UIStr) {
 				cell.styles.halign = 'left';
 		}
 	};
-	PDF.addAutoTable({
-		headers : headers,
-		data : data,
-		options : options
-	});
+	PDF.autoTable(headers, data, options);
 
 	require('controls/posttext.widget').add(PDF, MODEL, UI);
 
