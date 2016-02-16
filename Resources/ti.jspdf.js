@@ -3112,13 +3112,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
      */
     API.autoTable = function (headers, data, options) {
     	
-    	
-    	console.log(headers);
-    	console.log(data);
-    	console.log(options);
-    	
-    	
-    	
         validateInput(headers, data, options);
         doc = this;
         settings = initOptions(options || {});
@@ -3135,6 +3128,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         // Create the table model with its columns, rows and cells
         createModels(headers, data);
+        console.log('START OF CALCULATION');
         calculateWidths();
 
         // Page break if there is room for only the first data row
@@ -3173,40 +3167,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         return cursor.y;
     };
 
-    /**
-     * Parses an html table
-     *
-     * @param tableElem Html table element
-     * @param includeHiddenRows Defaults to false
-     * @returns Object Object with two properties, columns and rows
-     */
-    API.autoTableHtmlToJson = function (tableElem, includeHiddenRows) {
-        includeHiddenRows = includeHiddenRows || false;
-
-        var header = tableElem.rows[0];
-        var result = { columns: [], rows: [] };
-
-        for (var k = 0; k < header.cells.length; k++) {
-            var cell = header.cells[k];
-            result.columns.push(typeof cell !== 'undefined' ? cell.textContent : '');
-        }
-
-        for (var i = 1; i < tableElem.rows.length; i++) {
-            var tableRow = tableElem.rows[i];
-            var style = window.getComputedStyle(tableRow);
-            if (includeHiddenRows || style.display !== 'none') {
-                var rowData = [];
-                for (var j = 0; j < header.cells.length; j++) {
-                    rowData.push(typeof tableRow.cells[j] !== 'undefined' ? tableRow.cells[j].textContent : '');
-                }
-                result.rows.push(rowData);
-            }
-        }
-
-        result.data = result.rows; // Deprecated
-        return result;
-    };
-
+   
     /**
      * Improved text function with halign and valign support
      * Inspiration from: http://stackoverflow.com/questions/28327510/align-text-right-using-jspdf/28433113#28433113
@@ -3231,9 +3192,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         // Align the top
         y += fontSize * (2 - lineHeightProportion);
-
         if (styles.valign === 'middle') y -= lineCount / 2 * fontSize;else if (styles.valign === 'bottom') y -= lineCount * fontSize;
-
         if (styles.halign === 'center' || styles.halign === 'right') {
             var alignSize = fontSize;
             if (styles.halign === 'center') alignSize *= 0.5;
@@ -3443,9 +3402,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         table.height = 0;
         var all = table.rows.concat(table.headerRow);
         all.forEach(function (row, i) {
+        	var rowndx=i;
             var lineBreakCount = 0;
             var cursorX = table.x;
-            table.columns.forEach(function (col) {
+            table.columns.forEach(function (col,colndx) {
                 var cell = row.cells[col.dataKey];
                 col.x = cursorX;
                 applyStyles(cell.styles);
@@ -3466,6 +3426,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     }
                 var count = Array.isArray(cell.text) ? cell.text.length - 1 : 0;
                 if (count > lineBreakCount) {
+                	console.log('Erhöhe auf : ' + count);
                     lineBreakCount = count;
                 }
                 cursorX += col.width;
@@ -3473,9 +3434,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
             row.heightStyle = row.styles.rowHeight;
             // TODO Pick the highest row based on font size as well
-            row.height = row.heightStyle + lineBreakCount * row.styles.fontSize * FONT_ROW_RATIO;
+             // 
+            var PT = 0.352778;
+            row.height = row.heightStyle + (lineBreakCount) * row.styles.fontSize * FONT_ROW_RATIO * PT;
             table.height += row.height;
         });
+        //console.log(table);
     }
 
     function distributeWidth(dynamicColumns, staticWidth, dynamicColumnsContentWidth, fairWidth) {

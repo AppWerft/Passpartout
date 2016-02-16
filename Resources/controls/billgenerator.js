@@ -78,9 +78,6 @@ module.exports = function(modelStr, UIStr) {
 	console.log('Info: pretext gebaut ');
 	/* now we get the height of the adding above */
 
-	/* and we know  now the available height for table */
-	//var ypos = require('controls/table.widget').add(PDF, MODEL, UI,ypos);
-
 	/* first we collect all rows which shows data */
 	var headers = MODEL.content.services.headers.map(function(head, ndx) {
 		return {
@@ -89,36 +86,47 @@ module.exports = function(modelStr, UIStr) {
 		};
 	});
 	var data = MODEL.content.services.rows.map(function(rowarray, rowndx) {
+		console.log(rowarray);
 		var row = {};
 		headers.forEach(function(head, ndx) {
 			row[head.dataKey] = rowarray[ndx];
 		});
 		return row;
 	});
+    
 	var options = {
-		startY : PDF.autoTableEndPosY() + 0,
+		startY : PDF.autoTableEndPosY()+10,
 		theme : 'striped',
-		tableWidth : 'auto', //PDF.internal.pageSize.height-50,
-		/*columnStyles : {
-		 col0 : {
-		 columnWidth : 20
-		 },
-		 col1 : {
-		 columnWidth : 120
-		 }
-		 },*/
+		tableWidth : PDF.internal.pageSize.width - 45,
+		columnStyles : {
+			"0" : {
+				columnWidth : 15
+			},
+
+			"2" : {
+				columnWidth : 20
+			},
+			"3" : {
+				columnWidth : 30
+			},
+			"4" : {
+				columnWidth : 30
+			}
+		},
 		margin : {
-			left : 40,
-			right : 40,
-			top : 0,
+			left : 25,
+			right : 20,
+			top : 20,
 			bottom : 30,
 		},
 		styles : {
-			valign : 'top',
 			overflow : 'linebreak',
-			//columnWidth : 'auto',
+			valign : 'middle',
 			cellPadding : 5,
-			rowHeight : 0
+			rowHeight: 10
+		},
+		headerStyles : {
+			rowHeight : 10
 		},
 		createdCell : function(cell, data) {
 			if (data.column.dataKey > 1)
@@ -132,9 +140,7 @@ module.exports = function(modelStr, UIStr) {
 		}
 	};
 	PDF.autoTable(headers, data, options);
-
 	require('controls/posttext.widget').add(PDF, MODEL, UI);
-
 	var timeStampName = 'Rechnung_GK_' + Ti.App.Properties.getInt('nr', 0);
 	var _tempFile = Ti.Filesystem.getFile(Ti.Filesystem.getTempDirectory(), timeStampName + '.pdf');
 	PDF.save(_tempFile);
