@@ -2,17 +2,21 @@ const X = 0,
     Y = 1,
     PADDING = 25;
 
+/* for date manipulations */
 var Moment = require('vendor/moment');
 
 Number.prototype.toPt = function() {
 	return this * 72 / 2.504;
 };
 
+/* entry oint */
 module.exports = function(modelStr, UIStr) {
 	var start = new Date().getTime();
+	/* init the PDF */
 	var PDF = new (require('ti.jspdf'))('p', 'mm');
 	var pageHeight = PDF.internal.pageSize.height;
 	PDF.setFillColor(200, 10, 60);
+
 	/* Erweiterungen des PDF-Objektes: */
 	PDF.addText = function(text, coords) {
 		var x = coords[0] >= 0 ? parseFloat(coords[0]) : PDF.internal.pageSize.width + coords[0],
@@ -52,15 +56,9 @@ module.exports = function(modelStr, UIStr) {
 	/* Logo rechts oben: */
 	PDF.addImage(Ti.Filesystem.resourcesDirectory + '/assets/logo.jpg', 'JPEG', PDF.internal.pageSize.width - 90, 5, 80, 20);
 
-	var MODEL = {};
-	try {
-		MODEL = JSON.parse(modelStr);
-	} catch (E) {
-		console.log(E);
-		alert('This configuration is not valid JSON');
-		return null;
-	}
-	var UI = JSON.parse(UIStr);
+	var MODEL = JSON.parse(modelStr),
+	    UI = JSON.parse(UIStr);
+
 	PDF.setProperties(MODEL.metadata);
 
 	/* Start rendering, setting defaults */
@@ -69,6 +67,7 @@ module.exports = function(modelStr, UIStr) {
 
 	/* now we get the height of the adding above */
 
+	/* to buold to autotable first we must convert input congig to specific format */
 	/* first we collect all rows which shows data */
 	var headers = MODEL.content.services.headers.map(function(head, ndx) {
 		return {
@@ -136,11 +135,8 @@ module.exports = function(modelStr, UIStr) {
 		beforePageContent : function() {
 			/* Fenster */
 			require('controls/pdfgenerator/adresswindow.widget').add(PDF, MODEL, UI);
-
 			require('controls/pdfgenerator/provideraddress.widget').add(PDF, MODEL, UI);
-
 			require('controls/pdfgenerator/provider.widget').add(PDF, MODEL, UI);
-
 		},
 		afterPageContent : function() {
 			PDF.text('AfterReport', 10, 10);
