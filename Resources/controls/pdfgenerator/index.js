@@ -67,15 +67,6 @@ module.exports = function(modelStr, UIStr) {
 	PDF.setFont(UI.fontfamily);
 	PDF.setDrawColor(200, 100, 100);
 
-	require('controls/adressfenster.widget').add(PDF, MODEL, UI);
-	console.log('Info: adressfenster gebaut ');
-	require('controls/provider.widget').add(PDF, MODEL, UI);
-	console.log('Info: provider gebaut ');
-
-	/* das war der Kopfbogen, nun der Inhalt: */
-
-	var ypos = require('controls/pretext.widget').add(PDF, MODEL, UI);
-	console.log('Info: pretext gebaut ');
 	/* now we get the height of the adding above */
 
 	/* first we collect all rows which shows data */
@@ -93,9 +84,13 @@ module.exports = function(modelStr, UIStr) {
 		});
 		return row;
 	});
-    
+
+	/* das war der Kopfbogen, nun der Inhalt: */
+
+	var ypos = require('controls/pdfgenerator/pretext.widget').add(PDF, MODEL, UI);
+
 	var options = {
-		startY : PDF.autoTableEndPosY()+10,
+		startY : PDF.autoTableEndPosY() + 10,
 		theme : 'striped',
 		tableWidth : PDF.internal.pageSize.width - 45,
 		columnStyles : {
@@ -123,7 +118,7 @@ module.exports = function(modelStr, UIStr) {
 			overflow : 'linebreak',
 			valign : 'middle',
 			cellPadding : 5,
-			rowHeight: 10
+			rowHeight : 10
 		},
 		headerStyles : {
 			rowHeight : 10
@@ -137,10 +132,26 @@ module.exports = function(modelStr, UIStr) {
 				cell.styles.halign = 'right';
 			else
 				cell.styles.halign = 'left';
-		}
+		},
+		beforePageContent : function() {
+			/* Fenster */
+			require('controls/pdfgenerator/adresswindow.widget').add(PDF, MODEL, UI);
+
+			require('controls/pdfgenerator/provideraddress.widget').add(PDF, MODEL, UI);
+
+			require('controls/pdfgenerator/provider.widget').add(PDF, MODEL, UI);
+
+		},
+		afterPageContent : function() {
+			PDF.text('AfterReport', 10, 10);
+
+		},
 	};
 	PDF.autoTable(headers, data, options);
-	require('controls/posttext.widget').add(PDF, MODEL, UI);
+
+	require('controls/pdfgenerator/posttext.widget').add(PDF, MODEL, UI);
+	/* END */
+
 	var timeStampName = 'Rechnung_GK_' + Ti.App.Properties.getInt('nr', 0);
 	var _tempFile = Ti.Filesystem.getFile(Ti.Filesystem.getTempDirectory(), timeStampName + '.pdf');
 	PDF.save(_tempFile);

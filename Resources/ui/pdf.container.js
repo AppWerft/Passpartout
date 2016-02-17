@@ -111,7 +111,7 @@ module.exports = function() {
 			//presetUI();
 		};
 		if (valide) {
-			var pdfFile = require('controls/billgenerator')(ModelField.getValue(), UIField.getValue());
+			var pdfFile = require('controls/pdfgenerator/index')(ModelField.getValue(), UIField.getValue());
 			require('ui/pdfpreview.window')(pdfFile);
 		}
 
@@ -123,7 +123,7 @@ module.exports = function() {
 		    BCC = ['rs@hamburger-appwerft.de'],
 		    SUBJECT = 'New invoice №' + nr,
 		    BODY = "Vielen Dank für den Auftrag, den ich hoffentlich zu Ihrer allergrößten Zugfriedenheit „erledigt“ habe … Anbei die entsprechenden Bemerkungen, die ich geflissentlich anbiete";
-		var pdfFile = require('controls/billgenerator')(jsonField.getValue());
+		var pdfFile = require('controls/pdfgenerator')(jsonField.getValue());
 		if (pdfFile) {
 			if (GLOBALS.isIOS) {
 				var emailDialog = Ti.UI.createEmailDialog();

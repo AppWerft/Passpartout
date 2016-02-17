@@ -8,13 +8,15 @@
     "padding-right" : 25,
     "color" : 0,
     "provider": {
-        "sender": [25,50],
-        
-        "address": {
-            "company": [158,50],
-            "street": [158,60],
-            "zip": [158,70],
-            "city": [168,70]
+        "sender": [25,50], 
+        "address": { 
+        	"position": {
+	            "company": [158,50],
+    	        "street": [158,60],
+        	    "zip": [158,70],
+            	"city": [168,70]
+        	},
+        	"page": "all"
         },
         
         "email": {
